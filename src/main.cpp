@@ -7,6 +7,7 @@
 #include <nrf_rtc.h>
 #include <FreeRTOS.h>
 #include <semphr.h>
+#include <Adafruit_SPIFlash.h>
 
 #define DEBUG_PRINT 0
 
@@ -28,6 +29,9 @@ BH1750 lightMeter(0x23);
 
 // BTHome Service
 BLEService bthomeService = BLEService(0xFCD2);
+
+// QSPI Flash (mise en deep power-down pour économiser ~30µA)
+static Adafruit_FlashTransport_QSPI flashTransport;
 
 // Deep sleep
 static SemaphoreHandle_t sleepSemaphore;
@@ -122,6 +126,12 @@ void setup() {
     NRF_GPIO_PIN_NOSENSE
   );
   digitalWrite(SOIL_POWER_PIN, LOW);
+
+  // QSPI flash en deep power-down (~0.5µA au lieu de ~30µA en standby)
+  // 0xB9 = commande Deep Power-Down standard des flash SPI
+  flashTransport.begin();
+  flashTransport.runCommand(0xB9);
+  flashTransport.end();
 
   // Init BLE (démarre aussi le LFCLK nécessaire pour RTC2)
   Bluefruit.autoConnLed(false);  // empêche Bluefruit de contrôler LED_BLUE
