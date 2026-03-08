@@ -30,6 +30,12 @@ BH1750 lightMeter(0x23);
 // BTHome Service
 BLEService bthomeService = BLEService(0xFCD2);
 
+// Device info
+#define BTHOME_DEVICE_TYPE  1
+#define FW_MAJOR  0
+#define FW_MINOR  0
+#define FW_PATCH  1
+
 // QSPI Flash (mise en deep power-down pour économiser ~30µA)
 static Adafruit_FlashTransport_QSPI flashTransport;
 
@@ -155,32 +161,45 @@ void sendBTHomeData(uint8_t soil, float temp, float humidity, float lux, uint8_t
   // BTHome header
   payload[idx++] = 0x40;  // v2, unencrypted
 
-  // Soil moisture (0x2F)
-  payload[idx++] = 0x2F;
-  payload[idx++] = soil;
+  // Les object IDs doivent être en ordre numérique croissant (spec BTHome)
 
-  // Temperature (0x02)
+  // Battery (0x01) - uint8, factor 1, %
+  payload[idx++] = 0x01;
+  payload[idx++] = battery;
+
+  // Temperature (0x02) - sint16, factor 0.01, °C
   payload[idx++] = 0x02;
   int16_t tempInt = (int16_t)(temp * 100);
   memcpy(&payload[idx], &tempInt, 2);
   idx += 2;
 
-  // Humidity (0x03)
+  // Humidity (0x03) - uint16, factor 0.01, %
   payload[idx++] = 0x03;
   uint16_t humidInt = (uint16_t)(humidity * 100);
   memcpy(&payload[idx], &humidInt, 2);
   idx += 2;
 
-  // Illuminance (0x05) - 24-bit
+  // Illuminance (0x05) - uint24, factor 0.01, lx
   payload[idx++] = 0x05;
   uint32_t luxInt = (uint32_t)(lux * 100);
   payload[idx++] = (luxInt & 0xFF);
   payload[idx++] = ((luxInt >> 8) & 0xFF);
   payload[idx++] = ((luxInt >> 16) & 0xFF);
 
-  // Battery (0x01)
-  payload[idx++] = 0x01;
-  payload[idx++] = battery;
+  // Moisture (0x2F) - uint8, factor 1, %
+  payload[idx++] = 0x2F;
+  payload[idx++] = soil;
+
+  // Device type (0xF0) - uint16 little endian
+  payload[idx++] = 0xF0;
+  payload[idx++] = (BTHOME_DEVICE_TYPE & 0xFF);
+  payload[idx++] = (BTHOME_DEVICE_TYPE >> 8) & 0xFF;
+
+  // Firmware version (0xF2) - uint24, format patch/minor/major little endian
+  payload[idx++] = 0xF2;
+  payload[idx++] = FW_PATCH;
+  payload[idx++] = FW_MINOR;
+  payload[idx++] = FW_MAJOR;
 
   // Build service data (UUID + payload)
   uint8_t serviceData[33];
@@ -212,6 +231,19 @@ void sendBTHomeData(uint8_t soil, float temp, float humidity, float lux, uint8_t
 void loop() {
 #if DEBUG_PRINT
   Serial.println("\n--- Lecture ---");
+#endif
+
+  // Battery
+  int batteryRaw = analogRead(BATTERY_PIN);
+  float voltage = (batteryRaw / 4095.0) * 3.0;
+  int batteryPercent = map((int)(voltage * 100), 200, 300, 0, 100);
+  batteryPercent = constrain(batteryPercent, 0, 100);
+#if DEBUG_PRINT
+  Serial.print("Bat: ");
+  Serial.print(voltage);
+  Serial.print("V (");
+  Serial.print(batteryPercent);
+  Serial.println("%)");
 #endif
 
   // Soil - allume le capteur, attend stabilisation, lit, éteint
@@ -256,18 +288,6 @@ void loop() {
   Serial.println(lux);
 #endif
 
-  // Battery
-  int batteryRaw = analogRead(BATTERY_PIN);
-  float voltage = (batteryRaw / 4095.0) * 3.0;
-  int batteryPercent = map((int)(voltage * 100), 200, 300, 0, 100);
-  batteryPercent = constrain(batteryPercent, 0, 100);
-#if DEBUG_PRINT
-  Serial.print("Bat: ");
-  Serial.print(voltage);
-  Serial.print("V (");
-  Serial.print(batteryPercent);
-  Serial.println("%)");
-#endif
 
   // Broadcast BTHome
   sendBTHomeData(soilMoisture, temperature, humidite, lux, batteryPercent);
