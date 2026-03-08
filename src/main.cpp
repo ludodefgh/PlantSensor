@@ -25,7 +25,21 @@ BH1750 lightMeter(0x23);
 // Calibration
 #define SOIL_DRY 3500
 #define SOIL_WET 1260
-#define READ_INTERVAL 3600000  // ms (1 heure)
+
+// Intervalles adaptatifs (secondes)
+#define INTERVAL_MIN   600    //  10 min
+#define INTERVAL_BASE  3600   //   1 heure
+#define INTERVAL_MAX   14400  //   4 heures
+
+// Seuils de changement pour ajuster la fréquence
+#define LUX_DELTA_HIGH   500.0f  // → 10 min
+#define LUX_DELTA_MED    100.0f  // → 30 min
+#define LUX_DELTA_LOW     10.0f  // → 1h (sinon 2h)
+#define SOIL_DELTA_HIGH   10     // → 10 min (arrosage détecté)
+#define SOIL_DELTA_MED     5     // → 30 min
+#define TEMP_DELTA_HIGH    3.0f  // → 30 min
+#define NIGHT_LUX         10.0f  // seuil nuit (lux)
+#define NIGHT_MULTIPLIER   4.0f  // multiplicateur nuit
 
 // BTHome Service
 BLEService bthomeService = BLEService(0xFCD2);
@@ -41,6 +55,53 @@ static Adafruit_FlashTransport_QSPI flashTransport;
 
 // Deep sleep
 static SemaphoreHandle_t sleepSemaphore;
+
+// Valeurs précédentes pour l'algorithme adaptatif
+static float prevLux      = -1.0f;
+static int   prevSoil     = -1;
+static float prevTemp     = -999.0f;
+
+uint32_t computeNextInterval(float lux, int soil, float temp) {
+  uint32_t interval = INTERVAL_MAX;
+
+  if (prevLux >= 0.0f) {
+    // Contribution lux
+    float luxDelta = fabsf(lux - prevLux);
+    if      (luxDelta > LUX_DELTA_HIGH) interval = min(interval, (uint32_t)600);
+    else if (luxDelta > LUX_DELTA_MED)  interval = min(interval, (uint32_t)1800);
+    else if (luxDelta > LUX_DELTA_LOW)  interval = min(interval, (uint32_t)INTERVAL_BASE);
+    else                                interval = min(interval, (uint32_t)7200);
+
+    // Contribution sol
+    int soilDelta = abs(soil - prevSoil);
+    if      (soilDelta > SOIL_DELTA_HIGH) interval = min(interval, (uint32_t)600);
+    else if (soilDelta > SOIL_DELTA_MED)  interval = min(interval, (uint32_t)1800);
+
+    // Contribution température
+    if (fabsf(temp - prevTemp) > TEMP_DELTA_HIGH) interval = min(interval, (uint32_t)1800);
+  } else {
+    interval = INTERVAL_BASE;  // première mesure
+  }
+
+  // Modificateur nuit : lux très bas → multiplier, plafonné à INTERVAL_MAX
+  if (lux < NIGHT_LUX) {
+    interval = min((uint32_t)((float)interval * NIGHT_MULTIPLIER), (uint32_t)INTERVAL_MAX);
+  }
+
+  interval = constrain(interval, (uint32_t)INTERVAL_MIN, (uint32_t)INTERVAL_MAX);
+
+  prevLux  = lux;
+  prevSoil = soil;
+  prevTemp = temp;
+
+#if DEBUG_PRINT
+  Serial.print("Next interval: ");
+  Serial.print(interval / 60);
+  Serial.println(" min");
+#endif
+
+  return interval;
+}
 
 extern "C" void RTC2_IRQHandler(void) {
   if (NRF_RTC2->EVENTS_COMPARE[0]) {
@@ -229,6 +290,12 @@ void sendBTHomeData(uint8_t soil, float temp, float humidity, float lux, uint8_t
 }
 
 void loop() {
+  static bool firstBoot = true;
+  if (firstBoot) {
+    firstBoot = false;
+    deepSleep(60);  // Attend 1 minute au premier démarrage
+  }
+
 #if DEBUG_PRINT
   Serial.println("\n--- Lecture ---");
 #endif
@@ -292,7 +359,6 @@ void loop() {
   // Broadcast BTHome
   sendBTHomeData(soilMoisture, temperature, humidite, lux, batteryPercent);
 
-  // Deep sleep via RTC2 (READ_INTERVAL en ms → secondes)
-  deepSleep(READ_INTERVAL / 1000);
-  //deepSleep(10);  // pour tests
+  // Deep sleep adaptatif via RTC2
+  deepSleep(computeNextInterval(lux, soilMoisture, temperature));
 }
