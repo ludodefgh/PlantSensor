@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "exportDate": "2026-03-13T03:52:58.956Z",
+  "mcu": "nrf54l15",
+  "package": "qfn48-6x6-qfaa",
+  "selectedPeripherals": [
+    {
+      "id": "HFXO",
+      "config": {
+        "loadCapacitors": "external"
+      }
+    },
+    {
+      "id": "LFXO",
+      "config": {
+        "loadCapacitors": "external"
+      }
+    },
+    {
+      "id": "TWIM/TWIS20",
+      "pinFunctions": {
+        "P1.03": "SCL",
+        "P1.02": "SDA"
+      }
+    },
+    {
+      "id": "GPIO_GPIO_EN_BOOST",
+      "type": "GPIO",
+      "label": "gpio_en_boost",
+      "pin": "P1.13",
+      "activeState": "active-low"
+    },
+    {
+      "id": "GPIO_GPIO_SOIL_VCC",
+      "type": "GPIO",
+      "label": "gpio_soil_vcc",
+      "pin": "P1.14",
+      "activeState": "active-low"
+    },
+    {
+      "id": "SAADC",
+      "pinFunctions": {
+        "P1.06": "AIN2",
+        "P1.07": "AIN3"
+      }
+    },
+    {
+      "id": "UARTE21",
+      "pinFunctions": {
+        "P1.09": "TXD",
+        "P1.10": "RXD"
+      },
+      "config": {
+        "note": "debug console"
+      }
+    }
+  ]
+}
