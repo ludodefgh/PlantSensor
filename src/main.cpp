@@ -21,6 +21,7 @@ BH1750 lightMeter(0x23);
 #define SOIL_MOISTURE_PIN A1
 #define SOIL_POWER_PIN D10 // Alimentation capteur sol (high drive)
 #define BATTERY_PIN A2
+#define BOOST_CONTROL_PIN D9 // MOSFET AO3401 gate — LOW = boost ON, HIGH = boost OFF
 #define SDA_PIN 4
 #define SCL_PIN 5
 
@@ -248,6 +249,10 @@ void setup()
   pinMode(LED_BLUE, OUTPUT);
   digitalWrite(LED_BLUE, HIGH);
 
+  // MOSFET boost OFF par défaut (P-channel : HIGH = OFF)
+  pinMode(BOOST_CONTROL_PIN, OUTPUT);
+  digitalWrite(BOOST_CONTROL_PIN, HIGH);
+
   // Sémaphore pour le deep sleep
   sleepSemaphore = xSemaphoreCreateBinary();
 
@@ -473,10 +478,13 @@ void loop()
 #endif
   }
 
-  // BH1750 - déclenche une mesure unique (auto power-down après)
+  // BH1750 - allume le boost, déclenche une mesure unique, éteint le boost
+  digitalWrite(BOOST_CONTROL_PIN, LOW);  // Boost ON
+  delay(20);                             // Stabilisation boost
   lightMeter.configure(BH1750::ONE_TIME_HIGH_RES_MODE);
   delay(200);
   float lux = lightMeter.readLightLevel();
+  digitalWrite(BOOST_CONTROL_PIN, HIGH); // Boost OFF
 #if DEBUG_PRINT
   Serial.print("Lux: ");
   Serial.println(lux);
