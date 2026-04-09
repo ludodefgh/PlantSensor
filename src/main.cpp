@@ -9,9 +9,9 @@
 #include <semphr.h>
 #include <Adafruit_SPIFlash.h>
 
-#define QUICK_DEBUG 0
-#define DEBUG_PRINT 0
-#define SUNRISE_DETECTION 1
+#define QUICK_DEBUG 1
+#define DEBUG_PRINT 1
+#define SUNRISE_DETECTION 0
 
 // Capteurs
 Adafruit_SHT4x sht4 = Adafruit_SHT4x();
@@ -21,6 +21,7 @@ BH1750 lightMeter(0x23);
 #define SOIL_MOISTURE_PIN A1
 #define SOIL_POWER_PIN D10 // Alimentation capteur sol (high drive)
 #define BATTERY_PIN A2
+#define BOOST_CONTROL_PIN D8 // MOSFET AO3401 gate — LOW = boost ON, HIGH = boost OFF
 #define SDA_PIN 4
 #define SCL_PIN 5
 
@@ -210,6 +211,8 @@ extern "C" void RTC2_IRQHandler(void)
 
 void deepSleep(uint32_t seconds)
 {
+    Serial.flush();
+
   // RTC2 est libre (RTC0=SoftDevice, RTC1=FreeRTOS)
   // LFCLK déjà démarré par Bluefruit.begin()
   NRF_RTC2->TASKS_STOP = 1;
@@ -230,6 +233,7 @@ void deepSleep(uint32_t seconds)
   xSemaphoreTake(sleepSemaphore, portMAX_DELAY);
 
   SCB->SCR &= ~SCB_SCR_SLEEPDEEP_Msk;
+    Serial.flush();
 }
 
 void setup()
@@ -239,6 +243,10 @@ void setup()
   delay(1000);
   Serial.println("Plant Sensor BTHome Starting...");
 #endif
+
+  // Boost ON en tout premier — BH1750 doit être alimenté pour lightMeter.begin()
+  // INPUT_PULLDOWN : pull-up interne tire la gate LOW → P-channel ON dès le reset
+  pinMode(BOOST_CONTROL_PIN, INPUT_PULLDOWN);
 
   // LEDs XIAO éteintes (active low, consomment si flottantes)
   pinMode(LED_RED, OUTPUT);
@@ -270,7 +278,7 @@ void setup()
     sht4.setPrecision(SHT4X_HIGH_PRECISION);
   }
 
-  // Init BH1750
+  // Init BH1750 (boost ON via INPUT_PULLDOWN ci-dessus)
   if (!lightMeter.begin(BH1750::ONE_TIME_HIGH_RES_MODE))
   {
 #if DEBUG_PRINT
@@ -396,6 +404,16 @@ void sendBTHomeData(uint8_t soil, float temp, float humidity, float lux, uint8_t
 
 void loop()
 {
+
+  // Boost ON — OUTPUT LOW (P-channel ON)
+  pinMode(BOOST_CONTROL_PIN, OUTPUT);
+  digitalWrite(BOOST_CONTROL_PIN, LOW);
+  delay(20); // stabilisation boost + BH1750 power-on reset
+
+  // Réinitialiser I2C (SDA/SCL relâchés avant le sleep précédent)
+  Wire.begin();
+  Wire.setClock(100000);
+
   static bool firstBoot = true;
 #if SUNRISE_DETECTION
   static uint32_t lastInterval = 0;
@@ -454,6 +472,7 @@ void loop()
   Serial.println("%");
 #endif
 
+
   // SHT40
   sensors_event_t humidity, temp;
   float temperature = 0;
@@ -473,26 +492,34 @@ void loop()
 #endif
   }
 
-  // BH1750 - déclenche une mesure unique (auto power-down après)
+  // BH1750
+  lightMeter.begin(BH1750::ONE_TIME_HIGH_RES_MODE);
   lightMeter.configure(BH1750::ONE_TIME_HIGH_RES_MODE);
   delay(200);
   float lux = lightMeter.readLightLevel();
+
+  // Relâcher SDA/SCL avant d'éteindre le boost (évite back-power du BH1750 via I2C)
+  NRF_TWIM0->ENABLE = TWIM_ENABLE_ENABLE_Disabled << TWIM_ENABLE_ENABLE_Pos;
+  pinMode(SDA_PIN, INPUT);
+  pinMode(SCL_PIN, INPUT);
+  // Boost OFF — INPUT_PULLUP (pull-up interne tient la gate HIGH, P-channel OFF)
+  pinMode(BOOST_CONTROL_PIN, INPUT_PULLUP);
 #if DEBUG_PRINT
   Serial.print("Lux: ");
   Serial.println(lux);
 #endif
 
   // Broadcast BTHome
-#if !QUICK_DEBUG
+//#if !QUICK_DEBUG
   sendBTHomeData(soilMoisture, temperature, humidite, lux, batteryPercent);
-#endif
+//#endif
 
   // Deep sleep adaptatif via RTC2
 #if SUNRISE_DETECTION
   lastInterval = computeNextInterval(lux, soilMoisture, temperature);
 
 #if QUICK_DEBUG
-  lastInterval = 5;
+  lastInterval = 10;
 #endif
   // Add small delay so logs are flushed before deep sleep (important pour la détection du lever de soleil)
   delay(1);
@@ -500,6 +527,11 @@ void loop()
 #else
   // Add small delay so logs are flushed before deep sleep (important pour la détection du lever de soleil)
   delay(1);
+  #if QUICK_DEBUG
+    deepSleep(30);
+  #else
   deepSleep(computeNextInterval(lux, soilMoisture, temperature));
+
+  #endif
 #endif
 }
