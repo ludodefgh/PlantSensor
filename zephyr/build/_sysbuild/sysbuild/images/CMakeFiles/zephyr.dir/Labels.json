@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/ludovic/Documents/Projects/PlantSensor/zephyr/build/_sysbuild/sysbuild/images/CMakeFiles/zephyr"
+		},
+		{
+			"file" : "/home/ludovic/Documents/Projects/PlantSensor/zephyr/build/_sysbuild/sysbuild/images/CMakeFiles/zephyr.rule"
+		},
+		{
+			"file" : "/home/ludovic/Documents/Projects/PlantSensor/zephyr/build/_sysbuild/sysbuild/images/CMakeFiles/zephyr-complete.rule"
+		},
+		{
+			"file" : "/home/ludovic/Documents/Projects/PlantSensor/zephyr/build/_sysbuild/sysbuild/images/zephyr-prefix/src/zephyr-stamp/zephyr-build.rule"
+		},
+		{
+			"file" : "/home/ludovic/Documents/Projects/PlantSensor/zephyr/build/_sysbuild/sysbuild/images/zephyr-prefix/src/zephyr-stamp/zephyr-configure.rule"
+		},
+		{
+			"file" : "/home/ludovic/Documents/Projects/PlantSensor/zephyr/build/_sysbuild/sysbuild/images/zephyr-prefix/src/zephyr-stamp/zephyr-download.rule"
+		},
+		{
+			"file" : "/home/ludovic/Documents/Projects/PlantSensor/zephyr/build/_sysbuild/sysbuild/images/zephyr-prefix/src/zephyr-stamp/zephyr-install.rule"
+		},
+		{
+			"file" : "/home/ludovic/Documents/Projects/PlantSensor/zephyr/build/_sysbuild/sysbuild/images/zephyr-prefix/src/zephyr-stamp/zephyr-mkdir.rule"
+		},
+		{
+			"file" : "/home/ludovic/Documents/Projects/PlantSensor/zephyr/build/_sysbuild/sysbuild/images/zephyr-prefix/src/zephyr-stamp/zephyr-patch.rule"
+		},
+		{
+			"file" : "/home/ludovic/Documents/Projects/PlantSensor/zephyr/build/_sysbuild/sysbuild/images/zephyr-prefix/src/zephyr-stamp/zephyr-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"zephyr"
+		],
+		"name" : "zephyr"
+	}
+}

@@ -1,0 +1,56 @@
+cmake:
+  application:
+    configuration-dir: '/home/ludovic/Documents/Projects/PlantSensor/zephyr'
+    source-dir: '/home/ludovic/Documents/Projects/PlantSensor/zephyr'
+  board:
+    name: 'xiao_nrf54l15'
+    path:
+     - '/home/ludovic/ncs/v3.2.4/zephyr/boards/seeed/xiao_nrf54l15'
+    qualifiers: 'nrf54l15/cpuapp'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/ludovic/ncs/v3.2.4/nrf/dts/bindings'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/dts/bindings'
+    files:
+     - '/home/ludovic/ncs/v3.2.4/zephyr/boards/seeed/xiao_nrf54l15/xiao_nrf54l15_nrf54l15_cpuapp.dts'
+     - '/home/ludovic/Documents/Projects/PlantSensor/zephyr/boards/xiao_nrf54l15_nrf54l15_cpuapp.overlay'
+    include-dirs:
+     - '/home/ludovic/ncs/v3.2.4/nrf/include'
+     - '/home/ludovic/ncs/v3.2.4/nrf/dts/common'
+     - '/home/ludovic/ncs/v3.2.4/nrf/dts/riscv'
+     - '/home/ludovic/ncs/v3.2.4/nrf/dts/arm'
+     - '/home/ludovic/ncs/v3.2.4/nrf/dts'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/include'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/include/zephyr'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/dts/common'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/dts/vendor'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/dts/rx'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/dts/x86'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/dts/xtensa'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/dts/sparc'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/dts/riscv'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/dts/posix'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/dts/arm64'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/dts/arm'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/dts/arc'
+     - '/home/ludovic/ncs/v3.2.4/zephyr/dts'
+    user-files:
+     - '/home/ludovic/Documents/Projects/PlantSensor/zephyr/boards/xiao_nrf54l15_nrf54l15_cpuapp.overlay'
+  kconfig:
+    files:
+     - '/home/ludovic/ncs/v3.2.4/zephyr/boards/seeed/xiao_nrf54l15/xiao_nrf54l15_nrf54l15_cpuapp_defconfig'
+     - '/home/ludovic/Documents/Projects/PlantSensor/zephyr/prj.conf'
+     - '/home/ludovic/Documents/Projects/PlantSensor/zephyr/build/zephyr/zephyr/.config.sysbuild'
+    user-files:
+     - '/home/ludovic/Documents/Projects/PlantSensor/zephyr/prj.conf'
+  toolchain:
+    name: 'zephyr'
+    path: '/home/ludovic/ncs/toolchains/2ac5840438/opt/zephyr-sdk'
+  vendor-specific:
+    nordic:
+      svdfile: '/home/ludovic/ncs/v3.2.4/modules/hal/nordic/nrfx/bsp/stable/mdk/nrf54l15_application.svd'
+  zephyr:
+    version: '4.2.99'
+    zephyr-base: '/home/ludovic/ncs/v3.2.4/zephyr'
+version: '0.1.0'

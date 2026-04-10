@@ -1,0 +1,7 @@
+default: zephyr
+build_dir: /home/ludovic/Documents/Projects/PlantSensor/zephyr/build
+domains:
+  - name: zephyr
+    build_dir: /home/ludovic/Documents/Projects/PlantSensor/zephyr/build/zephyr
+flash_order:
+  - zephyr

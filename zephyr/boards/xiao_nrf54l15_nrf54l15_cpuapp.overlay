@@ -1,0 +1,68 @@
+/*
+ * Myco Mini – XIAO nRF54L15 DeviceTree overlay
+ *
+ * Pinout:
+ *   I2C SDA  : P1.10 (D4)   — SHT40 + BH1750
+ *   I2C SCL  : P1.11 (D5)   — SHT40 + BH1750
+ *   ADC soil : P1.05 (D1/AIN1) — capteur sol capacitif
+ *   ADC batt : P1.06 (D2/AIN2) — tension batterie CR2032
+ *   GPIO EN  : P2.01 (D8)   — MOSFET boost converter (active-low)
+ *   GPIO PWR : P2.02 (D10)  — alimentation capteur sol
+ *   LED      : P2.00         — LED utilisateur unique
+ *   RF switch: P2.03/P2.05  — rfsw_pwr/rfsw_ctl (antenne céramique)
+ */
+
+/* ── RF switch : active l'antenne céramique au boot ──────────── */
+&rfsw_pwr {
+	regulator-boot-on;
+};
+
+&rfsw_ctl {
+	regulator-boot-on;
+};
+
+/* ── I2C capteurs ─────────────────────────────────────────────── */
+&i2c22 {
+	status = "okay";
+
+	sht4x: sht4x@44 {
+		compatible = "sensirion,sht4x";
+		reg = <0x44>;
+		repeatability = <2>;  /* 0=low(1.7ms), 1=med(4.5ms), 2=high(8.2ms) */
+	};
+
+	bh1750: bh1750@23 {
+		compatible = "rohm,bh1750";
+		reg = <0x23>;
+	};
+};
+
+/* ── ADC ──────────────────────────────────────────────────────── */
+/ {
+	zephyr,user {
+		io-channels = <&adc 1>, <&adc 2>;  /* ch1=AIN1/D1 sol, ch2=AIN2/D2 batt */
+	};
+};
+
+/* ── GPIO ─────────────────────────────────────────────────────── */
+/ {
+	myco_gpios {
+		compatible = "gpio-leds";
+
+		boost_en: boost_en {
+			gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;  /* D8 = P2.01 */
+			label = "Boost EN";
+		};
+
+		soil_pwr: soil_pwr {
+			gpios = <&gpio2 2 GPIO_ACTIVE_HIGH>; /* D10 = P2.02 */
+			label = "Soil PWR";
+		};
+	};
+
+	aliases {
+		boost-en  = &boost_en;
+		soil-pwr  = &soil_pwr;
+		user-led  = &led0;           /* P2.00 — LED unique */
+	};
+};
