@@ -405,6 +405,17 @@ void sendBTHomeData(uint8_t soil, float temp, float humidity, float lux, uint8_t
 void loop()
 {
 
+  // Battery EN PREMIER — au repos, avant boost et I2C (évite les fluctuations sous charge)
+  int batteryRaw = analogRead(BATTERY_PIN);
+  float voltage = (batteryRaw / 4095.0) * 3.0;
+  int batteryRawPercent = map((int)(voltage * 100), 200, 300, 0, 100);
+  batteryRawPercent = constrain(batteryRawPercent, 0, 100);
+  if (batteryEma < 0.0f)
+    batteryEma = (float)batteryRawPercent; // init
+  else
+    batteryEma = (1.0f - BATTERY_EMA_ALPHA) * batteryEma + BATTERY_EMA_ALPHA * batteryRawPercent;
+  int batteryPercent = constrain((int)(batteryEma + 0.5f), 0, 100);
+
   // Boost ON — OUTPUT LOW (P-channel ON)
   pinMode(BOOST_CONTROL_PIN, OUTPUT);
   digitalWrite(BOOST_CONTROL_PIN, LOW);
@@ -437,19 +448,6 @@ void loop()
 
 #if DEBUG_PRINT
   Serial.println("\n--- Lecture ---");
-#endif
-
-  // Battery - moyenne mobile exponentielle (alpha=0.05, équivalent ~20 mesures)
-  int batteryRaw = analogRead(BATTERY_PIN);
-  float voltage = (batteryRaw / 4095.0) * 3.0;
-  int batteryRawPercent = map((int)(voltage * 100), 200, 300, 0, 100);
-  batteryRawPercent = constrain(batteryRawPercent, 0, 100);
-  if (batteryEma < 0.0f)
-    batteryEma = (float)batteryRawPercent; // init
-  else
-    batteryEma = (1.0f - BATTERY_EMA_ALPHA) * batteryEma + BATTERY_EMA_ALPHA * batteryRawPercent;
-  int batteryPercent = constrain((int)(batteryEma + 0.5f), 0, 100);
-#if DEBUG_PRINT
   Serial.print("Bat: ");
   Serial.print(voltage);
   Serial.print("V (");
