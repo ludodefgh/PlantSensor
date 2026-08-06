@@ -1,0 +1,15 @@
+Comment,Designator,Footprint,LCSC Part #
+CR2032,BT1,myco_host:BAT-TH_CR2032-BS-6-1,C70377
+10uF,"C1,C2,C4,C5",Capacitor_SMD:C_0805_2012Metric,TBD (JLCPCB Basic Part au moment de la commande)
+100nF,C3,Capacitor_SMD:C_0603_1608Metric,TBD (JLCPCB Basic Part au moment de la commande)
+Conn_01x17_Female,"J1,J2",Connector_PinSocket_2.54mm:PinSocket_1x17_P2.54mm_Vertical,"N/A - a sourcer separement (LCSC/Digikey), non stocke JLCPCB SMT assembly"
+4.7uH,L1,Inductor_SMD:L_1008_2520Metric,TBD (JLCPCB Basic Part au moment de la commande)
+SOIL_PROBE_2SEG,PROBE1,myco_host:SOIL_PROBE_2SEG,"N/A - copper PCB pattern uniquement, pas un composant achete"
+AO3401A,"Q1,Q2",myco_host:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR,C15127
+4.7k,"R1,R2",Resistor_SMD:R_0603_1608Metric,TBD (JLCPCB Basic Part au moment de la commande)
+1M,"R3,R4",Resistor_SMD:R_0603_1608Metric,TBD (JLCPCB Basic Part au moment de la commande)
+100k,"R5,R6",Resistor_SMD:R_0603_1608Metric,TBD (JLCPCB Basic Part au moment de la commande)
+EM-04-Q,SW1,myco_host:SW-SMD_8P-L10.1-W6.0-P2.54-LS9.8,C501635
+XC9145B33C0R-G,U1,myco_host:USON-6_XC9145_PLACEHOLDER,C6052816
+SHT40-AD1B-R2,U2,myco_host:DFN-4_L1.5-W1.5-P0.8-TL-EP,C2909890
+BH1750FVI-TR,U3,myco_host:WSOF-6_L2.6-W1.6-P0.50-TL-EP,C78960
