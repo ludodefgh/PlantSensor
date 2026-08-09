@@ -375,7 +375,7 @@ stub_and_label(u3["VCC"], "VOUT_3V3", label_angle=180)
 stub_and_gnd(u3["ADDR"])
 stub_and_gnd(u3["GND"])
 stub_and_label(u3["SDA"], "P0_02_SDA")
-stub_and_label(u3["DVI"], "VOUT_3V3")
+stub_and_label(u3["DVI"], "VDD_NRF")
 stub_and_label(u3["SCL"], "P0_03_SCL")
 stub_and_gnd(u3["EP"])
 

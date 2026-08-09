@@ -1,7 +1,7 @@
 {
     "$schema": "https://schemas.kicad.org/erc.v1.json",
     "coordinate_units": "mm",
-    "date": "2026-08-06T01:27:19",
+    "date": "2026-08-09T00:17:07",
     "ignored_checks": [
         {
             "description": "Global label only appears once in the schematic",
@@ -28,7 +28,7 @@
     "sheets": [
         {
             "path": "/",
-            "uuid_path": "/97df85c1-e536-493b-ae01-26af3c3d2a8c",
+            "uuid_path": "/b1969cb4-f84b-4d7e-8508-ab863aa656b2",
             "violations": [
                 {
                     "description": "Pin not connected",
@@ -39,7 +39,7 @@
                                 "x": 0.3429,
                                 "y": 0.7239
                             },
-                            "uuid": "30e1c819-21c7-41d9-af07-5f26e351d431"
+                            "uuid": "23ee15ce-3b52-4b23-b2b3-fe56a6d5ac9d"
                         }
                     ],
                     "severity": "error",
@@ -54,7 +54,7 @@
                                 "x": 0.3429,
                                 "y": 0.7493
                             },
-                            "uuid": "304f950a-61b1-4c9b-8d3c-00b470105d9c"
+                            "uuid": "348b3ce0-b7c2-492b-be06-59baaea48cbf"
                         }
                     ],
                     "severity": "error",
@@ -69,7 +69,7 @@
                                 "x": 0.3429,
                                 "y": 0.7747
                             },
-                            "uuid": "92db03d7-10af-4954-9aac-7ebff8564394"
+                            "uuid": "aef62891-53a4-490a-8c05-e5c16e625ea8"
                         }
                     ],
                     "severity": "error",
@@ -84,7 +84,7 @@
                                 "x": 0.3429,
                                 "y": 0.8001
                             },
-                            "uuid": "cfcb44c1-ea89-4b95-8b91-f46293f6903f"
+                            "uuid": "b4bf9183-eb18-4bb6-813f-3c141ad2319d"
                         }
                     ],
                     "severity": "error",
@@ -99,7 +99,7 @@
                                 "x": 0.3429,
                                 "y": 0.9271
                             },
-                            "uuid": "9b25238a-d7c5-4fef-a999-b9249122000f"
+                            "uuid": "f0760517-2c70-417d-8ae9-cf29a0a8e43b"
                         }
                     ],
                     "severity": "error",
@@ -114,7 +114,7 @@
                                 "x": 0.3429,
                                 "y": 0.9525
                             },
-                            "uuid": "88a3c304-8534-453d-aa72-9d9c790698c7"
+                            "uuid": "10451b9f-0578-4d4a-8ab8-9a79f2cd8e4c"
                         }
                     ],
                     "severity": "error",
@@ -129,7 +129,7 @@
                                 "x": 0.3429,
                                 "y": 1.0033
                             },
-                            "uuid": "4a07e9ff-4fa0-4846-b524-4de261bf037b"
+                            "uuid": "cb0a177c-6163-4d5c-8abb-d7e9ded809a9"
                         }
                     ],
                     "severity": "error",
@@ -144,7 +144,7 @@
                                 "x": 0.3429,
                                 "y": 1.0287
                             },
-                            "uuid": "5188faa2-8ea8-494d-9087-d2c06603586b"
+                            "uuid": "82ee1be5-f2a8-45e8-aafc-c2379030b3c3"
                         }
                     ],
                     "severity": "error",
@@ -159,7 +159,7 @@
                                 "x": 0.3429,
                                 "y": 1.0795
                             },
-                            "uuid": "46ba9c9f-4df7-4627-b0d1-b3f50cf5e25f"
+                            "uuid": "e1bff0db-806a-4af6-a62e-e888b9450e96"
                         }
                     ],
                     "severity": "error",
@@ -174,7 +174,7 @@
                                 "x": 0.3429,
                                 "y": 1.1049
                             },
-                            "uuid": "801bcae6-bb28-454b-a20a-7023f1cf9e0e"
+                            "uuid": "c085bd9c-8246-4f31-a688-30edf2de9973"
                         }
                     ],
                     "severity": "error",
@@ -189,7 +189,7 @@
                                 "x": 0.3429,
                                 "y": 1.7018
                             },
-                            "uuid": "5c4ca78e-23b3-4dbe-b68b-fad1e45c2135"
+                            "uuid": "0fe9bef0-a233-4aee-8a43-d2371358bd5f"
                         }
                     ],
                     "severity": "error",
@@ -204,7 +204,7 @@
                                 "x": 0.3429,
                                 "y": 1.7272
                             },
-                            "uuid": "b7776242-442e-4415-8d11-25110494ad9e"
+                            "uuid": "3b6f2be8-297c-44a9-ac70-ee3bc8b12c28"
                         }
                     ],
                     "severity": "error",
@@ -219,7 +219,7 @@
                                 "x": 0.3429,
                                 "y": 1.8034
                             },
-                            "uuid": "7d715bc3-b5ea-44fa-99ab-5097fd48a4ef"
+                            "uuid": "65bd6ebe-857d-4c11-8246-5b4d925f2698"
                         }
                     ],
                     "severity": "error",
@@ -234,7 +234,7 @@
                                 "x": 0.3429,
                                 "y": 1.8288
                             },
-                            "uuid": "51eb3bcd-9ff5-40a2-be5b-925fc1e88dc2"
+                            "uuid": "a352f9f4-10a0-42d9-a899-5582ad87c39f"
                         }
                     ],
                     "severity": "error",
@@ -249,7 +249,7 @@
                                 "x": 0.3429,
                                 "y": 1.8542
                             },
-                            "uuid": "36f792e0-c423-478b-babd-4c707548c265"
+                            "uuid": "bca4c646-939a-4648-8157-f349a0b3b43b"
                         }
                     ],
                     "severity": "error",
@@ -264,7 +264,7 @@
                                 "x": 0.3429,
                                 "y": 1.8796
                             },
-                            "uuid": "2e65f541-a183-4e45-aeb9-8985d3953790"
+                            "uuid": "a25e35d2-d333-4372-ae04-7a6683815e01"
                         }
                     ],
                     "severity": "error",
@@ -279,7 +279,7 @@
                                 "x": 0.3429,
                                 "y": 1.905
                             },
-                            "uuid": "64ab9c35-d50d-4f1f-acf0-007f806a4699"
+                            "uuid": "29fc4c65-d702-4657-9bad-027f859222bc"
                         }
                     ],
                     "severity": "error",
@@ -294,7 +294,7 @@
                                 "x": 0.3429,
                                 "y": 1.9304
                             },
-                            "uuid": "ef415da3-348b-4412-9daa-dde7005e0778"
+                            "uuid": "dafc4021-b915-4b9a-a4d5-1d8e7f6a3cf1"
                         }
                     ],
                     "severity": "error",
@@ -309,7 +309,7 @@
                                 "x": 0.3429,
                                 "y": 1.9558
                             },
-                            "uuid": "5d5c3434-be59-4521-9660-d78487febe89"
+                            "uuid": "29ba7bfc-028f-4234-9ac5-e9a578e63d81"
                         }
                     ],
                     "severity": "error",
@@ -324,7 +324,7 @@
                                 "x": 0.3429,
                                 "y": 1.9812
                             },
-                            "uuid": "aa05e4ff-2928-4edb-8a29-35fd939fee1a"
+                            "uuid": "7b8c5315-c526-4a73-89dd-c05714b6aeed"
                         }
                     ],
                     "severity": "error",
@@ -339,7 +339,7 @@
                                 "x": 0.3429,
                                 "y": 2.0066
                             },
-                            "uuid": "f8e4ec59-7c41-4828-a87c-0fc700a9089f"
+                            "uuid": "2c201646-84fc-490b-acaa-39c9788a5d15"
                         }
                     ],
                     "severity": "error",
@@ -354,7 +354,7 @@
                                 "x": 1.016,
                                 "y": 1.2954
                             },
-                            "uuid": "d982456f-5b7f-4253-a417-ed9593cac36f"
+                            "uuid": "973f828a-6df4-413d-aeed-d5137c06781e"
                         },
                         {
                             "description": "Symbol R1 Pin 2 [Passive, Line]",
@@ -362,7 +362,7 @@
                                 "x": 1.2954,
                                 "y": 1.0414
                             },
-                            "uuid": "031d768c-d93a-4a0c-bc3a-864e36740da8"
+                            "uuid": "c2900358-1451-4f62-b5b1-c76721ec80e4"
                         }
                     ],
                     "severity": "warning",
@@ -377,7 +377,7 @@
                                 "x": 1.016,
                                 "y": 1.3208
                             },
-                            "uuid": "d46dbde6-525b-45c5-a5ca-e7ee7fafcd83"
+                            "uuid": "b8ae7663-cc7b-4124-ab49-d19051f25352"
                         },
                         {
                             "description": "Symbol R2 Pin 2 [Passive, Line]",
@@ -385,7 +385,7 @@
                                 "x": 1.4986,
                                 "y": 1.0414
                             },
-                            "uuid": "64cb57af-a51c-4bad-958d-9cc5713ddd09"
+                            "uuid": "f70cefad-d47b-40c7-aa6a-b87f1ae5108d"
                         }
                     ],
                     "severity": "warning",
@@ -400,7 +400,7 @@
                                 "x": 1.1938,
                                 "y": 1.27
                             },
-                            "uuid": "97939c4b-68b2-4268-a620-0c4091356a81"
+                            "uuid": "09ab9db2-0af2-4ce6-9ba2-7b343dea5915"
                         },
                         {
                             "description": "Symbol #PWR15 Pin 1 [Power input, Line]",
@@ -408,7 +408,7 @@
                                 "x": 1.2319,
                                 "y": 1.27
                             },
-                            "uuid": "43e94414-b55d-4bdd-bee3-0f18d2583d9d"
+                            "uuid": "3a1dbaa2-90f7-4729-9aa7-50d3ccd9f5c0"
                         }
                     ],
                     "severity": "warning",
@@ -423,7 +423,7 @@
                                 "x": 1.1938,
                                 "y": 1.2954
                             },
-                            "uuid": "4fde54fe-7c16-4efc-adea-6e77f92850b9"
+                            "uuid": "7ab50c36-8f8f-46d0-bca4-10e8a1106226"
                         },
                         {
                             "description": "Symbol U2 Pin 5 [EP, Unspecified, Line]",
@@ -431,7 +431,7 @@
                                 "x": 1.1938,
                                 "y": 1.27
                             },
-                            "uuid": "97939c4b-68b2-4268-a620-0c4091356a81"
+                            "uuid": "09ab9db2-0af2-4ce6-9ba2-7b343dea5915"
                         }
                     ],
                     "severity": "warning",
@@ -446,7 +446,7 @@
                                 "x": 1.1938,
                                 "y": 1.3208
                             },
-                            "uuid": "24561f7d-7bc2-468f-ad3b-4e4eeb7416b5"
+                            "uuid": "62cff4ea-63ab-4aff-be72-f345c2c88222"
                         },
                         {
                             "description": "Symbol R1 Pin 1 [Passive, Line]",
@@ -454,14 +454,14 @@
                                 "x": 1.2954,
                                 "y": 0.9652
                             },
-                            "uuid": "1dc3ecca-9690-4087-b3bd-102929eee54d"
+                            "uuid": "1276b228-474a-44b0-b235-def691840050"
                         }
                     ],
                     "severity": "warning",
                     "type": "pin_to_pin"
                 },
                 {
-                    "description": "Pins of type Unspecified and Unspecified are connected",
+                    "description": "Pins of type Unspecified and Passive are connected",
                     "items": [
                         {
                             "description": "Symbol U3 Pin 1 [VCC, Unspecified, Line]",
@@ -469,15 +469,15 @@
                                 "x": 1.6256,
                                 "y": 1.3208
                             },
-                            "uuid": "7764865c-4192-4269-8008-269140a99331"
+                            "uuid": "1c9163cf-7f37-4221-b8e5-1f7f28099517"
                         },
                         {
-                            "description": "Symbol U3 Pin 5 [DVI, Unspecified, Line]",
+                            "description": "Symbol C4 Pin 1 [Passive, Line]",
                             "pos": {
-                                "x": 1.8796,
-                                "y": 1.3462
+                                "x": 2.794,
+                                "y": 0.3556
                             },
-                            "uuid": "e8eb3b4d-6255-4148-be12-978e70af4ed3"
+                            "uuid": "14728dc2-4054-4be7-a1de-f713c576f1da"
                         }
                     ],
                     "severity": "warning",
@@ -492,7 +492,7 @@
                                 "x": 1.6256,
                                 "y": 1.3462
                             },
-                            "uuid": "33f5ee9a-7cc8-4c73-a004-6d4837c78459"
+                            "uuid": "0aa5411a-bc6d-42e2-9f6e-3b48e9f76ff0"
                         },
                         {
                             "description": "Symbol U3 Pin 3 [GND, Unspecified, Line]",
@@ -500,7 +500,7 @@
                                 "x": 1.6256,
                                 "y": 1.3716
                             },
-                            "uuid": "2232f21e-ca5c-4210-aa92-c00e1dc2c2e8"
+                            "uuid": "d6e7e40e-4fce-4232-b93f-bce3b286b1e4"
                         }
                     ],
                     "severity": "warning",
@@ -515,7 +515,7 @@
                                 "x": 1.6256,
                                 "y": 1.3716
                             },
-                            "uuid": "2232f21e-ca5c-4210-aa92-c00e1dc2c2e8"
+                            "uuid": "d6e7e40e-4fce-4232-b93f-bce3b286b1e4"
                         },
                         {
                             "description": "Symbol #PWR17 Pin 1 [Power input, Line]",
@@ -523,7 +523,7 @@
                                 "x": 1.5875,
                                 "y": 1.3716
                             },
-                            "uuid": "b6403ae1-4d29-498a-9417-922ddfed57c0"
+                            "uuid": "42ec3e00-231f-49c2-a1d8-498607adbf2f"
                         }
                     ],
                     "severity": "warning",
@@ -538,7 +538,7 @@
                                 "x": 1.7018,
                                 "y": 0.4445
                             },
-                            "uuid": "57a196c3-fb54-462b-aa7c-a4dbdbce716d"
+                            "uuid": "ad6c6d51-b23c-4006-bce2-78a930302bf6"
                         },
                         {
                             "description": "Symbol #PWR06 Pin 1 [Power input, Line]",
@@ -546,7 +546,7 @@
                                 "x": 1.6637,
                                 "y": 0.4445
                             },
-                            "uuid": "05526e90-8b7f-4c8f-8b61-e8c9bd13170b"
+                            "uuid": "6f5fe39c-2e27-4953-acb9-41d74aef813c"
                         }
                     ],
                     "severity": "warning",
@@ -561,7 +561,7 @@
                                 "x": 1.778,
                                 "y": 0.3937
                             },
-                            "uuid": "ff62a38f-ea16-4e8f-a3b1-da62fbabaf6b"
+                            "uuid": "e41a5642-37e0-4204-9fb9-3c4015b73d15"
                         },
                         {
                             "description": "Symbol C2 Pin 1 [Passive, Line]",
@@ -569,7 +569,7 @@
                                 "x": 1.9939,
                                 "y": 0.3556
                             },
-                            "uuid": "fb5dbe40-e348-425e-b8db-c1b3b4276e2d"
+                            "uuid": "df3dd54f-a598-4ca6-a6b6-45fe2038bb0e"
                         }
                     ],
                     "severity": "warning",
@@ -584,7 +584,7 @@
                                 "x": 1.778,
                                 "y": 0.4953
                             },
-                            "uuid": "8c043cb7-fe80-415d-9332-ad86da68ee4f"
+                            "uuid": "69f28321-4993-4a09-b05b-54594ceb0967"
                         },
                         {
                             "description": "Symbol C1 Pin 1 [Passive, Line]",
@@ -592,7 +592,7 @@
                                 "x": 1.4986,
                                 "y": 0.3556
                             },
-                            "uuid": "bc4a25ee-2c99-4bc3-b16a-b1dafe1ef694"
+                            "uuid": "3171860e-4f92-4ded-959f-29db0144e948"
                         }
                     ],
                     "severity": "warning",
@@ -607,7 +607,7 @@
                                 "x": 1.8796,
                                 "y": 1.2954
                             },
-                            "uuid": "954ad382-cd4e-4c7d-b0f2-daa9505a454c"
+                            "uuid": "fc5f2f5f-8598-4b2f-9352-06b56c43c698"
                         },
                         {
                             "description": "Symbol #PWR18 Pin 1 [Power input, Line]",
@@ -615,7 +615,7 @@
                                 "x": 1.9177,
                                 "y": 1.2954
                             },
-                            "uuid": "fdcf6ff6-e2ce-4ca8-92cf-7e92e5c09af5"
+                            "uuid": "6fc97ca5-56e7-4ab5-a8be-5dca8db7e250"
                         }
                     ],
                     "severity": "warning",
@@ -630,7 +630,7 @@
                                 "x": 1.8796,
                                 "y": 1.3208
                             },
-                            "uuid": "1f72d703-654b-437c-9c42-c5b25333042e"
+                            "uuid": "eec7a24f-9adb-4804-b4ba-ed0598054b06"
                         },
                         {
                             "description": "Symbol R2 Pin 2 [Passive, Line]",
@@ -638,7 +638,7 @@
                                 "x": 1.4986,
                                 "y": 1.0414
                             },
-                            "uuid": "64cb57af-a51c-4bad-958d-9cc5713ddd09"
+                            "uuid": "f70cefad-d47b-40c7-aa6a-b87f1ae5108d"
                         }
                     ],
                     "severity": "warning",
@@ -653,15 +653,15 @@
                                 "x": 1.8796,
                                 "y": 1.3462
                             },
-                            "uuid": "e8eb3b4d-6255-4148-be12-978e70af4ed3"
+                            "uuid": "f18ef67b-5da5-4961-805b-d048977ab4e8"
                         },
                         {
-                            "description": "Symbol C4 Pin 1 [Passive, Line]",
+                            "description": "Symbol R2 Pin 1 [Passive, Line]",
                             "pos": {
-                                "x": 2.794,
-                                "y": 0.3556
+                                "x": 1.4986,
+                                "y": 0.9652
                             },
-                            "uuid": "19eee0e5-b4ce-4208-9cb8-6973bdbfc73b"
+                            "uuid": "a1cd36a4-c8a1-4ba6-9922-5febff2ce567"
                         }
                     ],
                     "severity": "warning",
@@ -676,7 +676,7 @@
                                 "x": 1.8796,
                                 "y": 1.3716
                             },
-                            "uuid": "9dec5219-0897-4833-ba0d-be45b3676db0"
+                            "uuid": "342b8961-4778-477e-8d32-962a97d4a907"
                         },
                         {
                             "description": "Symbol R1 Pin 2 [Passive, Line]",
@@ -684,7 +684,7 @@
                                 "x": 1.2954,
                                 "y": 1.0414
                             },
-                            "uuid": "031d768c-d93a-4a0c-bc3a-864e36740da8"
+                            "uuid": "c2900358-1451-4f62-b5b1-c76721ec80e4"
                         }
                     ],
                     "severity": "warning",
@@ -699,7 +699,7 @@
                                 "x": 2.4003,
                                 "y": 0.3937
                             },
-                            "uuid": "cb7256fd-d2dd-46b4-8271-1183047672d6"
+                            "uuid": "77ef4976-6d83-454d-aebc-f9eb96400358"
                         },
                         {
                             "description": "Symbol L1 Pin 1 [1, Passive, Line]",
@@ -707,7 +707,7 @@
                                 "x": 2.2479,
                                 "y": 0.2667
                             },
-                            "uuid": "20f55e05-80fa-42d6-8788-3189abf30fff"
+                            "uuid": "2e4f8af6-6521-4895-8611-0cbc5f4439c2"
                         }
                     ],
                     "severity": "warning",
@@ -722,7 +722,7 @@
                                 "x": 2.4003,
                                 "y": 0.4445
                             },
-                            "uuid": "29fcfdb3-fa1f-4b1a-8b7a-aabf648347f6"
+                            "uuid": "9224d7cb-931e-44f8-a344-f45806090a00"
                         },
                         {
                             "description": "Symbol R6 Pin 1 [Passive, Line]",
@@ -730,7 +730,7 @@
                                 "x": 2.5019,
                                 "y": 0.6604
                             },
-                            "uuid": "bb61ab7a-b570-4186-ad70-0cea3da1f0f6"
+                            "uuid": "e3c3de06-3c7f-43b5-b588-a815749aaefe"
                         }
                     ],
                     "severity": "warning",
@@ -745,7 +745,7 @@
                                 "x": 2.4003,
                                 "y": 0.4953
                             },
-                            "uuid": "1a1105db-3ec2-4ca6-b221-4819dae0ecdd"
+                            "uuid": "a97eaa0a-3941-49f3-9d89-cb5ce383fc87"
                         },
                         {
                             "description": "Symbol #PWR09 Pin 1 [Power input, Line]",
@@ -753,7 +753,7 @@
                                 "x": 2.3622,
                                 "y": 0.4953
                             },
-                            "uuid": "d3b60127-019b-490f-9a09-899f8c1a5811"
+                            "uuid": "d699cd44-8f20-46c3-9fd9-ccc35d6abb80"
                         }
                     ],
                     "severity": "warning",
@@ -768,7 +768,7 @@
                                 "x": 2.6035,
                                 "y": 0.3937
                             },
-                            "uuid": "2fab06b7-ee3a-4c20-9219-69a0e287160b"
+                            "uuid": "2a57aab4-8160-4a98-9d71-aded1b3dbc8d"
                         },
                         {
                             "description": "Symbol C4 Pin 1 [Passive, Line]",
@@ -776,7 +776,7 @@
                                 "x": 2.794,
                                 "y": 0.3556
                             },
-                            "uuid": "19eee0e5-b4ce-4208-9cb8-6973bdbfc73b"
+                            "uuid": "14728dc2-4054-4be7-a1de-f713c576f1da"
                         }
                     ],
                     "severity": "warning",
@@ -791,7 +791,7 @@
                                 "x": 2.6035,
                                 "y": 0.4445
                             },
-                            "uuid": "b183f3c8-237d-4685-b90d-1ffd0260da83"
+                            "uuid": "d5450657-131d-4f39-a5e1-fbe0ff9b2ccf"
                         },
                         {
                             "description": "Symbol L1 Pin 2 [2, Passive, Line]",
@@ -799,7 +799,7 @@
                                 "x": 2.2479,
                                 "y": 0.3429
                             },
-                            "uuid": "c8039030-a0f5-48f1-89c3-ba3fa3baac59"
+                            "uuid": "effe744e-8f19-4894-af15-c82396cc9fe7"
                         }
                     ],
                     "severity": "warning",
@@ -814,7 +814,7 @@
                                 "x": 2.6035,
                                 "y": 0.4953
                             },
-                            "uuid": "5402bd90-3a8c-49d3-ba79-24ffbe686782"
+                            "uuid": "c80e1174-e497-46da-a9df-efab6602158a"
                         },
                         {
                             "description": "Symbol #PWR10 Pin 1 [Power input, Line]",
@@ -822,7 +822,7 @@
                                 "x": 2.6416,
                                 "y": 0.4953
                             },
-                            "uuid": "e39f8a03-0059-42f1-a83b-31979538745c"
+                            "uuid": "a44b87ba-2214-4d91-bd1f-ecbc2287a83f"
                         }
                     ],
                     "severity": "warning",
@@ -837,7 +837,7 @@
                                 "x": 3.2512,
                                 "y": 0.4445
                             },
-                            "uuid": "71e90abf-ab04-4d4b-8ac5-049be23a47e2"
+                            "uuid": "2df9230b-5e1a-4d37-8bcf-3b6c3e074fe0"
                         },
                         {
                             "description": "Symbol R5 Pin 2 [Passive, Line]",
@@ -845,7 +845,7 @@
                                 "x": 3.302,
                                 "y": 0.7366
                             },
-                            "uuid": "838e6bd2-543f-4d5e-8b36-8886e3bded3f"
+                            "uuid": "e5d88b3b-5c15-4d60-9edb-9c60e12d8430"
                         }
                     ],
                     "severity": "warning",
@@ -860,7 +860,7 @@
                                 "x": 3.3274,
                                 "y": 0.3937
                             },
-                            "uuid": "17e5060f-a33f-4a64-a459-6da0766a0d91"
+                            "uuid": "2d2842e5-9b26-4d34-bdc1-43b14b723887"
                         },
                         {
                             "description": "Symbol R3 Pin 1 [Passive, Line]",
@@ -868,7 +868,7 @@
                                 "x": 2.9972,
                                 "y": 1.2573
                             },
-                            "uuid": "77e4a75d-d2da-495e-a441-bfd024c0013c"
+                            "uuid": "ad84ae75-7174-45fd-ace1-6502d9476105"
                         }
                     ],
                     "severity": "warning",
@@ -883,7 +883,7 @@
                                 "x": 3.3274,
                                 "y": 0.4953
                             },
-                            "uuid": "b7c3c8b2-7496-495b-b7e2-6a4b24172867"
+                            "uuid": "a3ac844f-ecda-496c-ab46-872940ecb236"
                         },
                         {
                             "description": "Symbol R5 Pin 1 [Passive, Line]",
@@ -891,7 +891,7 @@
                                 "x": 3.302,
                                 "y": 0.6604
                             },
-                            "uuid": "e9fb0ec8-1518-4054-ad5f-a0cfc7e46ac8"
+                            "uuid": "a8fd5345-13b1-4962-b55f-2b7c997d21fb"
                         }
                     ],
                     "severity": "warning",
@@ -906,7 +906,7 @@
                                 "x": 3.4036,
                                 "y": 1.4478
                             },
-                            "uuid": "cb730bc5-5eea-442d-bd08-259e9b8501e9"
+                            "uuid": "7643ec9e-7879-4ed9-8e27-8ee1e31a207d"
                         },
                         {
                             "description": "Symbol R3 Pin 2 [Passive, Line]",
@@ -914,7 +914,7 @@
                                 "x": 2.9972,
                                 "y": 1.3335
                             },
-                            "uuid": "34a38779-fb70-48bf-8cf6-b884635724e4"
+                            "uuid": "007d2a69-3931-40b4-ab14-ac1c5b7b1933"
                         }
                     ],
                     "severity": "warning",
@@ -929,7 +929,7 @@
                                 "x": 3.4036,
                                 "y": 1.5494
                             },
-                            "uuid": "9c091381-7eb9-4cb0-a0dd-dc7d3068e38e"
+                            "uuid": "74165b5c-600d-41ba-a034-349329f08c4d"
                         },
                         {
                             "description": "Symbol #PWR19 Pin 1 [Power input, Line]",
@@ -937,7 +937,7 @@
                                 "x": 3.3655,
                                 "y": 1.5494
                             },
-                            "uuid": "a5e14a25-56ef-4ca2-9d63-f6d3fbfb501e"
+                            "uuid": "be3070f3-091a-4e13-89f4-03d69253b001"
                         }
                     ],
                     "severity": "warning",
@@ -952,7 +952,7 @@
                                 "x": 3.6068,
                                 "y": 1.4478
                             },
-                            "uuid": "23603066-4743-4957-9b26-fd31db248171"
+                            "uuid": "02faca15-3c04-4da2-ac0b-7b05779a86ec"
                         },
                         {
                             "description": "Symbol R4 Pin 2 [Passive, Line]",
@@ -960,7 +960,7 @@
                                 "x": 2.9972,
                                 "y": 1.7399
                             },
-                            "uuid": "982a13db-42bf-49e0-b434-b42b46de0e0f"
+                            "uuid": "a83b9560-2d22-4e18-8ea4-5c317cb3a879"
                         }
                     ],
                     "severity": "warning",
@@ -975,7 +975,7 @@
                                 "x": 3.6068,
                                 "y": 1.5494
                             },
-                            "uuid": "14f73cea-d227-4014-a97a-98a079278e91"
+                            "uuid": "236073f8-db97-4be0-88c9-7ac920720575"
                         },
                         {
                             "description": "Symbol #PWR20 Pin 1 [Power input, Line]",
@@ -983,7 +983,7 @@
                                 "x": 3.6449,
                                 "y": 1.5494
                             },
-                            "uuid": "e6829678-3fcf-48bf-ad4c-7c5e0c744bfd"
+                            "uuid": "eaf3d1bd-1e21-4295-b37a-97440e882d74"
                         }
                     ],
                     "severity": "warning",
@@ -998,7 +998,7 @@
                                 "x": 4.2799,
                                 "y": 1.8288
                             },
-                            "uuid": "2dd5e7bb-9a2e-470a-bd51-6b2a25e3dc60"
+                            "uuid": "50ee930b-51f3-478f-8148-5c197b7ae518"
                         },
                         {
                             "description": "Symbol #PWR24 Pin 1 [Power input, Line]",
@@ -1006,7 +1006,7 @@
                                 "x": 4.2799,
                                 "y": 1.7907
                             },
-                            "uuid": "bbdc27d1-316f-4757-a7b5-20b412bc5de0"
+                            "uuid": "e00020f1-ac21-4433-822b-8a63953466d4"
                         }
                     ],
                     "severity": "warning",
@@ -1021,7 +1021,7 @@
                                 "x": 4.2799,
                                 "y": 1.9812
                             },
-                            "uuid": "9cd611dc-0cd0-4476-8b42-fa51cc1c3c94"
+                            "uuid": "665d6730-a5d7-4c34-a7a6-cf219fd88e41"
                         },
                         {
                             "description": "Symbol J2 Pin 17 [Pin_17, Passive, Line]",
@@ -1029,7 +1029,7 @@
                                 "x": 0.3429,
                                 "y": 2.1082
                             },
-                            "uuid": "ce6fdb03-e61e-4990-aef3-81e9ae8dee75"
+                            "uuid": "afcb795a-1766-4b18-a267-c1c26c2e4777"
                         }
                     ],
                     "severity": "warning",
@@ -1044,7 +1044,7 @@
                                 "x": 4.3053,
                                 "y": 1.8288
                             },
-                            "uuid": "bdd1e5ca-3d9e-4796-878f-5ff9284a5474"
+                            "uuid": "1bc43898-ed46-4fa6-8fb8-caaa2ca7479a"
                         },
                         {
                             "description": "Symbol SW1 Pin 8 [8, Unspecified, Line]",
@@ -1052,7 +1052,7 @@
                                 "x": 4.2799,
                                 "y": 1.8288
                             },
-                            "uuid": "2dd5e7bb-9a2e-470a-bd51-6b2a25e3dc60"
+                            "uuid": "50ee930b-51f3-478f-8148-5c197b7ae518"
                         }
                     ],
                     "severity": "warning",
@@ -1067,7 +1067,7 @@
                                 "x": 4.3053,
                                 "y": 1.9812
                             },
-                            "uuid": "07672ea8-9f2d-4d6d-962c-cbc2a7cbee35"
+                            "uuid": "132819da-5373-454c-8283-e7c7490fbc6b"
                         },
                         {
                             "description": "Symbol J2 Pin 16 [Pin_16, Passive, Line]",
@@ -1075,7 +1075,7 @@
                                 "x": 0.3429,
                                 "y": 2.0828
                             },
-                            "uuid": "a2e1fd20-10fc-467a-8984-694c570f05ae"
+                            "uuid": "cd942df5-f03d-4adc-ab97-85caf1736aa9"
                         }
                     ],
                     "severity": "warning",
@@ -1090,7 +1090,7 @@
                                 "x": 4.3307,
                                 "y": 1.8288
                             },
-                            "uuid": "a0545909-f993-4ba4-85b9-3be0abf48988"
+                            "uuid": "20818fde-4dc6-4a01-89b8-564eba4994d3"
                         },
                         {
                             "description": "Symbol SW1 Pin 7 [7, Unspecified, Line]",
@@ -1098,7 +1098,7 @@
                                 "x": 4.3053,
                                 "y": 1.8288
                             },
-                            "uuid": "bdd1e5ca-3d9e-4796-878f-5ff9284a5474"
+                            "uuid": "1bc43898-ed46-4fa6-8fb8-caaa2ca7479a"
                         }
                     ],
                     "severity": "warning",
@@ -1113,7 +1113,7 @@
                                 "x": 4.3307,
                                 "y": 1.9812
                             },
-                            "uuid": "a37a3c67-adaf-48c4-acca-526c465803d1"
+                            "uuid": "73f02d31-ab61-423a-b7b3-b3227ba75f58"
                         },
                         {
                             "description": "Symbol J2 Pin 15 [Pin_15, Passive, Line]",
@@ -1121,7 +1121,7 @@
                                 "x": 0.3429,
                                 "y": 2.0574
                             },
-                            "uuid": "e2e52918-6ffc-4435-97dc-4456e18f51c7"
+                            "uuid": "6f5f2250-1c35-4173-8e6f-226ca55ea1b1"
                         }
                     ],
                     "severity": "warning",
@@ -1136,7 +1136,7 @@
                                 "x": 4.3561,
                                 "y": 1.8288
                             },
-                            "uuid": "da669108-9cb8-4195-833e-5c6e4c8c14c0"
+                            "uuid": "659e767c-1f1a-4f08-b25c-52d5445da6b3"
                         },
                         {
                             "description": "Symbol SW1 Pin 6 [6, Unspecified, Line]",
@@ -1144,7 +1144,7 @@
                                 "x": 4.3307,
                                 "y": 1.8288
                             },
-                            "uuid": "a0545909-f993-4ba4-85b9-3be0abf48988"
+                            "uuid": "20818fde-4dc6-4a01-89b8-564eba4994d3"
                         }
                     ],
                     "severity": "warning",
@@ -1159,7 +1159,7 @@
                                 "x": 4.3561,
                                 "y": 1.9812
                             },
-                            "uuid": "c9628bd0-ff0c-4b8c-b0e6-797724bafb4c"
+                            "uuid": "c39c8938-8e24-4bad-a338-86ccd9883d11"
                         },
                         {
                             "description": "Symbol J2 Pin 14 [Pin_14, Passive, Line]",
@@ -1167,7 +1167,7 @@
                                 "x": 0.3429,
                                 "y": 2.032
                             },
-                            "uuid": "a3fd40b8-43e8-4e8e-b215-1f292df650d7"
+                            "uuid": "4c8589b5-ae6c-486d-b56c-9c4cddf13c9b"
                         }
                     ],
                     "severity": "warning",

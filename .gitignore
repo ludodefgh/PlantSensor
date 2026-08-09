@@ -6,4 +6,5 @@
 .claude
 __pycache__/
 hardware/**/*-backups/
-hardware/**/*.kicad_pro.lck
+hardware/**/*.lck
+hardware/**/_autosave-*
