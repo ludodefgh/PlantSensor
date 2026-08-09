@@ -30,6 +30,14 @@ def lib_dir_for(footprint_ref, fp_name):
 
 board = pcbnew.CreateEmptyBoard()
 
+# Global min clearance must accommodate the soil probe's deliberate 0.15mm
+# finger gap (docs/host-pcb-design-brief.md sec.5). Default netclass rule
+# (0.2mm) would flag it as a DRC error even though it's intentional and within
+# JLCPCB's real capability. Set to 0.127mm (5mil, standard fab minimum) for margin.
+_design_settings = board.GetDesignSettings()
+_design_settings.m_MinClearance = mm(0.127)
+_design_settings.m_NetSettings.GetDefaultNetclass().SetClearance(mm(0.127))
+
 # ---- Board outline ----
 BOARD_W, BOARD_H = 190.0, 115.0
 outline = pcbnew.PCB_SHAPE(board)
