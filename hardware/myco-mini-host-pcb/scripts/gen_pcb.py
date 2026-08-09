@@ -41,29 +41,35 @@ outline.SetWidth(mm(0.15))
 board.Add(outline)
 
 # ---- Placement plan (mm), roughly mirroring schematic functional zones ----
+# J1/J2 mate with the an54lq-15-breakout's J1 ("GPIO_L") and J4 ("GPIO_R") headers,
+# which sit on the breakout PCB as two PARALLEL rows 25.4mm apart center-to-center
+# (see docs/host-pcb-design-brief.md sec.2). Same here: same Y (pin 1 aligned),
+# X offset by exactly 25.4mm.
+J_ROW_X = 20.0
+J_ROW_Y = 12.0
 PLACEMENT = {
-    "J1": (16, 8, 0),
-    "J2": (16, 65, 0),
-    "BT1": (60, 15, 0),
-    "C1": (85, 15, 0),
-    "Q1": (100, 15, 0),
-    "C2": (115, 15, 0),
-    "C3": (35, 20, 0),
-    "L1": (130, 12, 0),
-    "U1": (145, 15, 0),
-    "R6": (145, 25, 0),
-    "C4": (160, 15, 0),
-    "C5": (175, 15, 0),
-    "Q2": (160, 30, 0),
-    "R5": (175, 30, 0),
-    "U2": (55, 45, 0),
-    "U3": (85, 45, 0),
-    "R1": (55, 60, 0),
-    "R2": (70, 60, 0),
-    "R3": (130, 45, 0),
-    "R4": (130, 65, 0),
-    "PROBE1": (150, 60, 0),
-    "SW1": (100, 85, 0),
+    "J1": (J_ROW_X, J_ROW_Y, 0),
+    "J2": (J_ROW_X + 25.4, J_ROW_Y, 0),
+    "C3": (J_ROW_X, J_ROW_Y + 55, 0),
+    "BT1": (85, 15, 0),
+    "C1": (110, 15, 0),
+    "Q1": (125, 15, 0),
+    "C2": (140, 15, 0),
+    "L1": (155, 12, 0),
+    "U1": (170, 15, 0),
+    "R6": (170, 25, 0),
+    "C4": (182, 30, 0),
+    "C5": (182, 42, 0),
+    "Q2": (155, 30, 0),
+    "R5": (155, 40, 0),
+    "U2": (80, 45, 0),
+    "U3": (110, 45, 0),
+    "R1": (80, 60, 0),
+    "R2": (95, 60, 0),
+    "R3": (140, 55, 0),
+    "R4": (140, 70, 0),
+    "PROBE1": (165, 60, 0),
+    "SW1": (110, 85, 0),
 }
 
 pad_lookup = {}  # (ref, pad_num) -> PAD object
