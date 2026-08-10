@@ -51,12 +51,12 @@ PARTS = {
     'L': PartDef('Device', 'L', device_lib),
     'CONN17': PartDef('Connector_Generic', 'Conn_01x17', conn_lib),
     'GND': PartDef('power', 'GND', power_lib),
-    'SHT40': PartDef('myco_host', 'SHT40-AD1B-R2', myco_lib),
+    'SHT41': PartDef('myco_host', 'SHT41-AD1B-R2', myco_lib),
     'BH1750': PartDef('myco_host', 'BH1750FVI-TR', myco_lib),
     'AO3401': PartDef('myco_host', 'AO3401A', myco_lib),
     'BATH': PartDef('myco_host', 'CR2032-BS-6-1', myco_lib),
     'DIPSW': PartDef('myco_host', 'EM-04-Q_C501635', myco_lib),
-    'XC9145': PartDef('myco_host', 'XC9145B33C0R-G', myco_lib),
+    'XC9145': PartDef('myco_host', 'XC9145B33CMR-G', myco_lib),
     'PROBE': PartDef('myco_host', 'SOIL_PROBE_2SEG', myco_lib),
     'PWRFLAG': PartDef('power', 'PWR_FLAG', power_lib),
 }
@@ -312,12 +312,11 @@ l1 = place(PARTS['L'], "L1", "4.7uH", l1_x, l1_y, footprint="Inductor_SMD:L_1008
 stub_and_label(l1["1"], "VDD_NRF", label_angle=180)
 
 u1_x, u1_y = 250, 45
-u1 = place(PARTS['XC9145'], "U1", "XC9145B33C0R-G", u1_x, u1_y,
-           footprint="myco_host:USON-6_XC9145_PLACEHOLDER",
-           extra_props={"LCSC": "C6052816", "WARNING": "WLP-6-05 not hand-solderable - see decision log"})
+u1 = place(PARTS['XC9145'], "U1", "XC9145B33CMR-G", u1_x, u1_y,
+           footprint="myco_host:SOT-25-5_L2.9-W1.6-P0.95-LS2.8-BR",
+           extra_props={"LCSC": "C19261414", "Note": "SOT-25, hand-solderable, in stock LCSC - see decision log 3.2"})
 stub_and_label(u1["BAT"], "VDD_NRF", label_angle=180)
 stub_and_gnd(u1["2"])
-stub_and_gnd(u1["4"])
 stub_and_label(u1["CE"], "P1_13_BOOST_EN", label_angle=180)
 lx_pin = u1["LX"]
 wire_direct((lx_pin[0], lx_pin[1]), (l1["2"][0], l1["2"][1]))
@@ -358,9 +357,9 @@ stub_and_label(r5["2"], "P1_14_SOIL_SW")
 
 # --- Sensors ---
 u2_x, u2_y = 110, 130
-u2 = place(PARTS['SHT40'], "U2", "SHT40-AD1B-R2", u2_x, u2_y,
+u2 = place(PARTS['SHT41'], "U2", "SHT41-AD1B-R2", u2_x, u2_y,
            footprint="myco_host:DFN-4_L1.5-W1.5-P0.8-TL-EP",
-           extra_props={"LCSC": "C2909890"})
+           extra_props={"LCSC": "C7461861", "Note": "Same package/pinout as SHT40, better RH accuracy at extremes - see decision log"})
 stub_and_label(u2["SDA"], "P0_02_SDA", label_angle=180)
 stub_and_label(u2["SCL"], "P0_03_SCL", label_angle=180)
 stub_and_label(u2["VDD"], "VDD_NRF")
@@ -402,14 +401,14 @@ stub_and_label(probe["3"], "P1_04_SOIL_ADC2")                    # SEG2_A
 stub_and_gnd(probe["4"])                                         # SEG2_B
 
 r3_x, r3_y = 300, 130
-r3 = place(PARTS['R'], "R3", "1M", r3_x, r3_y, footprint="Resistor_SMD:R_0603_1608Metric",
-           extra_props={"Note": "Bias resistor, segment 1 (RC divider assumption - see decision log)"})
+r3 = place(PARTS['R'], "R3", "220k", r3_x, r3_y, footprint="Resistor_SMD:R_0603_1608Metric",
+           extra_props={"Note": "Bias resistor, segment 1 - lowered from 1M, see decision log 2.6"})
 stub_and_label(r3["1"], "SOIL_VCC")
 stub_and_label(r3["2"], "P1_07_SOIL_ADC1")
 
 r4_x, r4_y = 300, 170
-r4 = place(PARTS['R'], "R4", "1M", r4_x, r4_y, footprint="Resistor_SMD:R_0603_1608Metric",
-           extra_props={"Note": "Bias resistor, segment 2 (RC divider assumption - see decision log)"})
+r4 = place(PARTS['R'], "R4", "220k", r4_x, r4_y, footprint="Resistor_SMD:R_0603_1608Metric",
+           extra_props={"Note": "Bias resistor, segment 2 - lowered from 1M, see decision log 2.6"})
 stub_and_label(r4["1"], "SOIL_VCC")
 stub_and_label(r4["2"], "P1_04_SOIL_ADC2")
 

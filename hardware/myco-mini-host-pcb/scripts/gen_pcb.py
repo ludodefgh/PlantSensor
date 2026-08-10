@@ -39,45 +39,49 @@ _design_settings.m_MinClearance = mm(0.127)
 _design_settings.m_NetSettings.GetDefaultNetclass().SetClearance(mm(0.127))
 
 # ---- Board outline ----
-BOARD_W, BOARD_H = 190.0, 115.0
+# Captured from the user's validated manual placement milestone (2026-08-09) via
+# a read-only pcbnew.LoadBoard() extraction of myco-mini-host-pcb.kicad_pcb.
+BOARD_ORIGIN_X, BOARD_ORIGIN_Y = 44.975, 13.985
+BOARD_W, BOARD_H = 81.95, 115.15
 outline = pcbnew.PCB_SHAPE(board)
 outline.SetShape(pcbnew.SHAPE_T_RECT)
-outline.SetStart(pcbnew.VECTOR2I(mm(0), mm(0)))
-outline.SetEnd(pcbnew.VECTOR2I(mm(BOARD_W), mm(BOARD_H)))
+outline.SetStart(pcbnew.VECTOR2I(mm(BOARD_ORIGIN_X), mm(BOARD_ORIGIN_Y)))
+outline.SetEnd(pcbnew.VECTOR2I(mm(BOARD_ORIGIN_X + BOARD_W), mm(BOARD_ORIGIN_Y + BOARD_H)))
 outline.SetLayer(pcbnew.Edge_Cuts)
 outline.SetWidth(mm(0.15))
 board.Add(outline)
 
-# ---- Placement plan (mm), roughly mirroring schematic functional zones ----
-# J1/J2 mate with the an54lq-15-breakout's J1 ("GPIO_L") and J4 ("GPIO_R") headers,
-# which sit on the breakout PCB as two PARALLEL rows 25.4mm apart center-to-center
-# (see docs/host-pcb-design-brief.md sec.2). Same here: same Y (pin 1 aligned),
-# X offset by exactly 25.4mm.
-J_ROW_X = 20.0
-J_ROW_Y = 12.0
+# ---- Placement plan (mm) ----
+# Captured from the user's validated manual placement milestone (2026-08-09) via
+# a read-only pcbnew.LoadBoard() extraction of myco-mini-host-pcb.kicad_pcb -
+# NOT the original schematic-zone guess. J1/J2 mate with the an54lq-15-breakout's
+# J1 ("GPIO_L") / J4 ("GPIO_R") headers, 25.4mm apart center-to-center (see
+# docs/host-pcb-design-brief.md sec.2) - still respected in this captured layout.
+# Boost cluster (U1/L1/C2/C4/C5) deliberately kept clear of the breakout's antenna
+# keepout zone (see decision log / chat: host coords X~72.9-82.4, Y~21.7-25).
 PLACEMENT = {
-    "J1": (J_ROW_X, J_ROW_Y, 0),
-    "J2": (J_ROW_X + 25.4, J_ROW_Y, 0),
-    "C3": (J_ROW_X, J_ROW_Y + 55, 0),
-    "BT1": (85, 15, 0),
-    "C1": (110, 15, 0),
-    "Q1": (125, 15, 0),
-    "C2": (140, 15, 0),
-    "L1": (155, 12, 0),
-    "U1": (170, 15, 0),
-    "R6": (170, 25, 0),
-    "C4": (182, 30, 0),
-    "C5": (182, 42, 0),
-    "Q2": (155, 30, 0),
-    "R5": (155, 40, 0),
-    "U2": (80, 45, 0),
-    "U3": (110, 45, 0),
-    "R1": (80, 60, 0),
-    "R2": (95, 60, 0),
-    "R3": (140, 55, 0),
-    "R4": (140, 70, 0),
-    "PROBE1": (165, 60, 0),
-    "SW1": (110, 85, 0),
+    "BT1": (77.7500, 37.1100, 90),
+    "C1": (75.2000, 38.7000, 90),
+    "C2": (72.9256, 62.6000, 0),
+    "C3": (61.0500, 44.9850, 90),
+    "C4": (79.7256, 62.8000, 90),
+    "C5": (81.9256, 62.8000, 90),
+    "J1": (65.0500, 26.0600, 0),
+    "J2": (90.4500, 26.0600, 0),
+    "L1": (76.6256, 58.8500, 0),
+    "PROBE1": (71.7500, 90.0600, 0),
+    "Q1": (79.1500, 41.9000, 90),
+    "Q2": (72.5000, 83.6500, 0),
+    "R1": (95.0500, 33.8100, 180),
+    "R2": (94.9250, 31.3100, 180),
+    "R3": (68.5250, 82.5750, 180),
+    "R4": (68.5250, 84.2750, 180),
+    "R5": (76.8000, 83.5500, -90),
+    "R6": (73.0506, 60.4000, 180),
+    "SW1": (76.8900, 72.5500, -90),
+    "U1": (76.5956, 62.6000, 180),
+    "U2": (107.6700, 79.8100, 0),
+    "U3": (116.3300, 79.5600, 0),
 }
 
 pad_lookup = {}  # (ref, pad_num) -> PAD object
