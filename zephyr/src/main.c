@@ -63,6 +63,23 @@ typedef struct {
 	zb_uint8_t percentage;
 	zb_uint8_t quantity;
 	enum zb_zcl_power_config_battery_size_e size;
+	/* Champs "optionnels" (NULL accepte par la macro EXT) mais que
+	 * fill_alarm_state_bitmap() deref quand meme en interne dans cette
+	 * version de ZBOSS (precompilee, pas de source dispo pour verifier
+	 * exactement lesquels) — bus fault garanti sur n'importe lequel resté
+	 * NULL. Tous alloues, mis a 0 (= pas de seuil / alarme jamais
+	 * declenchee pour ce test). */
+	zb_uint8_t rated_voltage;
+	zb_uint8_t alarm_mask;
+	zb_uint8_t voltage_min_threshold;
+	zb_uint8_t voltage_threshold1;
+	zb_uint8_t voltage_threshold2;
+	zb_uint8_t voltage_threshold3;
+	zb_uint8_t percentage_min_threshold;
+	zb_uint8_t percentage_threshold1;
+	zb_uint8_t percentage_threshold2;
+	zb_uint8_t percentage_threshold3;
+	zb_uint32_t alarm_state;
 } myco_batt_attrs_t;
 
 typedef struct {
@@ -115,18 +132,18 @@ ZB_ZCL_DECLARE_POWER_CONFIG_BATTERY_ATTRIB_LIST_EXT(
 	&dev_ctx.batt_attrs.voltage,
 	/*size=*/&dev_ctx.batt_attrs.size,
 	/*quantity=*/&dev_ctx.batt_attrs.quantity,
-	/*rated_voltage=*/NULL,
-	/*alarm_mask=*/NULL,
-	/*voltage_min_threshold=*/NULL,
+	/*rated_voltage=*/&dev_ctx.batt_attrs.rated_voltage,
+	/*alarm_mask=*/&dev_ctx.batt_attrs.alarm_mask,
+	/*voltage_min_threshold=*/&dev_ctx.batt_attrs.voltage_min_threshold,
 	/*percentage_remaining=*/&dev_ctx.batt_attrs.percentage,
-	/*threshold1=*/NULL,
-	/*threshold2=*/NULL,
-	/*threshold3=*/NULL,
-	/*percentage_min_threshold=*/NULL,
-	/*percentage_threshold1=*/NULL,
-	/*percentage_threshold2=*/NULL,
-	/*percentage_threshold3=*/NULL,
-	/*alarm_state=*/NULL);
+	/*threshold1=*/&dev_ctx.batt_attrs.voltage_threshold1,
+	/*threshold2=*/&dev_ctx.batt_attrs.voltage_threshold2,
+	/*threshold3=*/&dev_ctx.batt_attrs.voltage_threshold3,
+	/*percentage_min_threshold=*/&dev_ctx.batt_attrs.percentage_min_threshold,
+	/*percentage_threshold1=*/&dev_ctx.batt_attrs.percentage_threshold1,
+	/*percentage_threshold2=*/&dev_ctx.batt_attrs.percentage_threshold2,
+	/*percentage_threshold3=*/&dev_ctx.batt_attrs.percentage_threshold3,
+	/*alarm_state=*/&dev_ctx.batt_attrs.alarm_state);
 
 MYCO_ZB_ZCL_DECLARE_SOIL_MOISTURE_ATTRIB_LIST(
 	soil_moisture_attr_list,
@@ -310,6 +327,7 @@ int main(void)
 	dev_ctx.identify_attr.identify_time = ZB_ZCL_IDENTIFY_IDENTIFY_TIME_DEFAULT_VALUE;
 	dev_ctx.batt_attrs.quantity = 1;
 	dev_ctx.batt_attrs.size = ZB_ZCL_POWER_CONFIG_BATTERY_SIZE_OTHER;
+	dev_ctx.batt_attrs.alarm_state = 0;
 
 	ZB_AF_REGISTER_DEVICE_CTX(&myco_ctx);
 	ZB_AF_SET_IDENTIFY_NOTIFICATION_HANDLER(MYCO_ZIGBEE_ENDPOINT, identify_cb);
