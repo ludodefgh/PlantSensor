@@ -12,12 +12,8 @@ LOG_MODULE_REGISTER(myco, LOG_LEVEL_DBG);
 static const struct device *sht4x  = DEVICE_DT_GET(DT_NODELABEL(sht4x));
 static const struct device *bh1750 = DEVICE_DT_GET(DT_NODELABEL(bh1750));
 
-static const struct gpio_dt_spec boost_en =
-	GPIO_DT_SPEC_GET(DT_ALIAS(boost_en), gpios);
 static const struct gpio_dt_spec soil_pwr =
 	GPIO_DT_SPEC_GET(DT_ALIAS(soil_pwr), gpios);
-static const struct gpio_dt_spec user_led =
-	GPIO_DT_SPEC_GET(DT_ALIAS(user_led), gpios);
 
 static const struct adc_dt_spec adc_soil =
 	ADC_DT_SPEC_GET_BY_IDX(DT_PATH(zephyr_user), 0);
@@ -27,6 +23,9 @@ static const struct adc_dt_spec adc_batt =
 /* ── Calibration ────────────────────────────────────────────── */
 #define SOIL_DRY 3500
 #define SOIL_WET 1260
+
+/* ── Intervalle de report ───────────────────────────────────── */
+#define REPORT_INTERVAL_SECONDS 10
 
 /* ── BTHome v2 ──────────────────────────────────────────────── */
 /* Service data : UUID(2) + device_info(1) + objects = 17 bytes */
@@ -92,12 +91,12 @@ int main(void)
 {
 	LOG_INF("Myco booting on nRF54L15...");
 
-	gpio_pin_configure_dt(&boost_en, GPIO_OUTPUT_ACTIVE);
-	gpio_pin_configure_dt(&soil_pwr, GPIO_OUTPUT_INACTIVE);
-	gpio_pin_configure_dt(&user_led, GPIO_OUTPUT_ACTIVE);  /* LED ON = système actif */
+	/* soil_pwr allumé en continu (pas de pulse) — le capteur a besoin de
+	 * plus que 100ms pour stabiliser son oscillateur interne après power-on. */
+	gpio_pin_configure_dt(&soil_pwr, GPIO_OUTPUT_ACTIVE);
 	adc_channel_setup_dt(&adc_soil);
 	adc_channel_setup_dt(&adc_batt);
-	k_msleep(20);
+	k_msleep(500);  /* laisse le capteur sol se stabiliser avant la 1ere lecture */
 
 	if (!device_is_ready(sht4x) || !device_is_ready(bh1750)) {
 		LOG_ERR("Sensor not ready");
@@ -141,11 +140,8 @@ int main(void)
 		int batt_mv  = read_adc_mv(&adc_batt);
 		int batt_pct = CLAMP((batt_mv - 2000) * 100 / (3000 - 2000), 0, 100);
 
-		/* Sol */
-		gpio_pin_set_dt(&soil_pwr, 1);
-		k_msleep(100);
+		/* Sol : soil_pwr reste allumé en continu (voir commentaire au boot) */
 		int soil_mv = read_adc_mv(&adc_soil);
-		gpio_pin_set_dt(&soil_pwr, 0);
 		int soil_12 = soil_mv * 4095 / 3600;
 		int soil_pct = CLAMP((SOIL_DRY - soil_12) * 100 / (SOIL_DRY - SOIL_WET), 0, 100);
 
@@ -153,9 +149,9 @@ int main(void)
 		float h_f   = hum.val1  + hum.val2  / 1000000.0f;
 		float lux_f = lux.val1  + lux.val2  / 1000000.0f;
 
-		LOG_INF("T: %.2f C  RH: %.2f %%  Lux: %.2f  Sol: %d%%  Bat: %dmV (%d%%)",
+		LOG_INF("T: %.2f C  RH: %.2f %%  Lux: %.2f  Sol: %d%% (%dmV)  Bat: %dmV (%d%%)",
 			(double)t_f, (double)h_f, (double)lux_f,
-			soil_pct, batt_mv, batt_pct);
+			soil_pct, soil_mv, batt_mv, batt_pct);
 
 		/* BTHome : met à jour le payload en live (advertising continu) */
 		bthome_update(batt_pct, t_f, h_f, lux_f, soil_pct);
@@ -163,15 +159,10 @@ int main(void)
 		if (err && err != -EAGAIN) {
 			LOG_ERR("bt_le_adv_update_data failed: %d", err);
 		} else {
-			/* Clignotement LED : 2 flashs rapides = advertising OK */
-			gpio_pin_set_dt(&user_led, 0); k_msleep(80);
-			gpio_pin_set_dt(&user_led, 1); k_msleep(80);
-			gpio_pin_set_dt(&user_led, 0); k_msleep(80);
-			gpio_pin_set_dt(&user_led, 1);
 			LOG_DBG("BTHome advertised");
 		}
 
-		k_sleep(K_SECONDS(5));
+		k_sleep(K_SECONDS(REPORT_INTERVAL_SECONDS));
 	}
 
 	return 0;

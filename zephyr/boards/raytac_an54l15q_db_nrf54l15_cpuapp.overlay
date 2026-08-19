@@ -1,0 +1,131 @@
+#include <zephyr/dt-bindings/gpio/nordic-nrf-gpio.h>
+
+/*
+ * Myco Mini – NRF54L_breakout (Raytac AN54LQ-15 module) DeviceTree overlay
+ *
+ * Custom carrier board "NRF54L_breakout" (repo an54lq-15-breakout), not the
+ * Raytac AN54L15Q-DB eval board this Zephyr target is named after — only the
+ * module is shared. Pin choices below match the Phase 2 XIAO nRF54L15 wiring
+ * (same chip-level P0/P1/P2 pin numbers), re-verified against
+ * NRF54L_breakout/PIN_MAPPING.md to confirm each pin is actually broken out
+ * on J1/J4. See docs/breadboard-an54lq15.md for the physical wiring.
+ *
+ * Pinout (breakout header in parens) — tout sur le côté J1 (GPIO_L) pour
+ * garder la sonde sol + le bus I2C du même côté sur la breadboard :
+ *   I2C SDA  : P1.10 (J1 pin 3)   — SHT40 + BH1750
+ *   I2C SCL  : P1.11 (J1 pin 4)   — SHT40 + BH1750
+ *   ADC soil : P1.07 / AIN3 (J1 pin 15) — capteur sol capacitif (AOUT)
+ *   ADC batt : P1.06 / AIN2 (J1 pin 14) — tension batterie CR2032
+ *   GPIO PWR : P1.04 (J1 pin 12) — alimentation capteur sol
+ *
+ * Pas de RF switch : le module AN54LQ-15 a une antenne céramique intégrée
+ * (contrairement au XIAO Sense qui a un switch d'antenne externe) — aucun
+ * noeud rfsw_pwr/rfsw_ctl sur cette cible.
+ *
+ * Pas de MOSFET boost_en ni de LED pour ce test : le BH1750 est alimenté par
+ * un boost converter toujours allumé (pas de gating GPIO), et il n'y a pas de
+ * LED de statut sur ce montage — juste le breakout + les capteurs.
+ */
+
+/* ── spi00 : flash externe de l'eval board Raytac, absente sur notre breakout
+ * — désactivé, on n'a pas ce composant. ─────────────────────────────────── */
+&spi00 {
+	status = "disabled";
+};
+
+/* ── uart20 : console/shell par défaut de cette cible, activée par
+ * raytac_an54l15q_db_cpuapp_common.dtsi. Son pinctrl réclame TX=P1.04,
+ * RTS=P1.06, RX=P1.05, CTS=P1.07 (avec bias-pull-up sur CTS) — soit 4 de
+ * nos 5 pins critiques (soil_pwr, ADC sol, ADC batt). C'était la vraie
+ * cause des lectures ADC plates/faussées : désactivé, pas d'UART câblé
+ * sur ce montage (logs via RTT). ────────────────────────────────────── */
+&uart20 {
+	status = "disabled";
+};
+
+/* ── Pinctrl I2C : pas de pinctrl i2c22 par défaut sur cette cible ───────── */
+&pinctrl {
+	i2c22_default: i2c22_default {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 1, 10)>,
+				<NRF_PSEL(TWIM_SCL, 1, 11)>;
+		};
+	};
+
+	i2c22_sleep: i2c22_sleep {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 1, 10)>,
+				<NRF_PSEL(TWIM_SCL, 1, 11)>;
+			low-power-enable;
+		};
+	};
+};
+
+/* ── I2C capteurs ─────────────────────────────────────────────── */
+&i2c22 {
+	status = "okay";
+	pinctrl-0 = <&i2c22_default>;
+	pinctrl-1 = <&i2c22_sleep>;
+	pinctrl-names = "default", "sleep";
+	clock-frequency = <400000>;
+
+	sht4x: sht4x@44 {
+		compatible = "sensirion,sht4x";
+		reg = <0x44>;
+		repeatability = <2>;  /* 0=low(1.7ms), 1=med(4.5ms), 2=high(8.2ms) */
+	};
+
+	bh1750: bh1750@23 {
+		compatible = "rohm,bh1750";
+		reg = <0x23>;
+	};
+};
+
+/* ── ADC : pas de channels par défaut sur cette cible, définis ici ──────── */
+&adc {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	channel@1 {
+		reg = <1>;
+		zephyr,gain = "ADC_GAIN_1_4";  /* seule fraction <1 disponible sur ce SAADC (registre GAIN n'a que 2/1..2/8) */
+		zephyr,reference = "ADC_REF_INTERNAL";  /* 0.9V reel sur ce chip (pas 0.6V) -> FSR = 3.6V, largement suffisant. ADC_REF_VDD_1_4 n'existe pas sur ce SAADC (EINVAL confirme). */
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <NRF_SAADC_AIN3>;  /* P1.07 (J1 pin 15) sol — déplacé depuis AIN1/P1.05 */
+		zephyr,resolution = <12>;
+		zephyr,oversampling = <8>;
+	};
+
+	channel@2 {
+		reg = <2>;
+		zephyr,gain = "ADC_GAIN_1_4";  /* seule fraction <1 disponible sur ce SAADC (registre GAIN n'a que 2/1..2/8) */
+		zephyr,reference = "ADC_REF_INTERNAL";  /* 0.9V reel sur ce chip (pas 0.6V) -> FSR = 3.6V, largement suffisant. ADC_REF_VDD_1_4 n'existe pas sur ce SAADC (EINVAL confirme). */
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <NRF_SAADC_AIN2>;  /* P1.06 batterie */
+		zephyr,resolution = <12>;
+		zephyr,oversampling = <8>;
+	};
+};
+
+/ {
+	zephyr,user {
+		io-channels = <&adc 1>, <&adc 2>;  /* ch1=AIN1 sol, ch2=AIN2 batt */
+	};
+};
+
+/* ── GPIO ─────────────────────────────────────────────────────── */
+/ {
+	myco_gpios {
+		compatible = "gpio-leds";
+
+		soil_pwr: soil_pwr {
+			/* high-drive : la sonde sagait a ~2.7V sur du drive standard */
+			gpios = <&gpio1 4 (GPIO_ACTIVE_HIGH | NRF_GPIO_DRIVE_H0H1)>; /* P1.04, J1 pin 12 */
+			label = "Soil PWR";
+		};
+	};
+
+	aliases {
+		soil-pwr  = &soil_pwr;
+	};
+};
