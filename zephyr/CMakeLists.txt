@@ -7,7 +7,9 @@ project(myco)
 target_sources(app PRIVATE
 	src/main.c
 	src/ble_app.c
+	src/ble_config_app.c
 	src/zigbee_app.c
 	src/protocol_mode.c
+	src/device_config.c
 	src/zb_soil_moisture_defs.c
 )

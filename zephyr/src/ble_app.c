@@ -7,6 +7,8 @@
 #include <zephyr/bluetooth/bluetooth.h>
 #include <zephyr/bluetooth/hci.h>
 
+#include "device_config.h"
+
 LOG_MODULE_REGISTER(myco_ble, LOG_LEVEL_INF);
 
 /* ── Périphériques (soil_pwr/adc_channel_setup deja faits par main()) ──── */
@@ -17,13 +19,6 @@ static const struct adc_dt_spec adc_soil =
 	ADC_DT_SPEC_GET_BY_IDX(DT_PATH(zephyr_user), 0);
 static const struct adc_dt_spec adc_batt =
 	ADC_DT_SPEC_GET_BY_IDX(DT_PATH(zephyr_user), 1);
-
-/* ── Calibration ────────────────────────────────────────────── */
-#define SOIL_DRY 3500
-#define SOIL_WET 1260
-
-/* ── Intervalle de report ───────────────────────────────────── */
-#define REPORT_INTERVAL_SECONDS 10
 
 /* ── BTHome v2 ──────────────────────────────────────────────── */
 /* Service data : UUID(2) + device_info(1) + objects = 17 bytes */
@@ -86,6 +81,8 @@ static int read_adc_mv(const struct adc_dt_spec *spec)
 
 int ble_app_run(void)
 {
+	const struct device_config *cfg = device_config_get();
+
 	int err = bt_enable(NULL);
 	if (err) {
 		LOG_ERR("bt_enable failed: %d", err);
@@ -126,7 +123,7 @@ int ble_app_run(void)
 		/* Sol : soil_pwr reste allumé en continu (voir commentaire dans main()) */
 		int soil_mv = read_adc_mv(&adc_soil);
 		int soil_12 = soil_mv * 4095 / 3600;
-		int soil_pct = CLAMP((SOIL_DRY - soil_12) * 100 / (SOIL_DRY - SOIL_WET), 0, 100);
+		int soil_pct = CLAMP((cfg->soil_dry - soil_12) * 100 / (cfg->soil_dry - cfg->soil_wet), 0, 100);
 
 		float t_f   = temp.val1 + temp.val2 / 1000000.0f;
 		float h_f   = hum.val1  + hum.val2  / 1000000.0f;
@@ -145,7 +142,7 @@ int ble_app_run(void)
 			LOG_DBG("BTHome advertised");
 		}
 
-		k_sleep(K_SECONDS(REPORT_INTERVAL_SECONDS));
+		k_sleep(K_SECONDS(cfg->report_interval_s));
 	}
 
 	return 0;

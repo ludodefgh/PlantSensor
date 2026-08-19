@@ -11,6 +11,9 @@
 enum protocol_mode {
 	PROTOCOL_MODE_BLE = 0,
 	PROTOCOL_MODE_ZIGBEE = 1,
+	/* GATT de configuration (app compagnon) au lieu du broadcast BTHome —
+	 * pas de reporting capteur dans ce mode. */
+	PROTOCOL_MODE_BLE_CONFIG = 2,
 };
 
 #define PROTOCOL_MODE_DEFAULT PROTOCOL_MODE_BLE

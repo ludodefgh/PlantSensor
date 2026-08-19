@@ -12,6 +12,7 @@
 #include <zephyr/logging/log.h>
 
 #include "ble_app.h"
+#include "ble_config_app.h"
 #include "protocol_mode.h"
 #include "zigbee_app.h"
 
@@ -49,9 +50,13 @@ int main(void)
 	LOG_INF("Mode protocole selectionne : %s (shell RTT : 'protocol show|set|reboot')",
 		protocol_mode_name(mode));
 
-	if (mode == PROTOCOL_MODE_ZIGBEE) {
+	switch (mode) {
+	case PROTOCOL_MODE_ZIGBEE:
 		return zigbee_app_run();
+	case PROTOCOL_MODE_BLE_CONFIG:
+		return ble_config_app_run();
+	case PROTOCOL_MODE_BLE:
+	default:
+		return ble_app_run();
 	}
-
-	return ble_app_run();
 }

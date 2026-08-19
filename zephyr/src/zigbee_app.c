@@ -26,6 +26,7 @@
 #include <zigbee/zigbee_error_handler.h>
 #include <osif/zb_transceiver.h>
 
+#include "device_config.h"
 #include "zb_endpoint_defs.h"
 #include "zb_soil_moisture_defs.h"
 
@@ -40,11 +41,9 @@ static const struct adc_dt_spec adc_soil =
 static const struct adc_dt_spec adc_batt =
 	ADC_DT_SPEC_GET_BY_IDX(DT_PATH(zephyr_user), 1);
 
-/* ── Calibration sol (identique à la version BLE) ──────────────── */
-#define SOIL_DRY 3500
-#define SOIL_WET 1260
-
-#define REPORT_INTERVAL_SECONDS 10
+/* Calibration sol + intervalle de report : lus une fois au boot depuis la
+ * config persistee (device_config.c), modifiable via le mode config. */
+static const struct device_config *g_cfg;
 
 /* ── Attributs ZCL supplémentaires (pas de struct addon ZBOSS pour
  * humidité/illuminance/sol — définis nous-mêmes, comme b-parasite). ──── */
@@ -201,7 +200,7 @@ static void update_sensors_cb(zb_uint8_t param)
 
 	zb_ret_t ret = ZB_SCHEDULE_APP_ALARM(
 		update_sensors_cb, 0,
-		ZB_MILLISECONDS_TO_BEACON_INTERVAL(1000 * REPORT_INTERVAL_SECONDS));
+		ZB_MILLISECONDS_TO_BEACON_INTERVAL(1000 * g_cfg->report_interval_s));
 	if (ret != RET_OK) {
 		LOG_ERR("Unable to reschedule sensor update callback");
 	}
@@ -220,7 +219,7 @@ static void update_sensors_cb(zb_uint8_t param)
 
 	int soil_mv  = read_adc_mv(&adc_soil);
 	int soil_12  = soil_mv * 4095 / 3600;
-	int soil_pct = CLAMP((SOIL_DRY - soil_12) * 100 / (SOIL_DRY - SOIL_WET), 0, 100);
+	int soil_pct = CLAMP((g_cfg->soil_dry - soil_12) * 100 / (g_cfg->soil_dry - g_cfg->soil_wet), 0, 100);
 
 	float t_f   = temp.val1 + temp.val2 / 1000000.0f;
 	float h_f   = hum.val1  + hum.val2  / 1000000.0f;
@@ -306,6 +305,8 @@ void zboss_signal_handler(zb_bufid_t bufid)
 
 int zigbee_app_run(void)
 {
+	g_cfg = device_config_get();
+
 	dev_ctx.basic_attr.zcl_version = ZB_ZCL_VERSION;
 	dev_ctx.basic_attr.power_source = ZB_ZCL_BASIC_POWER_SOURCE_DC_SOURCE;
 	dev_ctx.identify_attr.identify_time = ZB_ZCL_IDENTIFY_IDENTIFY_TIME_DEFAULT_VALUE;

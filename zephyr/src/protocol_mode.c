@@ -52,7 +52,15 @@ int protocol_mode_set(enum protocol_mode mode)
 
 const char *protocol_mode_name(enum protocol_mode mode)
 {
-	return mode == PROTOCOL_MODE_ZIGBEE ? "zigbee" : "ble";
+	switch (mode) {
+	case PROTOCOL_MODE_ZIGBEE:
+		return "zigbee";
+	case PROTOCOL_MODE_BLE_CONFIG:
+		return "config";
+	case PROTOCOL_MODE_BLE:
+	default:
+		return "ble";
+	}
 }
 
 /* ── Commande shell (RTT) : selectionner le protocole sans reflasher ─────
@@ -74,7 +82,7 @@ static int cmd_protocol_set(const struct shell *sh, size_t argc, char **argv)
 	enum protocol_mode mode;
 
 	if (argc != 2) {
-		shell_error(sh, "Usage: protocol set <ble|zigbee>");
+		shell_error(sh, "Usage: protocol set <ble|zigbee|config>");
 		return -EINVAL;
 	}
 
@@ -82,8 +90,10 @@ static int cmd_protocol_set(const struct shell *sh, size_t argc, char **argv)
 		mode = PROTOCOL_MODE_BLE;
 	} else if (strcmp(argv[1], "zigbee") == 0) {
 		mode = PROTOCOL_MODE_ZIGBEE;
+	} else if (strcmp(argv[1], "config") == 0) {
+		mode = PROTOCOL_MODE_BLE_CONFIG;
 	} else {
-		shell_error(sh, "Mode inconnu : %s (ble ou zigbee)", argv[1]);
+		shell_error(sh, "Mode inconnu : %s (ble, zigbee ou config)", argv[1]);
 		return -EINVAL;
 	}
 
@@ -112,7 +122,7 @@ static int cmd_protocol_reboot(const struct shell *sh, size_t argc, char **argv)
 
 SHELL_STATIC_SUBCMD_SET_CREATE(protocol_cmds,
 	SHELL_CMD(show, NULL, "Affiche le protocole actuellement selectionne", cmd_protocol_show),
-	SHELL_CMD(set, NULL, "Choisit le protocole (ble|zigbee) — effectif apres reboot",
+	SHELL_CMD(set, NULL, "Choisit le protocole (ble|zigbee|config) — effectif apres reboot",
 		  cmd_protocol_set),
 	SHELL_CMD(reboot, NULL, "Redemarre pour appliquer le protocole selectionne",
 		  cmd_protocol_reboot),
