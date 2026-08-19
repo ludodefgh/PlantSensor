@@ -1,0 +1,153 @@
+#include <zephyr/dt-bindings/gpio/nordic-nrf-gpio.h>
+#include <nrf54l15_cpuapp_partitions.dtsi>
+
+/*
+ * Myco Mini – NRF54L_breakout (Raytac AN54LQ-15 module) DeviceTree overlay
+ * Variante Zigbee R23 (add-on ncs-zigbee, NCS v3.4.0) — même hardware/pins
+ * que la branche BLE (feature/an54lq15-breakout-test), radio 802.15.4 au
+ * lieu de BLE.
+ *
+ * NB board target renommé entre NCS v3.2.4 et v3.4.0 :
+ * raytac_an54l15q_db -> raytac_an54lq_db_15 (aligné sur le vrai nom du
+ * module AN54LQ-15). Même module, mêmes pins, même conflit uart20 (cf plus
+ * bas) — vérifié dans les fichiers de board de ce nouveau workspace.
+ *
+ * Pinout (breakout header en parens) :
+ *   I2C SDA  : P1.10 (J1 pin 3)   — SHT40 + BH1750
+ *   I2C SCL  : P1.11 (J1 pin 4)   — SHT40 + BH1750
+ *   ADC soil : P1.07 / AIN3 (J1 pin 15) — capteur sol capacitif (AOUT)
+ *   ADC batt : P1.06 / AIN2 (J1 pin 14) — tension batterie CR2032
+ *   GPIO PWR : P1.04 (J1 pin 12) — alimentation capteur sol
+ *
+ * Pas de RF switch (antenne céramique intégrée), pas de MOSFET boost_en,
+ * pas de LED — même choix que la branche BLE, voir son overlay pour le
+ * détail des raisons.
+ */
+
+/* ── spi00 : flash externe absente sur notre breakout — désactivé.
+ * Le noeud enfant mx25r64 doit être désactivé explicitement en plus du bus :
+ * son status="okay" hérité du board dtsi survit à la désactivation du bus
+ * parent, et le driver spi_nor.c essaie quand même de l'instancier dès que
+ * CONFIG_SPI_NOR est actif (tiré par Zigbee/partition manager statique). ── */
+&spi00 {
+	status = "disabled";
+};
+
+&mx25r64 {
+	status = "disabled";
+};
+
+/* ── uart20 : même conflit que sur NCS v3.2.4 — pinctrl réclame TX=P1.04,
+ * RTS=P1.06, RX=P1.05, CTS=P1.07 (bias-pull-up), soit nos pins soil_pwr/
+ * ADC sol/ADC batt. Désactivé, logs via RTT. ───────────────────────────── */
+&uart20 {
+	status = "disabled";
+};
+
+/* ── Zigbee : timer dédié requis par l'add-on, chosen node + activation. ── */
+/ {
+	chosen {
+		ncs,zigbee-timer = &timer20;
+	};
+};
+
+&timer20 {
+	status = "okay";
+};
+
+/* Restaure toute la RRAM/SRAM app-core — par défaut une partie est réservée
+ * pour FLPR ; le template Zigbee R23 fait cette même restauration. */
+&cpuapp_rram {
+	reg = <0x0 DT_SIZE_K(1524)>;
+};
+
+&cpuapp_sram {
+	reg = <0x20000000 DT_SIZE_K(256)>;
+	ranges = <0x0 0x20000000 0x40000>;
+};
+
+/* ── Pinctrl I2C : pas de pinctrl i2c22 par défaut sur cette cible ───────── */
+&pinctrl {
+	i2c22_default: i2c22_default {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 1, 10)>,
+				<NRF_PSEL(TWIM_SCL, 1, 11)>;
+		};
+	};
+
+	i2c22_sleep: i2c22_sleep {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 1, 10)>,
+				<NRF_PSEL(TWIM_SCL, 1, 11)>;
+			low-power-enable;
+		};
+	};
+};
+
+/* ── I2C capteurs ─────────────────────────────────────────────── */
+&i2c22 {
+	status = "okay";
+	pinctrl-0 = <&i2c22_default>;
+	pinctrl-1 = <&i2c22_sleep>;
+	pinctrl-names = "default", "sleep";
+	clock-frequency = <400000>;
+
+	sht4x: sht4x@44 {
+		compatible = "sensirion,sht4x";
+		reg = <0x44>;
+		repeatability = <2>;
+	};
+
+	bh1750: bh1750@23 {
+		compatible = "rohm,bh1750";
+		reg = <0x23>;
+	};
+};
+
+/* ── ADC ──────────────────────────────────────────────────────── */
+&adc {
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	channel@1 {
+		reg = <1>;
+		zephyr,gain = "ADC_GAIN_1_4";
+		zephyr,reference = "ADC_REF_INTERNAL";  /* 0.9V reel -> FSR 3.6V */
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <NRF_SAADC_AIN3>;  /* P1.07 (J1 pin 15) sol */
+		zephyr,resolution = <12>;
+		zephyr,oversampling = <8>;
+	};
+
+	channel@2 {
+		reg = <2>;
+		zephyr,gain = "ADC_GAIN_1_4";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <NRF_SAADC_AIN2>;  /* P1.06 batterie */
+		zephyr,resolution = <12>;
+		zephyr,oversampling = <8>;
+	};
+};
+
+/ {
+	zephyr,user {
+		io-channels = <&adc 1>, <&adc 2>;
+	};
+};
+
+/* ── GPIO ─────────────────────────────────────────────────────── */
+/ {
+	myco_gpios {
+		compatible = "gpio-leds";
+
+		soil_pwr: soil_pwr {
+			gpios = <&gpio1 4 (GPIO_ACTIVE_HIGH | NRF_GPIO_DRIVE_H0H1)>; /* P1.04 */
+			label = "Soil PWR";
+		};
+	};
+
+	aliases {
+		soil-pwr  = &soil_pwr;
+	};
+};
