@@ -26,6 +26,7 @@
 #include <zcl/zb_zcl_power_config.h>
 #include <zigbee/zigbee_app_utils.h>
 #include <zigbee/zigbee_error_handler.h>
+#include <osif/zb_transceiver.h>
 
 #include "zb_endpoint_defs.h"
 #include "zb_soil_moisture_defs.h"
@@ -331,6 +332,12 @@ int main(void)
 
 	ZB_AF_REGISTER_DEVICE_CTX(&myco_ctx);
 	ZB_AF_SET_IDENTIFY_NOTIFICATION_HANDLER(MYCO_ZIGBEE_ENDPOINT, identify_cb);
+
+	/* TX power par defaut = 0dBm (nrf_802154_pib.c). +4dBm = max documente
+	 * pour ce module cote BLE (meme PA physique que le 802.15.4) — utile
+	 * pour la portee, notamment avec l'antenne integree du module sur ce
+	 * petit breakout. */
+	zb_trans_set_tx_power(4);
 
 	zigbee_enable();
 
