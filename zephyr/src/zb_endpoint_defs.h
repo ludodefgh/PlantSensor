@@ -11,6 +11,7 @@
 #ifndef ZB_ENDPOINT_DEFS_H
 #define ZB_ENDPOINT_DEFS_H
 
+#include "zb_myco_config_defs.h"
 #include "zb_soil_moisture_defs.h"
 
 #define MYCO_ZIGBEE_ENDPOINT 10
@@ -18,7 +19,7 @@
 
 #define MYCO_ZB_DEVICE_ID 0x0008
 #define MYCO_ZB_DEVICE_VERSION 0
-#define MYCO_ZB_IN_CLUSTER_NUM 7
+#define MYCO_ZB_IN_CLUSTER_NUM 8
 #define MYCO_ZB_OUT_CLUSTER_NUM 0
 #define MYCO_ZB_CLUSTER_NUM (MYCO_ZB_IN_CLUSTER_NUM + MYCO_ZB_OUT_CLUSTER_NUM)
 #define MYCO_ZB_ATTR_REPORTING_COUNT 5
@@ -31,7 +32,8 @@
 	rel_humidity_attr_list,                                              \
 	batt_attr_list,                                                      \
 	soil_moisture_attr_list,                                             \
-	illuminance_attr_list)                                               \
+	illuminance_attr_list,                                               \
+	config_attr_list)                                                    \
 	zb_zcl_cluster_desc_t cluster_list_name[] =                          \
 	{                                                                     \
 		ZB_ZCL_CLUSTER_DESC(                                         \
@@ -75,6 +77,12 @@
 			ZB_ZCL_ARRAY_SIZE(batt_attr_list, zb_zcl_attr_t),    \
 			(batt_attr_list),                                    \
 			ZB_ZCL_CLUSTER_SERVER_ROLE,                          \
+			ZB_ZCL_MANUF_CODE_INVALID),                          \
+		ZB_ZCL_CLUSTER_DESC(                                         \
+			MYCO_ZB_ZCL_CONFIG_CLUSTER_ID,                       \
+			ZB_ZCL_ARRAY_SIZE(config_attr_list, zb_zcl_attr_t),  \
+			(config_attr_list),                                  \
+			ZB_ZCL_CLUSTER_SERVER_ROLE,                          \
 			ZB_ZCL_MANUF_CODE_INVALID)                           \
 	}
 
@@ -98,6 +106,7 @@
 			MYCO_ZB_ZCL_SOIL_MOISTURE_CLUSTER_ID,                \
 			ZB_ZCL_CLUSTER_ID_ILLUMINANCE_MEASUREMENT,           \
 			ZB_ZCL_CLUSTER_ID_POWER_CONFIG,                      \
+			MYCO_ZB_ZCL_CONFIG_CLUSTER_ID,                       \
 		}                                                             \
 	}
 

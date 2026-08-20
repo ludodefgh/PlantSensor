@@ -17,6 +17,7 @@
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
+#include <zephyr/sys/reboot.h>
 
 #include <addons/zcl/zb_zcl_temp_measurement_addons.h>
 #include <zb_nrf_platform.h>
@@ -27,7 +28,9 @@
 #include <osif/zb_transceiver.h>
 
 #include "device_config.h"
+#include "protocol_mode.h"
 #include "zb_endpoint_defs.h"
+#include "zb_myco_config_defs.h"
 #include "zb_soil_moisture_defs.h"
 
 LOG_MODULE_REGISTER(myco_zigbee, LOG_LEVEL_INF);
@@ -85,6 +88,16 @@ typedef struct {
 	zb_uint16_t log_lux;
 } myco_illuminance_attrs_t;
 
+/* Brouillon config, modifiable a distance par le coordinateur (HA/z2m) —
+ * meme mecanisme "brouillon + commit" que le mode config BLE. */
+typedef struct {
+	zb_uint16_t soil_dry;
+	zb_uint16_t soil_wet;
+	zb_uint16_t report_interval_s;
+	zb_uint8_t target_mode;
+	zb_uint8_t commit;
+} myco_config_attrs_t;
+
 struct zb_device_ctx {
 	zb_zcl_basic_attrs_t basic_attr;
 	zb_zcl_identify_attrs_t identify_attr;
@@ -93,6 +106,7 @@ struct zb_device_ctx {
 	myco_batt_attrs_t batt_attrs;
 	myco_soil_moisture_attrs_t soil_moisture_attrs;
 	myco_illuminance_attrs_t illuminance_attrs;
+	myco_config_attrs_t config_attrs;
 };
 
 static struct zb_device_ctx dev_ctx;
@@ -150,6 +164,14 @@ ZB_ZCL_DECLARE_ILLUMINANCE_MEASUREMENT_ATTRIB_LIST(
 	/*min_value=*/NULL,
 	/*max_value=*/NULL);
 
+MYCO_ZB_ZCL_DECLARE_CONFIG_ATTRIB_LIST(
+	config_attr_list,
+	&dev_ctx.config_attrs.soil_dry,
+	&dev_ctx.config_attrs.soil_wet,
+	&dev_ctx.config_attrs.report_interval_s,
+	&dev_ctx.config_attrs.target_mode,
+	&dev_ctx.config_attrs.commit);
+
 MYCO_ZB_DECLARE_CLUSTER_LIST(
 	myco_clusters,
 	basic_attr_list,
@@ -158,7 +180,8 @@ MYCO_ZB_DECLARE_CLUSTER_LIST(
 	rel_humi_attr_list,
 	batt_attr_list,
 	soil_moisture_attr_list,
-	illuminance_attr_list);
+	illuminance_attr_list,
+	config_attr_list);
 
 MYCO_ZB_DECLARE_ENDPOINT(
 	myco_ep,
@@ -267,6 +290,69 @@ static void identify_cb(zb_bufid_t bufid)
 	LOG_INF("Identify: commande recue du coordinateur");
 }
 
+/* Reagit a l'ecriture d'attribut "commit" du cluster config custom : lit
+ * le brouillon (deja stocke par ZBOSS au moment ou ce callback tourne),
+ * valide, persiste (device_config.c / protocol_mode.c) et redemarre dans
+ * le mode choisi. Meme validation que write_commit() dans
+ * ble_config_app.c, pour rester coherent entre les deux chemins de
+ * configuration (app compagnon BLE et coordinateur Zigbee). */
+static void zcl_device_cb(zb_bufid_t bufid)
+{
+	zb_zcl_device_callback_param_t *p =
+		ZB_BUF_GET_PARAM(bufid, zb_zcl_device_callback_param_t);
+
+	p->status = RET_OK;
+
+	if (p->device_cb_id != ZB_ZCL_SET_ATTR_VALUE_CB_ID) {
+		return;
+	}
+
+	zb_uint16_t cluster_id = p->cb_param.set_attr_value_param.cluster_id;
+	zb_uint16_t attr_id = p->cb_param.set_attr_value_param.attr_id;
+
+	if (cluster_id != MYCO_ZB_ZCL_CONFIG_CLUSTER_ID ||
+	    attr_id != MYCO_ZB_ZCL_ATTR_CONFIG_COMMIT_ID) {
+		return;
+	}
+
+	zb_uint16_t soil_dry = dev_ctx.config_attrs.soil_dry;
+	zb_uint16_t soil_wet = dev_ctx.config_attrs.soil_wet;
+	zb_uint16_t interval = dev_ctx.config_attrs.report_interval_s;
+	zb_uint8_t target_mode = dev_ctx.config_attrs.target_mode;
+
+	if (soil_dry <= soil_wet) {
+		LOG_ERR("Commit Zigbee refuse : soil_dry (%u) doit etre > soil_wet (%u)",
+			soil_dry, soil_wet);
+		p->status = RET_INVALID_PARAMETER_1;
+		return;
+	}
+	if (interval == 0) {
+		LOG_ERR("Commit Zigbee refuse : intervalle nul");
+		p->status = RET_INVALID_PARAMETER_1;
+		return;
+	}
+	if (target_mode != PROTOCOL_MODE_BLE && target_mode != PROTOCOL_MODE_ZIGBEE &&
+	    target_mode != PROTOCOL_MODE_BLE_CONFIG) {
+		LOG_ERR("Commit Zigbee refuse : mode cible invalide (%u)", target_mode);
+		p->status = RET_INVALID_PARAMETER_1;
+		return;
+	}
+
+	struct device_config cfg = {
+		.soil_dry = soil_dry,
+		.soil_wet = soil_wet,
+		.report_interval_s = interval,
+	};
+	device_config_set(&cfg);
+	protocol_mode_set((enum protocol_mode)target_mode);
+
+	LOG_INF("Config Zigbee committee (sec=%u humide=%u intervalle=%us), reboot en mode %s",
+		soil_dry, soil_wet, interval, protocol_mode_name((enum protocol_mode)target_mode));
+
+	k_msleep(200); /* laisse partir l'ACK ZCL avant le reset */
+	sys_reboot(SYS_REBOOT_COLD);
+}
+
 void zboss_signal_handler(zb_bufid_t bufid)
 {
 	zb_zdo_app_signal_hdr_t *sig_hndler = NULL;
@@ -314,6 +400,16 @@ int zigbee_app_run(void)
 	dev_ctx.batt_attrs.size = ZB_ZCL_POWER_CONFIG_BATTERY_SIZE_OTHER;
 	dev_ctx.batt_attrs.alarm_state = 0;
 
+	/* Brouillon config initialise avec la config/le mode actuels — lire
+	 * le cluster avant toute ecriture montre l'etat reel, comme le mode
+	 * config BLE. */
+	dev_ctx.config_attrs.soil_dry = g_cfg->soil_dry;
+	dev_ctx.config_attrs.soil_wet = g_cfg->soil_wet;
+	dev_ctx.config_attrs.report_interval_s = g_cfg->report_interval_s;
+	dev_ctx.config_attrs.target_mode = PROTOCOL_MODE_ZIGBEE;
+	dev_ctx.config_attrs.commit = 0;
+
+	ZB_ZCL_REGISTER_DEVICE_CB(zcl_device_cb);
 	ZB_AF_REGISTER_DEVICE_CTX(&myco_ctx);
 	ZB_AF_SET_IDENTIFY_NOTIFICATION_HANDLER(MYCO_ZIGBEE_ENDPOINT, identify_cb);
 

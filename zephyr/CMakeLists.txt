@@ -12,4 +12,5 @@ target_sources(app PRIVATE
 	src/protocol_mode.c
 	src/device_config.c
 	src/zb_soil_moisture_defs.c
+	src/zb_myco_config_defs.c
 )
