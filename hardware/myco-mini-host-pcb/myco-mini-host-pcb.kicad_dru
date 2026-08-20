@@ -3,16 +3,19 @@
 # SMD parts only: THT headers (J1/J2) are hand-soldered, not hotplate-reflowed,
 # and are structurally required to sit near this edge to mate with the breakout.
 # PROBE1 (soil probe) is designed to reach the board edge by intent - excluded too.
+# U2 (SHT41) is surrounded by an intentional thermal-relief slot (Sensirion design
+# guide recommendation) that puts its courtyard close to Edge.Cuts by design -
+# excluded too. See docs/pcb-design-decisions.md.
 (rule "Courtyard to board edge (front, hotplate assembly margin)"
 	(layer "F.CrtYd")
 	(constraint physical_clearance (min 1mm))
-	(condition "B.Layer == 'Edge.Cuts' && A.Reference != 'J1' && A.Reference != 'J2' && A.Reference != 'PROBE1'")
+	(condition "B.Layer == 'Edge.Cuts' && A.Reference != 'J1' && A.Reference != 'J2' && A.Reference != 'PROBE1' && A.Reference != 'U2'")
 )
 
 (rule "Courtyard to board edge (back, hotplate assembly margin)"
 	(layer "B.CrtYd")
 	(constraint physical_clearance (min 1mm))
-	(condition "B.Layer == 'Edge.Cuts' && A.Reference != 'J1' && A.Reference != 'J2' && A.Reference != 'PROBE1'")
+	(condition "B.Layer == 'Edge.Cuts' && A.Reference != 'J1' && A.Reference != 'J2' && A.Reference != 'PROBE1' && A.Reference != 'U2'")
 )
 
 (rule "Courtyard to courtyard (hand assembly clearance)"

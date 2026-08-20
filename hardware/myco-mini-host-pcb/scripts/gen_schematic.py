@@ -301,9 +301,15 @@ stub_and_gnd(c2["2"])
 
 c3_x, c3_y = 60, 60
 c3 = place(PARTS['C'], "C3", "100nF", c3_x, c3_y, footprint="Capacitor_SMD:C_0603_1608Metric",
-           extra_props={"Note": "Local VDD_NRF bypass near J1 pin9 (conditional per brief sec.2)"})
+           extra_props={"Note": "Local VDD_NRF bypass near J1 pin9 (conditional per brief sec.2) - HF filtering, complements C6"})
 stub_and_label(c3["1"], "VDD_NRF", label_angle=180)
 stub_and_gnd(c3["2"])
+
+c6_x, c6_y = 75, 60
+c6 = place(PARTS['C'], "C6", "100uF", c6_x, c6_y, footprint="Capacitor_SMD:C_0805_2012Metric",
+           extra_props={"Note": "Bulk reservoir cap near J1 pin9 (VDD_NRF) - absorbs radio TX current transient given rising CR2032 ESR at end of life, complements C3 (100nF, HF bypass) rather than replacing it. See github issue #18 / decision log."})
+stub_and_label(c6["1"], "VDD_NRF", label_angle=180)
+stub_and_gnd(c6["2"])
 
 # --- Boost converter ---
 l1_x, l1_y = 225, 30
@@ -362,7 +368,7 @@ u2 = place(PARTS['SHT41'], "U2", "SHT41-AD1B-R2", u2_x, u2_y,
            extra_props={"LCSC": "C7461861", "Note": "Same package/pinout as SHT40, better RH accuracy at extremes - see decision log"})
 stub_and_label(u2["SDA"], "P0_02_SDA", label_angle=180)
 stub_and_label(u2["SCL"], "P0_03_SCL", label_angle=180)
-stub_and_label(u2["VDD"], "VDD_NRF")
+stub_and_label(u2["VDD"], "VOUT_3V3")
 stub_and_gnd(u2["VSS"])
 stub_and_gnd(u2["EP"])
 
@@ -374,20 +380,20 @@ stub_and_label(u3["VCC"], "VOUT_3V3", label_angle=180)
 stub_and_gnd(u3["ADDR"])
 stub_and_gnd(u3["GND"])
 stub_and_label(u3["SDA"], "P0_02_SDA")
-stub_and_label(u3["DVI"], "VDD_NRF")
+stub_and_label(u3["DVI"], "VOUT_3V3")
 stub_and_label(u3["SCL"], "P0_03_SCL")
 stub_and_gnd(u3["EP"])
 
 r1_x, r1_y = 130, 100
 r1 = place(PARTS['R'], "R1", "4.7k", r1_x, r1_y, footprint="Resistor_SMD:R_0603_1608Metric",
-           extra_props={"Note": "I2C SDA pull-up to always-on rail"})
-stub_and_label(r1["1"], "VDD_NRF")
+           extra_props={"Note": "I2C SDA pull-up - moved to VOUT_3V3, see decision log 2.5ter (both I2C devices now on switched rail)"})
+stub_and_label(r1["1"], "VOUT_3V3")
 stub_and_label(r1["2"], "P0_02_SDA")
 
 r2_x, r2_y = 150, 100
 r2 = place(PARTS['R'], "R2", "4.7k", r2_x, r2_y, footprint="Resistor_SMD:R_0603_1608Metric",
-           extra_props={"Note": "I2C SCL pull-up to always-on rail"})
-stub_and_label(r2["1"], "VDD_NRF")
+           extra_props={"Note": "I2C SCL pull-up - moved to VOUT_3V3, see decision log 2.5ter (both I2C devices now on switched rail)"})
+stub_and_label(r2["1"], "VOUT_3V3")
 stub_and_label(r2["2"], "P0_03_SCL")
 
 # --- Soil probe ---

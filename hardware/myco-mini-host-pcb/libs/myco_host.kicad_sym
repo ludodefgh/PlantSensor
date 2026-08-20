@@ -853,4 +853,72 @@
       )
     )
   )
+  (symbol "LED_RGB_5050_CA"
+    (in_bom yes)
+    (on_board yes)
+    (property "Reference" "D"
+      (at 0 8.89 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "LED_RGB_5050_CA"
+      (at 0 -8.89 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "myco_host:LED_SMD5050-6P"
+      (id 2) (at 0 -11.43 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "LCSC Part" "C2843868"
+      (id 5) (at 0 -13.97 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Note" "XL-5050RGBC - pinout VERIFIED against Xinglight datasheet (misc/c7b4bb8841da5973ba31f9cd1a1b23d8.pdf): 3 independent LEDs, no shared common pin - G anode/cathode=4/3, R anode/cathode=5/2, B anode/cathode=6/1. Anodes (4,5,6) tied together externally to VOUT_3V3. See decision log 2.10."
+      (id 6) (at 0 -16.51 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (symbol "LED_RGB_5050_CA_0_1"
+      (rectangle
+        (start -6.35 6.35)
+        (end 6.35 -6.35)
+        (stroke (width 0) (type default) (color 0 0 0 0))
+        (fill (type background))
+      )
+      (pin unspecified line
+        (at -8.89 3.81 0)
+        (length 2.54)
+        (name "B" (effects (font (size 1.27 1.27))))
+        (number "1" (effects (font (size 1.27 1.27))))
+      )
+      (pin unspecified line
+        (at -8.89 0 0)
+        (length 2.54)
+        (name "R" (effects (font (size 1.27 1.27))))
+        (number "2" (effects (font (size 1.27 1.27))))
+      )
+      (pin unspecified line
+        (at -8.89 -3.81 0)
+        (length 2.54)
+        (name "G" (effects (font (size 1.27 1.27))))
+        (number "3" (effects (font (size 1.27 1.27))))
+      )
+      (pin unspecified line
+        (at 8.89 -3.81 180)
+        (length 2.54)
+        (name "A" (effects (font (size 1.27 1.27))))
+        (number "4" (effects (font (size 1.27 1.27))))
+      )
+      (pin unspecified line
+        (at 8.89 0 180)
+        (length 2.54)
+        (name "A" (effects (font (size 1.27 1.27))))
+        (number "5" (effects (font (size 1.27 1.27))))
+      )
+      (pin unspecified line
+        (at 8.89 3.81 180)
+        (length 2.54)
+        (name "A" (effects (font (size 1.27 1.27))))
+        (number "6" (effects (font (size 1.27 1.27))))
+      )
+    )
+  )
 )

@@ -13,3 +13,7 @@ EM-04-Q,SW1,myco_host:SW-SMD_8P-L10.1-W6.0-P2.54-LS9.8,C501635
 XC9145B33CMR-G,U1,myco_host:SOT-25-5_L2.9-W1.6-P0.95-LS2.8-BR,C19261414
 SHT41-AD1B-R2,U2,myco_host:DFN-4_L1.5-W1.5-P0.8-TL-EP,C7461861
 BH1750FVI-TR,U3,myco_host:WSOF-6_L2.6-W1.6-P0.50-TL-EP,C78960
+XL-5050RGBC,D1,myco_host:LED_SMD5050-6P,"C2843868 - pinout verified vs Xinglight datasheet; G/B channels marginal Vf headroom on 3.3V rail, see decision log 2.10"
+220,R7,Resistor_SMD:R_0603_1608Metric,TBD (JLCPCB Basic Part au moment de la commande)
+330,"R8,R9",Resistor_SMD:R_0603_1608Metric,TBD (JLCPCB Basic Part au moment de la commande)
+100uF,C6,Capacitor_SMD:C_0805_2012Metric,"TBD (JLCPCB Basic Part au moment de la commande) - X5R/X7R, >=6.3V, github issue #18"
