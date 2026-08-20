@@ -16,29 +16,16 @@ sans toucher physiquement au capteur).
    (désactivé par défaut depuis z2m 2.11+).
 3. Redémarrer zigbee2mqtt.
 
-## ⚠️ Point à vérifier : l'identité du device
+## ⚠️ Re-pairing nécessaire
 
-Le converter matche le device via `zigbeeModel: ['Myco Mini']` — **c'est
-une supposition, pas une valeur confirmée**. Le firmware actuel ne
-renseigne pas explicitement le Manufacturer Name / Model Identifier du
-cluster Basic (`zephyr/src/zigbee_app.c`, `ZB_ZCL_DECLARE_BASIC_ATTRIB_LIST`
-sans les champs manuf/model) — donc ce que le device paire montre
-réellement à z2m est probablement une valeur par défaut de la stack ZBOSS,
-pas "Myco Mini".
+Le firmware renseigne maintenant Manufacturer Name = "Myco" et Model
+Identifier = "Myco Mini" sur le cluster Basic (avant ça, le device
+apparaissait "Unknown" dans z2m — confirmé et corrigé). Le converter
+matche via `zigbeeModel: ['Myco Mini']`, ce qui correspond maintenant à
+ce que le firmware envoie réellement.
 
-**Pour vérifier** : dans l'UI z2m, ouvrir la page du device → onglet
-"Dev console" (ou dans `data/database.db` / le topic MQTT
-`zigbee2mqtt/bridge/devices`) et regarder les champs `modelID` /
-`manufacturerName` actuels. Si le converter ne s'attache pas (le device
-reste "unsupported" ou les nouvelles entités n'apparaissent pas après
-redémarrage), soit :
-- ajuster `zigbeeModel`/`vendor`/`model` dans `myco_config.mjs` pour
-  matcher exactement ce que le device montre déjà, ou
-- (option plus propre à terme) ajouter les attributs Manufacturer
-  Name/Model Identifier au cluster Basic côté firmware — mais ça
-  nécessite de re-pairer le device dans z2m (remove + re-add) pour que la
-  nouvelle identité soit relue, l'ancienne étant mise en cache à
-  l'interview initial.
-
-Dites-moi ce que `modelID`/`manufacturerName` affiche réellement et
-j'ajuste le fichier sans avoir besoin d'un nouveau flash.
+**Mais** : z2m met en cache l'identité Basic à l'interview initial — le
+device déjà paire garde son ancienne identité "Unknown" tant qu'il n'est
+pas ré-interviewé. Il faut **supprimer puis re-ajouter le device dans
+z2m** (pas juste redémarrer z2m) pour que la nouvelle identité soit lue
+et que ce converter s'attache.
