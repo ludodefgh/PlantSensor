@@ -115,10 +115,22 @@ ZB_ZCL_DECLARE_IDENTIFY_ATTRIB_LIST(
 	identify_attr_list,
 	&dev_ctx.identify_attr.identify_time);
 
-ZB_ZCL_DECLARE_BASIC_ATTRIB_LIST(
-	basic_attr_list,
-	&dev_ctx.basic_attr.zcl_version,
-	&dev_ctx.basic_attr.power_source);
+/* Chaines ZCL "character string" : octet 0 = longueur, suivi des
+ * caracteres (cf. ZB_ZCL_GET_STRING_LENGTH/ZB_ZCL_GET_STRING_BEGIN dans
+ * zb_zcl_common.h — pas de terminateur nul necessaire, celui du littéral
+ * C est juste un octet de padding inutilisé). Sans ça, Manufacturer
+ * Name/Model Identifier restent vides et le device apparait comme
+ * "Unknown" dans zigbee2mqtt — impossible pour un converter externe de
+ * le cibler par zigbeeModel (cf. zigbee2mqtt/myco_config.mjs). */
+static zb_uint8_t g_manuf_name[] = "\x04Myco";
+static zb_uint8_t g_model_id[] = "\x09Myco Mini";
+
+ZB_ZCL_START_DECLARE_ATTRIB_LIST_CLUSTER_REVISION(basic_attr_list, ZB_ZCL_BASIC)
+ZB_ZCL_SET_ATTR_DESC(ZB_ZCL_ATTR_BASIC_ZCL_VERSION_ID, (&dev_ctx.basic_attr.zcl_version))
+ZB_ZCL_SET_ATTR_DESC(ZB_ZCL_ATTR_BASIC_POWER_SOURCE_ID, (&dev_ctx.basic_attr.power_source))
+ZB_ZCL_SET_ATTR_DESC(ZB_ZCL_ATTR_BASIC_MANUFACTURER_NAME_ID, (g_manuf_name))
+ZB_ZCL_SET_ATTR_DESC(ZB_ZCL_ATTR_BASIC_MODEL_IDENTIFIER_ID, (g_model_id))
+ZB_ZCL_FINISH_DECLARE_ATTRIB_LIST;
 
 ZB_ZCL_DECLARE_TEMP_MEASUREMENT_ATTRIB_LIST(
 	temp_measurement_attr_list,
