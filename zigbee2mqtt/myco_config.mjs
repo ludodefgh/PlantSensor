@@ -78,16 +78,21 @@ export default {
             reporting: false,
             entityCategory: 'config',
         }),
-        numeric({
+        // z2m expose un enum a une seule valeur + acces SET comme une
+        // vraie entite "button" HA (au lieu d'un slider pour un numeric
+        // SET-only) — cf. lib/extension/homeassistant.ts dans le source
+        // zigbee2mqtt : "If enum has only one item and has SET access
+        // then expose as BUTTON entity." Meme mecanisme deja valide par
+        // target_mode (enumLookup sur ce meme cluster custom).
+        enumLookup({
             name: 'commit',
             cluster: CONFIG_CLUSTER,
             attribute: {ID: 0x0004, type: UINT8},
             description:
-                'Ecrire n\'importe quelle valeur ici pour persister soil_dry/soil_wet/' +
-                'report_interval/target_mode et redemarrer le capteur dans le mode choisi. ' +
-                'La connexion Zigbee tombe brievement pendant le reboot, c\'est normal.',
-            valueMin: 0,
-            valueMax: 1,
+                'Appuyer pour persister soil_dry/soil_wet/report_interval/target_mode ' +
+                'et redemarrer le capteur dans le mode choisi. La connexion Zigbee tombe ' +
+                'brievement pendant le reboot, c\'est normal.',
+            lookup: {commit: 1},
             access: 'SET',
             reporting: false,
             entityCategory: 'config',
