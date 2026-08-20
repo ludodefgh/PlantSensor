@@ -9,12 +9,27 @@ sans toucher physiquement au capteur).
 
 ## Installation
 
+**Le plus simple (validé) : via l'UI z2m** — Settings → Dev console →
+External Converters → "Create new converter", nom `myco_config.mjs`,
+coller le contenu de ce fichier dans "Code", Save. Pas besoin d'accès
+filesystem à l'hôte z2m.
+
+Sinon, à la main :
+
 1. Copier `myco_config.mjs` dans le dossier `external_converters/` de
    zigbee2mqtt (créer le dossier s'il n'existe pas, au même niveau que
    `configuration.yaml`).
 2. Dans `configuration.yaml`, vérifier `enable_external_js: true`
    (désactivé par défaut depuis z2m 2.11+).
 3. Redémarrer zigbee2mqtt.
+
+## ✅ Validé (2026-08-20)
+
+Installé via l'UI z2m + device re-pairé → toutes les entités
+(`soil_dry`, `soil_wet`, `report_interval`, `target_mode`, `commit`)
+apparaissent dans l'onglet "Exposes" de z2m. Reste non confirmé : le
+chemin d'écriture complet (modifier une valeur + écrire `commit` →
+persist + reboot reçu côté device).
 
 ## ⚠️ Re-pairing nécessaire
 
