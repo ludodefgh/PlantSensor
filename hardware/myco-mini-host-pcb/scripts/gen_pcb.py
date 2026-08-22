@@ -39,49 +39,107 @@ _design_settings.m_MinClearance = mm(0.127)
 _design_settings.m_NetSettings.GetDefaultNetclass().SetClearance(mm(0.127))
 
 # ---- Board outline ----
-# Captured from the user's validated manual placement milestone (2026-08-09) via
+# Captured from the user's validated manual placement milestone (2026-08-11) via
 # a read-only pcbnew.LoadBoard() extraction of myco-mini-host-pcb.kicad_pcb.
-BOARD_ORIGIN_X, BOARD_ORIGIN_Y = 44.975, 13.985
-BOARD_W, BOARD_H = 81.95, 115.15
+# Irregular symmetric hexagon (not a rect) - symmetric about the J1/J2 centerline
+# (X=77.75mm), tapering toward PROBE1 at the bottom. See decision log 2.11 for how
+# this was derived (per-band half-width needed to clear every footprint + 1.5mm
+# margin, verified programmatically before applying - NOT hand-drawn numbers).
+OUTLINE_POINTS_MM = [
+    (91.250, 151.822495), (91.250, 89.475), (103.28, 71.03), (104.48, 20.5),
+    (51.02, 20.5), (52.22, 71.03), (64.6, 89.575), (64.125, 151.756963), (77.75, 158.9),
+]
 outline = pcbnew.PCB_SHAPE(board)
-outline.SetShape(pcbnew.SHAPE_T_RECT)
-outline.SetStart(pcbnew.VECTOR2I(mm(BOARD_ORIGIN_X), mm(BOARD_ORIGIN_Y)))
-outline.SetEnd(pcbnew.VECTOR2I(mm(BOARD_ORIGIN_X + BOARD_W), mm(BOARD_ORIGIN_Y + BOARD_H)))
+outline.SetShape(pcbnew.SHAPE_T_POLY)
+poly = pcbnew.SHAPE_POLY_SET()
+poly.NewOutline()
+for x, y in OUTLINE_POINTS_MM:
+    poly.Append(pcbnew.VECTOR2I(mm(x), mm(y)))
+outline.SetPolyShape(poly)
 outline.SetLayer(pcbnew.Edge_Cuts)
 outline.SetWidth(mm(0.15))
 board.Add(outline)
 
+# ---- U2 (SHT41) thermal-relief slot (decision log 2.11) ----
+# Originally 3 simple closed rectangles (my first pass); the user later redrew it
+# by hand with rounded corners (more realistic to an actual end-mill path) -
+# captured here as SEGMENT/ARC pairs exactly as found on the live board
+# (2026-08-11), not the original rectangles. (kind, x1,y1,x2,y2) for SEGMENT;
+# (kind, x1,y1, midx,midy, x2,y2) for ARC (start,mid,end - KiCad's own arc form).
+U2_CUTOUT_WIDTH_MM = 0.05
+U2_CUTOUT_SHAPES = [
+    ("SEG", 54.700, 34.850, 54.700, 37.650),
+    ("ARC", 54.700, 34.850, 54.993, 34.143, 55.700, 33.850),
+    ("ARC", 55.700, 38.650, 54.993, 38.357, 54.700, 37.650),
+    ("SEG", 55.700, 38.650, 60.300, 38.650),
+    ("SEG", 55.950, 33.850, 55.700, 33.850),
+    ("SEG", 55.950, 37.125, 55.950, 33.850),
+    ("ARC", 56.950, 38.125, 56.243, 37.832, 55.950, 37.125),
+    ("SEG", 59.050, 38.125, 56.950, 38.125),
+    ("SEG", 60.050, 33.850, 60.050, 37.125),
+    ("ARC", 60.050, 37.125, 59.757, 37.832, 59.050, 38.125),
+    ("SEG", 60.300, 33.850, 60.050, 33.850),
+    ("ARC", 60.300, 33.850, 61.007, 34.143, 61.300, 34.850),
+    ("ARC", 61.300, 37.650, 61.007, 38.357, 60.300, 38.650),
+    ("SEG", 61.300, 37.650, 61.300, 34.850),
+]
+for shape in U2_CUTOUT_SHAPES:
+    kind = shape[0]
+    s = pcbnew.PCB_SHAPE(board)
+    s.SetLayer(pcbnew.Edge_Cuts)
+    s.SetWidth(mm(U2_CUTOUT_WIDTH_MM))
+    if kind == "SEG":
+        _, x1, y1, x2, y2 = shape
+        s.SetShape(pcbnew.SHAPE_T_SEGMENT)
+        s.SetStart(pcbnew.VECTOR2I(mm(x1), mm(y1)))
+        s.SetEnd(pcbnew.VECTOR2I(mm(x2), mm(y2)))
+    else:
+        _, x1, y1, mx, my, x2, y2 = shape
+        s.SetShape(pcbnew.SHAPE_T_ARC)
+        s.SetStart(pcbnew.VECTOR2I(mm(x1), mm(y1)))
+        s.SetEnd(pcbnew.VECTOR2I(mm(x2), mm(y2)))
+        s.SetArcGeometry(pcbnew.VECTOR2I(mm(x1), mm(y1)), pcbnew.VECTOR2I(mm(mx), mm(my)), pcbnew.VECTOR2I(mm(x2), mm(y2)))
+    board.Add(s)
+
 # ---- Placement plan (mm) ----
-# Captured from the user's validated manual placement milestone (2026-08-09) via
+# Captured from the user's validated manual placement milestone (2026-08-11) via
 # a read-only pcbnew.LoadBoard() extraction of myco-mini-host-pcb.kicad_pcb -
-# NOT the original schematic-zone guess. J1/J2 mate with the an54lq-15-breakout's
+# supersedes the 2026-08-09 capture below. J1/J2 mate with the an54lq-15-breakout's
 # J1 ("GPIO_L") / J4 ("GPIO_R") headers, 25.4mm apart center-to-center (see
 # docs/host-pcb-design-brief.md sec.2) - still respected in this captured layout.
-# Boost cluster (U1/L1/C2/C4/C5) deliberately kept clear of the breakout's antenna
-# keepout zone (see decision log / chat: host coords X~72.9-82.4, Y~21.7-25).
+# NOTE: D1/R7/R8/R9/C6 are NOT yet in netlist_export.json (they were added to the
+# live .kicad_sch via one-off surgical scripts - add_rgb_led.py, add_c6.py - never
+# folded into gen_schematic.py's main PARTS/placement logic). Their PLACEMENT
+# entries below are captured for reference but a real run of this script won't
+# place them until gen_schematic.py + netlist_export.json know about them too.
 PLACEMENT = {
-    "BT1": (77.7500, 37.1100, 90),
-    "C1": (75.2000, 38.7000, 90),
-    "C2": (72.9256, 62.6000, 0),
-    "C3": (61.0500, 44.9850, 90),
-    "C4": (79.7256, 62.8000, 90),
-    "C5": (81.9256, 62.8000, 90),
+    "BT1": (77.4000, 43.8500, 90),
+    "C1": (76.3500, 41.5000, 0),
+    "C2": (71.1000, 66.2000, 0),
+    "C3": (68.0500, 45.6050, 90),
+    "C4": (79.0500, 66.8000, 90),
+    "C5": (81.6000, 66.8000, 90),
+    "C6": (70.9750, 45.4300, 90),
+    "D1": (96.9000, 63.1750, 90),
     "J1": (65.0500, 26.0600, 0),
     "J2": (90.4500, 26.0600, 0),
-    "L1": (76.6256, 58.8500, 0),
-    "PROBE1": (71.7500, 90.0600, 0),
-    "Q1": (79.1500, 41.9000, 90),
-    "Q2": (72.5000, 83.6500, 0),
-    "R1": (95.0500, 33.8100, 180),
-    "R2": (94.9250, 31.3100, 180),
-    "R3": (68.5250, 82.5750, 180),
-    "R4": (68.5250, 84.2750, 180),
-    "R5": (76.8000, 83.5500, -90),
-    "R6": (73.0506, 60.4000, 180),
-    "SW1": (76.8900, 72.5500, -90),
-    "U1": (76.5956, 62.6000, 180),
-    "U2": (107.6700, 79.8100, 0),
-    "U3": (116.3300, 79.5600, 0),
+    "L1": (75.4256, 62.8500, 0),
+    "PROBE1": (69.6125, 89.7125, 0),
+    "Q1": (76.3000, 45.2000, 90),
+    "Q2": (69.9500, 76.0500, 0),
+    "R1": (60.9000, 28.1500, 0),
+    "R2": (61.0000, 41.6000, 0),
+    "R3": (66.0500, 74.3500, 180),
+    "R4": (65.8000, 77.0000, 180),
+    "R5": (74.2500, 75.9500, -90),
+    "R6": (71.4750, 59.3000, 180),
+    "R7": (96.9000, 57.7750, 90),
+    "R8": (94.9000, 57.6750, 90),
+    "R9": (99.0750, 57.8000, 90),
+    "SW1": (84.8700, 76.6500, -90),
+    "U1": (75.3956, 66.6000, 180),
+    "U2": (57.9000, 35.3200, 90),
+    "U3": (58.1700, 31.1000, 0),
 }
 
 pad_lookup = {}  # (ref, pad_num) -> PAD object
