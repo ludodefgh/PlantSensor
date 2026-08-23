@@ -1741,6 +1741,349 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "myco_host:DM-04-V"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "SW"
+				(at 0 12.7 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "DM-04-V"
+				(at 0 -12.7 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "myco_host:SW-SMD_8P-L11.1-W6.2-P2.54-LS9.8"
+				(at 0 -15.24 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://lcsc.com/product-detail/DIP-Switches_Diptronics-DM-04-V_C501537.html"
+				(at 0 -17.78 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC" "C501537"
+				(at 0 -20.32 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Note" "SW1 replacement for EM-04-Q (out of stock at LCSC as of 2026-08-22). Same manufacturer (Diptronics), same electrical pin pairing convention (1-8,2-7,3-6,4-5, same as EM-04-Q per the prior verified note) so the existing GPIO/GND wiring carries over unchanged. Footprint is the same 8-pad/2.54mm-pitch pattern rotated 90deg (4 cols x 2 rows vs EM-04-Q's 2 cols x 4 rows) - needs a PCB footprint swap + 90deg rotation, left to the user."
+				(at 0 -22.86 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "DM-04-V_0_1"
+				(rectangle
+					(start -5.08 5.08)
+					(end 7.62 -5.08)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(circle
+					(center -3.81 -3.81)
+					(radius 0.38)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -3.3 2.54)
+					(end -2.03 -2.54)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.3 0) (xy -2.03 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -0.76 2.54)
+					(end 0.51 -2.54)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.76 0) (xy 0.51 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start 1.78 2.54)
+					(end 3.05 -2.54)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.78 0) (xy 3.05 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start 4.32 2.54)
+					(end 5.59 -2.54)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy 4.32 0) (xy 5.59 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin unspecified line
+					(at -2.54 -7.62 90)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 0 -7.62 90)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 2.54 -7.62 90)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 5.08 -7.62 90)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 5.08 7.62 270)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 2.54 7.62 270)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 0 7.62 270)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -2.54 7.62 270)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "myco_host:EM-04-Q_C501635"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -2406,6 +2749,203 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "myco_host:MAX40203AUK+T"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at 0 7.62 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "MAX40203AUK+T"
+				(at 0 -7.62 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "myco_host:SOT-23-5_L3.0-W1.6-P0.95-LS2.8-BR"
+				(at 0 -10.16 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC" "C2653639"
+				(at 0 -12.7 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Note" "Ideal diode, voltage-comparison based (NOT current-inferred like LM66100 which was rejected): turns off when VOUT>VDD by 26mV typ (datasheet Principle of Operation). Blocks backfeed from breakout J5/Pico-probe 3V3 (tied to VDD_NRF on the breakout, confirmed) into BAT_RAW/CR2032. Placed AFTER Q1: VDD=Q1.D side (renamed VDD_PROT), OUT=shared VDD_NRF net. Q1 alone does NOT block this - its channel stays ON whenever the battery is present regardless of D-side voltage (Vgs set purely by S=BAT_RAW vs G=GND), so it only protects against reversed/absent battery, not backfeed while battery is present. EN tied to VDD_PROT (datasheet: connect EN to VDD for full temp range). ICA leakage 10nA typ/50nA max @VOUT=4V. Verified against primary TI/ADI/Maxim datasheet text, not summaries. See decision log."
+				(at 0 -15.24 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "MAX40203AUK+T_0_1"
+				(rectangle
+					(start -7.62 5.08)
+					(end 7.62 -5.08)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(circle
+					(center -6.35 3.81)
+					(radius 0.38)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin unspecified line
+					(at -10.16 2.54 0)
+					(length 2.54)
+					(name "VDD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -10.16 0 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -10.16 -2.54 0)
+					(length 2.54)
+					(name "EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 10.16 -2.54 180)
+					(length 2.54)
+					(name "N.C."
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(name "OUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "myco_host:SHT41-AD1B-R2"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -2743,6 +3283,245 @@
 					(at 10.16 -5.08 180)
 					(length 2.54)
 					(name "SEG2_B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "myco_host:TS-1187A-B-A-B"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "SW"
+				(at 0 7.62 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "TS-1187A-B-A-B"
+				(at 0 -10.16 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "myco_host:SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL_H1.5"
+				(at 0 -12.7 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://lcsc.com/product-detail/Tactile-Switches_XKB-Enterprise-TS-1187-B-A-A_C318884.html"
+				(at 0 -15.24 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC" "C318884"
+				(at 0 -17.78 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Note" "Reset button: pin1 -> R10 -> NRESET (breakout J4/host J2 pin1). pin3 -> GND. pin2/pin4 (redundant switch leads) left unconnected."
+				(at 0 -20.32 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "TS-1187A-B-A-B_0_1"
+				(polyline
+					(pts
+						(xy -2.54 2.54) (xy 2.54 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.54 -5.08) (xy 2.54 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.51 0.76) (xy -1.27 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.76) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0 0.51)
+					(radius 0.32)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0 -2.79)
+					(radius 0.32)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -3.3) (xy 0 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin unspecified line
+					(at -5.08 2.54 0)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 5.08 2.54 180)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at -5.08 -5.08 0)
+					(length 2.54)
+					(name "C"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 5.08 -5.08 180)
+					(length 2.54)
+					(name "D"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3279,6 +4058,16 @@
 	)
 	(wire
 		(pts
+			(xy 34.29 170.18) (xy 30.48 170.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "09c4d04c-b92d-4c56-baf0-f1fba25f496f")
+	)
+	(wire
+		(pts
 			(xy 34.29 203.2) (xy 30.48 203.2)
 		)
 		(stroke
@@ -3289,6 +4078,16 @@
 	)
 	(wire
 		(pts
+			(xy 199.39 182.88) (xy 199.39 196.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0ee44bb6-f2ca-4be7-b9b2-e4f116016888")
+	)
+	(wire
+		(pts
 			(xy 34.29 195.58) (xy 16.51 195.58)
 		)
 		(stroke
@@ -3296,6 +4095,26 @@
 			(type default)
 		)
 		(uuid "11bc8ea8-b8ae-4994-a416-58e04872b12e")
+	)
+	(wire
+		(pts
+			(xy 412.75 118.11) (xy 412.75 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "12e65c4d-6df9-44a3-980a-d07065850621")
+	)
+	(wire
+		(pts
+			(xy 405.13 90.17) (xy 401.32 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "141a6240-7485-4213-89b9-749046685003")
 	)
 	(wire
 		(pts
@@ -3319,6 +4138,16 @@
 	)
 	(wire
 		(pts
+			(xy 165.1 85.09) (xy 154.94 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1a2b3c4d-5e6f-4708-9a1b-2c3d4e5f6071")
+	)
+	(wire
+		(pts
 			(xy 330.2 66.04) (xy 330.2 62.23)
 		)
 		(stroke
@@ -3336,6 +4165,16 @@
 			(type default)
 		)
 		(uuid "1e52fc67-cba8-4f3a-8b9b-c1935d14b5c4")
+	)
+	(wire
+		(pts
+			(xy 165.1 73.66) (xy 165.1 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2251a5b4-6059-4fa3-ae80-e4124e5ee67d")
 	)
 	(wire
 		(pts
@@ -3386,6 +4225,16 @@
 			(type default)
 		)
 		(uuid "26938424-94e7-4a93-95c5-50a03dec51b1")
+	)
+	(wire
+		(pts
+			(xy 412.75 130.81) (xy 412.75 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2795a71f-9565-45e1-a4b8-fac13768175c")
 	)
 	(wire
 		(pts
@@ -3509,6 +4358,16 @@
 	)
 	(wire
 		(pts
+			(xy 194.31 204.47) (xy 194.31 208.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f9847dd-fdcb-446e-9214-25d8c9a12d74")
+	)
+	(wire
+		(pts
 			(xy 430.53 182.88) (xy 430.53 179.07)
 		)
 		(stroke
@@ -3516,6 +4375,16 @@
 			(type default)
 		)
 		(uuid "3fe01302-b9f7-4fb3-be54-cf547eef6f15")
+	)
+	(wire
+		(pts
+			(xy 405.13 44.45) (xy 401.32 44.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "40db6120-e499-4703-9133-4b560739d7f9")
 	)
 	(wire
 		(pts
@@ -3539,6 +4408,16 @@
 	)
 	(wire
 		(pts
+			(xy 412.75 95.25) (xy 412.75 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4858aba3-6319-4bb9-ac73-b7ca67a7c216")
+	)
+	(wire
+		(pts
 			(xy 74.93 63.5) (xy 74.93 67.31)
 		)
 		(stroke
@@ -3556,6 +4435,16 @@
 			(type default)
 		)
 		(uuid "4b351891-ed86-451d-a402-48dab6261a5c")
+	)
+	(wire
+		(pts
+			(xy 185.42 73.66) (xy 185.42 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4b740761-afc5-45f0-876b-6bffd7902637")
 	)
 	(wire
 		(pts
@@ -3689,6 +4578,16 @@
 	)
 	(wire
 		(pts
+			(xy 412.75 138.43) (xy 412.75 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6de36310-83c5-422f-a6bf-6e897bb94cf9")
+	)
+	(wire
+		(pts
 			(xy 360.68 144.78) (xy 364.49 144.78)
 		)
 		(stroke
@@ -3706,6 +4605,16 @@
 			(type default)
 		)
 		(uuid "6e4b5c04-93f7-4ea4-ad5c-d3793ca6cf4f")
+	)
+	(wire
+		(pts
+			(xy 199.39 175.26) (xy 199.39 171.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e4e5910-ada4-44cf-a76c-8bb3bd4c65db")
 	)
 	(wire
 		(pts
@@ -3819,6 +4728,16 @@
 	)
 	(wire
 		(pts
+			(xy 412.75 110.49) (xy 412.75 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "815b1a1a-16e8-43a3-9a24-5b668909a894")
+	)
+	(wire
+		(pts
 			(xy 119.38 132.08) (xy 123.19 132.08)
 		)
 		(stroke
@@ -3839,6 +4758,16 @@
 	)
 	(wire
 		(pts
+			(xy 412.75 39.37) (xy 412.75 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "92fddd2c-6c6e-4565-852c-523cb8b7334c")
+	)
+	(wire
+		(pts
 			(xy 59.69 63.5) (xy 59.69 67.31)
 		)
 		(stroke
@@ -3846,6 +4775,16 @@
 			(type default)
 		)
 		(uuid "96f95781-fc18-4052-b853-a9cc3d45688c")
+	)
+	(wire
+		(pts
+			(xy 165.1 76.2) (xy 161.29 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9783cfad-0d3f-4223-b674-8dc11abdcbfb")
 	)
 	(wire
 		(pts
@@ -3979,6 +4918,16 @@
 	)
 	(wire
 		(pts
+			(xy 165.1 78.74) (xy 165.1 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cc08b185-4b11-4d9b-b35d-8fd7d779de77")
+	)
+	(wire
+		(pts
 			(xy 34.29 177.8) (xy 30.48 177.8)
 		)
 		(stroke
@@ -4006,16 +4955,6 @@
 			(type default)
 		)
 		(uuid "cd04fc53-31e1-4140-9895-980e6833a82b")
-	)
-	(wire
-		(pts
-			(xy 34.29 85.09) (xy 15.24 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cf20601a-1e70-4698-9b8a-425251f0fc84")
 	)
 	(wire
 		(pts
@@ -4049,6 +4988,16 @@
 	)
 	(wire
 		(pts
+			(xy 412.75 49.53) (xy 412.75 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d732a620-25d1-43e8-87d8-b90bc656e9a5")
+	)
+	(wire
+		(pts
 			(xy 129.54 104.14) (xy 129.54 107.95)
 		)
 		(stroke
@@ -4066,6 +5015,16 @@
 			(type default)
 		)
 		(uuid "da0d1f65-34a9-4507-95f5-fc6da58a3096")
+	)
+	(wire
+		(pts
+			(xy 199.39 196.85) (xy 194.31 196.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dc2df73c-ab85-4128-bcf7-db30225e9fac")
 	)
 	(wire
 		(pts
@@ -4149,6 +5108,16 @@
 	)
 	(wire
 		(pts
+			(xy 34.29 100.33) (xy 30.48 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f4c6297e-136a-4b6f-9d4e-d38aa8c67be2")
+	)
+	(wire
+		(pts
 			(xy 350.52 246.38) (xy 350.52 242.57)
 		)
 		(stroke
@@ -4156,6 +5125,26 @@
 			(type default)
 		)
 		(uuid "f5e32368-2952-4f90-8aa5-2ce6ab0950dc")
+	)
+	(wire
+		(pts
+			(xy 34.29 80.01) (xy 30.48 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f734e3d5-37d1-4610-8d19-baa9a81c8a7a")
+	)
+	(wire
+		(pts
+			(xy 412.75 85.09) (xy 412.75 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f9e13f23-16bd-4c57-950b-64766f3d7702")
 	)
 	(wire
 		(pts
@@ -4167,7 +5156,17 @@
 		)
 		(uuid "fb2d372a-8f7c-44cd-940d-8782297ec2f0")
 	)
-	(label "VOUT_3V3"
+	(wire
+		(pts
+			(xy 34.29 107.95) (xy 30.48 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a1b2c3d4-1234-4abc-9def-0123456789ab")
+	)
+	(label "SENSOR_3V3"
 		(at 129.54 92.71 0)
 		(effects
 			(font
@@ -4207,7 +5206,7 @@
 		)
 		(uuid "0ec45b38-78b5-481a-aa38-bf15f1d16e5b")
 	)
-	(label "P1_13_BOOST_EN"
+	(label "P1_05_BOOST_EN"
 		(at 250.19 62.23 0)
 		(effects
 			(font
@@ -4247,7 +5246,7 @@
 		)
 		(uuid "18bc891a-03d2-47be-b498-0627ce388a47")
 	)
-	(label "P1_13_BOOST_EN"
+	(label "P1_05_BOOST_EN"
 		(at 236.22 41.91 0)
 		(effects
 			(font
@@ -4307,7 +5306,7 @@
 		)
 		(uuid "206ff356-7f34-4694-adbb-fa34e19b34ce")
 	)
-	(label "VOUT_3V3"
+	(label "SENSOR_3V3"
 		(at 149.86 92.71 0)
 		(effects
 			(font
@@ -4316,6 +5315,16 @@
 			(justify left bottom)
 		)
 		(uuid "2ceb35d7-d2b0-4e2e-a8a2-b79924743699")
+	)
+	(label "BAT_SENSE_TOP"
+		(at 412.75 81.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "30636de4-fa87-47ec-956f-6ace6596b8fa")
 	)
 	(label "VOUT_3V3"
 		(at 332.74 53.34 0)
@@ -4337,6 +5346,16 @@
 		)
 		(uuid "354895f9-fe73-41e7-a0da-27924ac92b38")
 	)
+	(label "SENSOR_3V3"
+		(at 412.75 35.56 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3adf150b-ff12-4005-b724-19e44d6043bb")
+	)
 	(label "LED_G_NODE"
 		(at 350.52 242.57 0)
 		(effects
@@ -4347,7 +5366,7 @@
 		)
 		(uuid "3b38c24b-a5ae-407d-bfea-b3d74e83929b")
 	)
-	(label "VDD_NRF"
+	(label "VOUT_3V3"
 		(at 74.93 52.07 0)
 		(effects
 			(font
@@ -4377,7 +5396,17 @@
 		)
 		(uuid "3ffaa3e4-3c13-4bd6-b4b5-ecd609a807d6")
 	)
-	(label "VDD_NRF"
+	(label "P1_12_SENSOR_EN"
+		(at 401.32 90.17 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4301c625-1dda-4462-a6ce-53e8c94cd21c")
+	)
+	(label "VOUT_3V3"
 		(at 30.48 90.17 0)
 		(effects
 			(font
@@ -4417,6 +5446,16 @@
 		)
 		(uuid "4dc03f63-f018-4368-9f51-9c52774b5346")
 	)
+	(label "P1_05_BOOST_EN"
+		(at 30.48 100.33 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "52bca4a5-3006-401d-b1f8-75e208ba919e")
+	)
 	(label "P2_06_LED_B"
 		(at 16.51 195.58 0)
 		(effects
@@ -4427,17 +5466,7 @@
 		)
 		(uuid "54fc14f6-6aab-46d9-ba30-21ae3aa4c9c8")
 	)
-	(label "P1_14_SOIL_SW"
-		(at 15.24 85.09 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "5aa09ee3-ecd3-4cee-8656-e529a6829e1a")
-	)
-	(label "P1_14_SOIL_SW"
+	(label "P1_08_SOIL_SW"
 		(at 330.2 77.47 0)
 		(effects
 			(font
@@ -4447,7 +5476,7 @@
 		)
 		(uuid "5d58e754-23e3-4652-b8f0-9d76e93ed0de")
 	)
-	(label "VOUT_3V3"
+	(label "SENSOR_3V3"
 		(at 149.86 130.81 0)
 		(effects
 			(font
@@ -4457,7 +5486,7 @@
 		)
 		(uuid "5eb7a7cc-6c1d-4ce9-8ee7-c50f4820cbfa")
 	)
-	(label "VDD_NRF"
+	(label "VDD_PROT"
 		(at 177.8 35.56 0)
 		(effects
 			(font
@@ -4466,6 +5495,16 @@
 			(justify left bottom)
 		)
 		(uuid "613ad88d-2c10-4cb6-9928-1c6891820c83")
+	)
+	(label "NRESET"
+		(at 199.39 171.45 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "62c012c5-3700-4647-943b-c9967ea1b789")
 	)
 	(label "VOUT_3V3"
 		(at 279.4 31.75 0)
@@ -4486,6 +5525,16 @@
 			(justify left bottom)
 		)
 		(uuid "68ea7885-5279-4691-b428-a1a49587e802")
+	)
+	(label "P1_13_BAT_SENSE"
+		(at 412.75 121.92 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6c4014b0-5a4c-499a-9050-19a7b79ace16")
 	)
 	(label "BAT_RAW"
 		(at 149.86 31.75 0)
@@ -4527,7 +5576,7 @@
 		)
 		(uuid "75bf295f-c62d-4c22-9b1e-e01c0d2208b0")
 	)
-	(label "P1_14_SOIL_SW"
+	(label "P1_08_SOIL_SW"
 		(at 321.31 44.45 0)
 		(effects
 			(font
@@ -4547,7 +5596,7 @@
 		)
 		(uuid "77edca99-6701-4652-aa19-0249b4bb3eac")
 	)
-	(label "VDD_NRF"
+	(label "VOUT_3V3"
 		(at 59.69 52.07 0)
 		(effects
 			(font
@@ -4587,7 +5636,7 @@
 		)
 		(uuid "834fc4c4-b94c-4df4-8daf-8ef0fc9e8771")
 	)
-	(label "P1_10_SDA"
+	(label "P1_11_SCL"
 		(at 196.85 132.08 0)
 		(effects
 			(font
@@ -4597,7 +5646,7 @@
 		)
 		(uuid "8e2d91eb-01bc-4b73-ac96-058e275bcf69")
 	)
-	(label "VOUT_3V3"
+	(label "SENSOR_3V3"
 		(at 191.77 134.62 0)
 		(effects
 			(font
@@ -4606,16 +5655,6 @@
 			(justify left bottom)
 		)
 		(uuid "903ef4b9-738c-4218-9edf-659c1127c2d9")
-	)
-	(label "VDD_NRF"
-		(at 199.39 31.75 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "982506e4-eadc-4e5c-b126-aa37957ad521")
 	)
 	(label "P0_02_SDA"
 		(at 30.48 177.8 0)
@@ -4626,6 +5665,16 @@
 			(justify left bottom)
 		)
 		(uuid "992c1119-c76b-49be-8052-3512150717fa")
+	)
+	(label "VDD_PROT"
+		(at 154.94 85.09 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "9a27f5eb-68e6-4760-bd9c-dd93be5016ce")
 	)
 	(label "BAT_RAW"
 		(at 177.8 53.34 0)
@@ -4677,6 +5726,16 @@
 		)
 		(uuid "a2d30bb0-6053-4b65-8362-6cc18af2dd51")
 	)
+	(label "BAT_SENSE_TOP"
+		(at 412.75 106.68 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a3c50ad3-9e15-42fd-9e6b-ad3155afc9d7")
+	)
 	(label "P1_07_SOIL_ADC1"
 		(at 30.48 105.41 0)
 		(effects
@@ -4687,7 +5746,17 @@
 		)
 		(uuid "a83447f7-e661-4903-98c4-1537379bbc51")
 	)
-	(label "P1_11_SCL"
+	(label "P1_13_BAT_SENSE"
+		(at 412.75 127 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a87c2923-fc82-4a47-93f1-668898b004e8")
+	)
+	(label "P1_10_SDA"
 		(at 191.77 137.16 0)
 		(effects
 			(font
@@ -4706,6 +5775,16 @@
 			(justify left bottom)
 		)
 		(uuid "b16b56d2-a3bf-421e-be0c-600d24b9d788")
+	)
+	(label "VDD_PROT"
+		(at 165.1 69.85 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b3ae8e1a-6afe-44ce-a137-37ab54f7fedf")
 	)
 	(label "VOUT_3V3"
 		(at 330.2 62.23 0)
@@ -4727,7 +5806,37 @@
 		)
 		(uuid "b8a3fd81-16f4-4f64-b2c6-193bbb6758a9")
 	)
-	(label "P1_13_BOOST_EN"
+	(label "VOUT_3V3"
+		(at 412.75 53.34 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b97f3d5f-b909-42fd-902e-8e96aabd4884")
+	)
+	(label "BAT_RAW"
+		(at 412.75 99.06 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b9d13748-f592-40f2-8af0-aae14fcc4c75")
+	)
+	(label "NRESET"
+		(at 30.48 170.18 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c16acc67-25bf-4917-97ea-ee0c4cb58ed0")
+	)
+	(label "P1_13_BAT_SENSE"
 		(at 13.97 82.55 0)
 		(effects
 			(font
@@ -4787,7 +5896,17 @@
 		)
 		(uuid "cedb56c3-41c1-42bf-8e9c-3921b3b64382")
 	)
-	(label "VOUT_3V3"
+	(label "P1_12_SENSOR_EN"
+		(at 30.48 80.01 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cfb33678-1d67-48a9-93c5-8b7f05fe979a")
+	)
+	(label "SENSOR_3V3"
 		(at 123.19 132.08 270)
 		(effects
 			(font
@@ -4806,6 +5925,16 @@
 			(justify left bottom)
 		)
 		(uuid "d82b1887-2d1d-45b4-97a7-436c97a54b62")
+	)
+	(label "P1_12_SENSOR_EN"
+		(at 401.32 44.45 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d9e228fb-5a99-4ccc-9868-9c4ed4957e65")
 	)
 	(label "P2_06_LED_B"
 		(at 350.52 278.13 0)
@@ -4837,6 +5966,26 @@
 		)
 		(uuid "e71c7a29-f471-42a0-8331-bea1fba456d6")
 	)
+	(label "VDD_NRF"
+		(at 185.42 69.85 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ebb412da-89c9-4a37-a5eb-ec3e5c776c2a")
+	)
+	(label "VDD_NRF"
+		(at 199.39 31.75 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ef2e62d4-bbc0-4957-af07-185a09c816ad")
+	)
 	(label "P2_03_DIP3"
 		(at 30.48 203.2 0)
 		(effects
@@ -4846,6 +5995,16 @@
 			(justify left bottom)
 		)
 		(uuid "f8dda416-5c46-49f8-aaa9-49f3594c16ec")
+	)
+	(label "P1_08_SOIL_SW"
+		(at 30.48 107.95 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b2c3d4e5-2345-4bcd-8ef0-123456789abc")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -5285,6 +6444,112 @@
 		)
 	)
 	(symbol
+		(lib_id "myco_host:TS-1187A-B-A-B")
+		(at 199.39 199.39 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "24b5856c-1823-4f98-b1cd-0222d018f2d1")
+		(property "Reference" "SW2"
+			(at 199.39 190.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TS-1187A-B-A-B"
+			(at 199.39 209.55 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "myco_host:SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL_H1.5"
+			(at 199.39 199.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Tactile-Switches_XKB-Enterprise-TS-1187-B-A-A_C318884.html"
+			(at 199.39 199.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 199.39 199.39 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C318884"
+			(at 199.39 199.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "Reset button: pin1 -> R10 -> NRESET (breakout J4/host J2 pin1). pin3 -> GND. pin2/pin4 (redundant switch leads) left unconnected."
+			(at 199.39 199.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "01716ef8-28ce-44e6-a61e-0c6bc674b574")
+		)
+		(pin "2"
+			(uuid "66f118be-bf31-48be-8083-36e8518be363")
+		)
+		(pin "3"
+			(uuid "152f022c-2d30-415a-be64-8bb88209d2fa")
+		)
+		(pin "4"
+			(uuid "9dd8eb29-7547-4672-ac81-9be5d59e69a3")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "SW2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 74.93 59.69 0)
 		(unit 1)
@@ -5704,6 +6969,169 @@
 	)
 	(symbol
 		(lib_id "Device:R")
+		(at 412.75 134.62 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3801d624-4990-4661-ab9b-974fce0515dd")
+		(property "Reference" "R12"
+			(at 418.49 132.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1M"
+			(at 418.49 136.67 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 412.75 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 412.75 134.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 412.75 134.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "Battery-sense divider bottom half - see R11."
+			(at 412.75 134.62 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "703ca850-5185-4fa5-9483-fe075e091dc4")
+		)
+		(pin "2"
+			(uuid "154ed5a6-0ef3-450e-ab11-0b8d568992f1")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "R12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 412.75 142.24 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3936516a-889c-4d3f-a7a1-1f039ae5eaec")
+		(property "Reference" "#PWR26"
+			(at 412.75 148.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 412.75 146.24 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 412.75 142.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 412.75 142.24 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 412.75 142.24 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f748d1df-ae56-47fa-a541-710d6075dd66")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "#PWR26")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
 		(at 250.19 69.85 0)
 		(unit 1)
 		(body_style 1)
@@ -5785,6 +7213,94 @@
 			(project "myco-mini-host-pcb"
 				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
 					(reference "R6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 412.75 114.3 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "453b5adf-14d4-4a59-8c65-e3b597ee166c")
+		(property "Reference" "R11"
+			(at 418.49 112.14 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1M"
+			(at 418.49 116.46 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 412.75 114.3 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 412.75 114.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 412.75 114.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "Battery-sense divider top half - 1M/1M gives a clean 2:1 ratio (BAT_RAW max ~3.3V -> ~1.65V, comfortable ADC headroom). High value keeps switched-on current ~1.65uA, and it's only connected during the brief active window via Q4."
+			(at 412.75 114.3 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2cc2f5d5-cd3a-468c-a207-b7487ae47721")
+		)
+		(pin "2"
+			(uuid "b76d4e92-0e88-4b1d-9a4e-1d83cbc44a57")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "R11")
 					(unit 1)
 				)
 			)
@@ -5987,7 +7503,7 @@
 		)
 	)
 	(symbol
-		(lib_id "myco_host:EM-04-Q_C501635")
+		(lib_id "myco_host:DM-04-V")
 		(at 430.53 190.5 0)
 		(unit 1)
 		(body_style 1)
@@ -6007,7 +7523,7 @@
 				)
 			)
 		)
-		(property "Value" "EM-04-Q"
+		(property "Value" "DM-04-V"
 			(at 430.53 196.5 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6017,7 +7533,7 @@
 				)
 			)
 		)
-		(property "Footprint" "myco_host:SW-SMD_8P-L10.1-W6.0-P2.54-LS9.8"
+		(property "Footprint" "myco_host:SW-SMD_8P-L11.1-W6.2-P2.54-LS9.8"
 			(at 430.53 190.5 0)
 			(hide yes)
 			(show_name no)
@@ -6028,8 +7544,9 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://lcsc.com/product-detail/DIP-Switches_Diptronics-DM-04-V_C501537.html"
 			(at 430.53 190.5 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6048,7 +7565,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C501635"
+		(property "LCSC" "C501537"
 			(at 430.53 190.5 0)
 			(hide yes)
 			(show_name no)
@@ -6059,7 +7576,7 @@
 				)
 			)
 		)
-		(property "Note" "Pin pairing 1-8,2-7,3-6,4-5 verified from EasyEDA symbol geometry"
+		(property "Note" "Swapped from EM-04-Q (out of stock at LCSC as of 2026-08-22) to DM-04-V, same manufacturer (Diptronics), same pin pairing 1-8,2-7,3-6,4-5 (verified from EasyEDA symbol geometry for both parts) so existing GPIO/GND wiring is unchanged. Footprint rotated 90deg vs the old one (4 cols x 2 rows instead of 2 cols x 4 rows) - PCB footprint swap + rotation pending."
 			(at 430.53 190.5 0)
 			(hide yes)
 			(show_name no)
@@ -6098,6 +7615,114 @@
 			(project "myco-mini-host-pcb"
 				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
 					(reference "SW1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "myco_host:MAX40203AUK+T")
+		(at 175.26 76.2 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "51f6c8ca-c81a-41a4-a360-c459fd1609e5")
+		(property "Reference" "U4"
+			(at 175.26 70.2 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "MAX40203AUK+T"
+			(at 175.26 82.2 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "myco_host:SOT-23-5_L3.0-W1.6-P0.95-LS2.8-BR"
+			(at 175.26 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 175.26 76.2 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 175.26 76.2 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C2653639"
+			(at 175.26 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "Ideal diode, voltage-comparison based (NOT current-inferred like LM66100 which was rejected): turns off when VOUT>VDD by 26mV typ (datasheet Principle of Operation). Blocks backfeed from breakout J5/Pico-probe 3V3 (tied to VDD_NRF on the breakout, confirmed) into BAT_RAW/CR2032. Placed AFTER Q1: VDD=Q1.D side (renamed VDD_PROT), OUT=shared VDD_NRF net. Q1 alone does NOT block this - its channel stays ON whenever the battery is present regardless of D-side voltage (Vgs set purely by S=BAT_RAW vs G=GND), so it only protects against reversed/absent battery, not backfeed while battery is present. EN tied to VDD_PROT (datasheet: connect EN to VDD for full temp range). ICA leakage 10nA typ/50nA max @VOUT=4V. Verified against primary TI/ADI/Maxim datasheet text, not summaries. See decision log."
+			(at 175.26 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d43b458a-95fe-4266-844f-c377f72247df")
+		)
+		(pin "2"
+			(uuid "228bac75-d8f8-48a5-8297-05e41305a27a")
+		)
+		(pin "3"
+			(uuid "1fddb4a7-2edb-4c63-b5e4-13e20d4cb3ad")
+		)
+		(pin "4"
+			(uuid "978b256e-1ef5-46d1-9019-6e95bd6f45d9")
+		)
+		(pin "5"
+			(uuid "268baf69-0bbe-40cd-a34a-c2ec220b9c61")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "U4")
 					(unit 1)
 				)
 			)
@@ -7076,7 +8701,7 @@
 				)
 			)
 		)
-		(property "Note" "Reverse polarity protect: S=BAT_RAW D=VDD_NRF G=GND"
+		(property "Note" "Reverse polarity protect ONLY: S=BAT_RAW D=VDD_PROT G=GND. Channel stays ON whenever battery is present (Vgs set by S vs fixed G=GND), regardless of D-side voltage - does NOT block backfeed into the battery while it is present. See U4 (MAX40203) downstream, which blocks that."
 			(at 175.26 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -7677,6 +9302,81 @@
 			(project "myco-mini-host-pcb"
 				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
 					(reference "#PWR20")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 194.31 208.28 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "867be3fb-598f-44d2-9b1e-4189a06c0fd0")
+		(property "Reference" "#PWR25"
+			(at 194.31 214.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 194.31 212.09 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 194.31 208.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 194.31 208.28 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 194.31 208.28 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0c6f847a-c5b8-402a-abca-3fbf3e9b6c9f")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "#PWR25")
 					(unit 1)
 				)
 			)
@@ -8611,6 +10311,183 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 161.29 76.2 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c28e3205-055e-4c53-9076-21f18b803bcb")
+		(property "Reference" "#PWR24"
+			(at 161.29 82.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 161.29 80.2 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 161.29 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 161.29 76.2 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 161.29 76.2 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a47dcd0f-932e-472b-abdb-b6c1b49fe3e6")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "#PWR24")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "myco_host:AO3401A")
+		(at 410.21 90.17 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d1ed4121-baac-4279-803f-7ff40b0c2a62")
+		(property "Reference" "Q4"
+			(at 410.21 83.82 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "AO3401A"
+			(at 410.21 96.52 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "myco_host:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR"
+			(at 410.21 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 410.21 90.17 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 410.21 90.17 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15127"
+			(at 410.21 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "Battery-sense divider switch: S=BAT_RAW D=BAT_SENSE_TOP G=P1_12_SENSOR_EN (shared with Q3). Keeps the R11/R12 divider disconnected from BAT_RAW except during the brief active-measurement window, avoiding a continuous leakage path now that the free internal-VDD SAADC battery trick no longer works (VDD_NRF is regulated 3.3V post-merge, not the raw cell)."
+			(at 410.21 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "3"
+			(uuid "29fc1700-0f3b-481d-8d1b-44f39ac5cb55")
+		)
+		(pin "1"
+			(uuid "b053a693-c577-418e-b6bd-714d865e00ac")
+		)
+		(pin "2"
+			(uuid "aae4ca0b-9442-4f1e-92d1-dbd59ed09d97")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "Q4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 149.86 39.37 0)
 		(unit 1)
@@ -8682,6 +10559,108 @@
 			(project "myco-mini-host-pcb"
 				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
 					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "myco_host:AO3401A")
+		(at 410.21 44.45 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d4cb9606-8a0a-455d-8ee9-fa557f7678e0")
+		(property "Reference" "Q3"
+			(at 410.21 38.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "AO3401A"
+			(at 410.21 50.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "myco_host:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR"
+			(at 410.21 44.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 410.21 44.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 410.21 44.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C15127"
+			(at 410.21 44.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "Sensor VCC switch (BH1750+SHT41+their I2C pull-ups): S=VOUT_3V3 D=SENSOR_3V3 G=P1_12_SENSOR_EN. Added when nRF54 moved onto VOUT_3V3 (was VDD_NRF direct-battery) - sensors need their own switch now to still power down in deep sleep. R1/R2 (I2C pull-ups) moved to SENSOR_3V3 too, so an unpowered sensor isn't backfed through its own SDA/SCL ESD clamps."
+			(at 410.21 44.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "3"
+			(uuid "3a25ff27-b0bf-48d4-800b-0b319a6ae996")
+		)
+		(pin "1"
+			(uuid "0e2de021-09b2-41e9-9255-096aa5843631")
+		)
+		(pin "2"
+			(uuid "877993d2-41b0-42fc-8fc4-cd01f1ff65b9")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "Q3")
 					(unit 1)
 				)
 			)
@@ -9185,6 +11164,94 @@
 			(project "myco-mini-host-pcb"
 				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
 					(reference "Q2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 199.39 179.07 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f5a3678f-ac7e-4c82-b3db-85acd729be61")
+		(property "Reference" "R10"
+			(at 205.74 177.8 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "220"
+			(at 205.74 180.34 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 199.39 179.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 199.39 179.07 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 199.39 179.07 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "Reset button series resistor - limits current if NRESET is being actively driven when SW2 is pressed (breakout note: NRESET is buffered/safe to drive push-pull, so it's a low-impedance source, not open-drain)."
+			(at 199.39 179.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f9e81121-e8dd-49fc-bf52-3ab06caba972")
+		)
+		(pin "2"
+			(uuid "d1fa7532-7de2-48e1-ac2f-4077882f2a63")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "R10")
 					(unit 1)
 				)
 			)
