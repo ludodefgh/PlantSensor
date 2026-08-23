@@ -226,6 +226,32 @@ DRC final : 42 violations, mêmes catégories bénignes qu'ailleurs dans ce docu
 
 **Correction de §4 (documentée là-bas aussi) :** l'affirmation "aucun routage cuivre" n'est plus vraie depuis que l'utilisateur a commencé à router ce bus I2C — mise à jour pour refléter l'état réel (routage partiel, pas nul).
 
+### 2.15 Corrections du second audit (2026-08-23) — Q1 mal orienté, découplage, garde-fous
+
+Second audit indépendant (agent Opus 5) après le remaniement de l'alimentation. Il a confirmé comme réellement corrigés : les 4 règles JLCPCB, l'inversion SDA/SCL du BH1750, et les deux points de routage de la sonde sol (traités par l'utilisateur : SEG2 déplacée sur B.Cu hors de la zone d'électrodes de SEG1, plan de masse arrière retiré sous la lame). Il a aussi trouvé plusieurs problèmes nouveaux, dont un critique.
+
+**🔴 Q1 était orienté à l'envers — aucune protection contre l'inversion de polarité.** Câblage initial : `S=BAT_RAW, D=VDD_PROT, G=GND`. Sur un MOSFET canal P, la diode de corps a **anode=Drain, cathode=Source** — vérifié sur le symbole du projet (le triangle pointe vers la Source) et cohérent avec le brochage réel AO3401A (pin1=G, pin2=S, pin3=D, confirmé datasheet). Avec la Source côté pile, une pile insérée à l'envers (BAT_RAW ≈ −3V) laisse la diode de corps **passante** (anode côté VDD_PROT ≈ 0V > cathode à −3V) : le courant remonte de la masse système vers la pile, probablement via la diode ESD interne de U4, qui verrait ≈ −2.3V pour un maximum absolu de −0.3V.
+
+Le bon repère, contre-intuitif mais décisif : **dans un montage correct, la diode de corps conduit en fonctionnement NORMAL** (c'est elle qui amorce l'alimentation de la charge, le canal prend ensuite le relais et court-circuite ses 0.7V) ; elle ne se bloque qu'à l'inversion. Ici c'était exactement l'inverse. Correction : `D=BAT_RAW, S=VDD_PROT`, grille inchangée sur GND — réalisé en échangeant les deux labels des stubs de Q1, aucune modification de géométrie.
+
+**Cause racine à retenir :** un *load switch* (Q2/Q3/Q4) veut la Source **côté alimentation** — c'est correct pour eux, et c'est précisément ce qui fait que leur diode de corps bloque quand ils sont OFF. Une protection d'inversion veut la Source **côté charge**. Les deux montages sont visuellement identiques et opposés fonctionnellement. Q1 avait hérité du motif des load switches. Le brief §4 contient la même erreur ("Source → CR2032+"), ce qui explique que le premier audit soit passé à côté : il validait la conformité au brief, pas la physique.
+
+**Autres corrections appliquées :**
+
+- **C7/C8 (100nF) + C9 (1µF) sur SENSOR_3V3.** Le rail commuté par Q3 n'avait **aucune** capacité locale : tout le découplage (C3/C4/C5/C6) était resté en amont sur VOUT_3V3. Or ROHM spécifie 0.1µF sur le VCC du BH1750 et Sensirion liste le découplage comme obligatoire pour le SHT4x — et ce rail se recharge depuis zéro à chaque cycle de mesure.
+- **R13 (100k) sur P1_12_SENSOR_EN → VOUT_3V3.** Les grilles de Q3/Q4 flottaient au démarrage : le boost étant désormais toujours actif, VOUT_3V3 est vivant dès l'insertion de la pile alors que la GPIO du nRF est encore en haute impédance. R5 joue déjà ce rôle pour Q2 ; l'ancienne R6 le jouait pour CE avant d'être supprimée.
+- **Noms LED rouge/vert corrigés.** `P2_04_LED_R` atteignait en réalité D1.3 (puce verte) et `P2_05_LED_G` atteignait D1.2 (puce rouge). Les **valeurs** des résistances série étaient déjà correctes par couleur (220Ω sur le rouge) — seuls les noms de net étaient croisés, donc renommés en `P2_04_LED_G` / `P2_05_LED_R`.
+- **`VDD_NRF` renommé `BOOST_IN`.** Depuis que J1 pin9 est passé sur VOUT_3V3, ce net n'alimente plus du tout le nRF54 : c'est uniquement le rail d'entrée du boost (C2, L1, U1.BAT, U1.CE, U4.OUT). Le nom induisait en erreur — l'auditeur s'y est d'ailleurs repris à deux fois pour reconstituer la vraie chaîne d'alimentation.
+- **Stubs I2C orphelins supprimés** (`P0_02_SDA` / `P0_03_SCL` sur J2 pins 3/4), reliquats du déplacement de §2.14, remplacés par des drapeaux no-connect comme les autres broches libres.
+- **Sérigraphie de D1 corrigée dans la librairie.** Les lignes de contour étaient à x=±2.5 alors que les pads s'étendent de ±1.55 à ±2.85 : la sérigraphie traversait ses propres pads. L'instance sur le PCB avait déjà la version correcte (±3.4) — c'est la **librairie** qui était fausse, d'où l'avertissement DRC `lib_footprint_mismatch`. **Piège évité de justesse :** re-synchroniser D1 depuis la librairie pour récupérer son modèle 3D aurait régressé la sérigraphie sur les pads. Librairie corrigée en premier.
+- **BOM resynchronisée** : R6 fantôme retirée, commentaire R11/R12 corrigé (`P1_13_BAT_SENSE`, J1 pin6), C7/C8/C9/R13 ajoutés. Vérifiée programmatiquement : 37 composants au schéma = 37 à la BOM, aucun manquant ni fantôme.
+
+**Faux positif du premier audit, corrigé :** le "courtyard manquant sur D1" n'existait pas. Le script de vérification comparait `GetLayerName()` à `'F.CrtYd'`/`'F.SilkS'` alors que l'API pcbnew retourne les noms longs `'F.Courtyard'`/`'F.Silkscreen'`. En "corrigeant" ce faux problème, un courtyard dupliqué **et mal transformé** (coordonnées locales du footprint écrites telles quelles, donc positionnées près de l'origine du PCB) avait été ajouté — détecté avant publication et annulé. À retenir : toujours vérifier qu'un "élément manquant" l'est vraiment avant de l'ajouter, surtout quand le test repose sur une comparaison de chaînes issue d'une API.
+
+**Points laissés à l'utilisateur (décisions, pas corrections) :** pads thermiques de U2/U3 (schéma dit GND, PCB dit sans net — 2 `unconnected` en DRC ; Sensirion déconseille de souder celui du SHT4x, donc c'est peut-être intentionnel, mais le schéma doit alors être aligné) ; résistance ≈100kΩ sur ADDR du BH1750 (mitigation explicite de ROHM quand aucune impulsion basse de 1µs n'est appliquée sur DVI) ; discipline firmware consistant à mettre P1.10/P1.11 en entrée déconnectée quand SENSOR_EN est désactivé, sous peine de fantôme-alimenter les capteurs éteints via leurs diodes ESD I2C.
+
+**État après corrections :** ERC 88 → 71 (2 erreurs restantes = pattes redondantes de SW2, intentionnelles), DRC **0 violation** (contre 1 avant), 2 `unconnected` = les pads thermiques ci-dessus. Les 14 avertissements "off grid" restants proviennent de l'édition manuelle de la zone SW1 par l'utilisateur, pas des corrections.
+
 ---
 
 ## 3. Problèmes non résolus — à trancher avant fabrication

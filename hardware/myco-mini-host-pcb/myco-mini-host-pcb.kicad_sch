@@ -4038,6 +4038,14 @@
 		(at 97.79 168.91)
 		(uuid "fe9c624a-99f2-4e31-bb83-c72c78079327")
 	)
+	(no_connect
+		(at 97.79 171.45)
+		(uuid "bf7520e6-eabc-40ca-839b-bea978954e27")
+	)
+	(no_connect
+		(at 97.79 173.99)
+		(uuid "9a0c5a8f-a668-4dba-8354-2fa1160ad8c0")
+	)
 	(wire
 		(pts
 			(xy 299.72 125.73) (xy 299.72 121.92)
@@ -4800,16 +4808,6 @@
 	)
 	(wire
 		(pts
-			(xy 97.79 171.45) (xy 110.49 171.45)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7cb7956e-2cea-47e6-a627-d3cd1b0ceb33")
-	)
-	(wire
-		(pts
 			(xy 66.04 184.15) (xy 49.53 184.15)
 		)
 		(stroke
@@ -5040,16 +5038,6 @@
 	)
 	(wire
 		(pts
-			(xy 97.79 173.99) (xy 110.49 173.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ccc13e88-3ca8-42ba-8325-0767fdfb4009")
-	)
-	(wire
-		(pts
 			(xy 66.04 179.07) (xy 46.99 179.07)
 		)
 		(stroke
@@ -5248,6 +5236,86 @@
 		)
 		(uuid "fb2d372a-8f7c-44cd-940d-8782297ec2f0")
 	)
+	(wire
+		(pts
+			(xy 86.36 106.68) (xy 86.36 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bd784337-0f20-4a04-9063-724cee36d053")
+	)
+	(wire
+		(pts
+			(xy 86.36 114.3) (xy 86.36 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e05553b1-6ad5-40aa-b7e0-8e871bf22076")
+	)
+	(wire
+		(pts
+			(xy 215.9 109.22) (xy 215.9 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "da4c0317-df4f-45ac-b03c-9da92aacdf08")
+	)
+	(wire
+		(pts
+			(xy 215.9 116.84) (xy 215.9 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5bb34417-5109-43bf-86a7-7fd9356cd6e1")
+	)
+	(wire
+		(pts
+			(xy 248.92 106.68) (xy 248.92 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "463a5e85-d8af-4b53-aa0b-c6c46e8df05c")
+	)
+	(wire
+		(pts
+			(xy 248.92 114.3) (xy 248.92 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3ca35ab9-93cd-4cd3-a2ff-0972e1f7f592")
+	)
+	(wire
+		(pts
+			(xy 264.16 76.2) (xy 264.16 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cc38b5be-b611-4cf4-a792-8ac2498086a7")
+	)
+	(wire
+		(pts
+			(xy 264.16 83.82) (xy 264.16 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b7b777cc-2209-446c-a643-e61bbeb36c02")
+	)
 	(label "SENSOR_3V3"
 		(at 129.54 92.71 0)
 		(effects
@@ -5268,7 +5336,7 @@
 		)
 		(uuid "05486021-b311-4c92-a048-4e9e5a9eb7ee")
 	)
-	(label "VDD_NRF"
+	(label "BOOST_IN"
 		(at 199.39 31.75 0)
 		(effects
 			(font
@@ -5288,7 +5356,7 @@
 		)
 		(uuid "0cdab857-460c-49c1-9da0-dd03afadd78f")
 	)
-	(label "P2_04_LED_R"
+	(label "P2_04_LED_G"
 		(at 316.23 223.52 0)
 		(effects
 			(font
@@ -5318,7 +5386,7 @@
 		)
 		(uuid "18bc891a-03d2-47be-b498-0627ce388a47")
 	)
-	(label "VDD_NRF"
+	(label "BOOST_IN"
 		(at 231.14 41.91 0)
 		(effects
 			(font
@@ -5398,7 +5466,7 @@
 		)
 		(uuid "31448db8-7263-42d1-ba68-73819f75e192")
 	)
-	(label "P2_05_LED_G"
+	(label "P2_05_LED_R"
 		(at 113.03 194.31 180)
 		(effects
 			(font
@@ -5428,7 +5496,7 @@
 		)
 		(uuid "3c7a5f87-7978-4365-93cd-77524e54d69d")
 	)
-	(label "P2_05_LED_G"
+	(label "P2_05_LED_R"
 		(at 316.23 217.17 0)
 		(effects
 			(font
@@ -5488,7 +5556,7 @@
 		)
 		(uuid "47c82a4a-3a5e-4f95-931d-4105692f78bb")
 	)
-	(label "P2_04_LED_R"
+	(label "P2_04_LED_G"
 		(at 113.03 196.85 180)
 		(effects
 			(font
@@ -5528,7 +5596,7 @@
 		)
 		(uuid "5eb7a7cc-6c1d-4ce9-8ee7-c50f4820cbfa")
 	)
-	(label "VDD_PROT"
+	(label "BAT_RAW"
 		(at 177.8 35.56 0)
 		(effects
 			(font
@@ -5588,17 +5656,7 @@
 		)
 		(uuid "732087f8-ef53-4f61-a958-2641146bbf59")
 	)
-	(label "P0_03_SCL"
-		(at 110.49 171.45 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "750813ab-1642-4d99-acab-2442264fb142")
-	)
-	(label "VDD_NRF"
+	(label "BOOST_IN"
 		(at 231.14 46.99 0)
 		(effects
 			(font
@@ -5668,16 +5726,6 @@
 		)
 		(uuid "903ef4b9-738c-4218-9edf-659c1127c2d9")
 	)
-	(label "P0_02_SDA"
-		(at 110.49 173.99 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "992c1119-c76b-49be-8052-3512150717fa")
-	)
 	(label "VDD_PROT"
 		(at 154.94 85.09 0)
 		(effects
@@ -5688,7 +5736,7 @@
 		)
 		(uuid "9a27f5eb-68e6-4760-bd9c-dd93be5016ce")
 	)
-	(label "BAT_RAW"
+	(label "VDD_PROT"
 		(at 177.8 53.34 0)
 		(effects
 			(font
@@ -5888,7 +5936,7 @@
 		)
 		(uuid "c843d922-a4d7-4c19-9fdd-4a4690626544")
 	)
-	(label "VDD_NRF"
+	(label "BOOST_IN"
 		(at 264.16 21.59 0)
 		(effects
 			(font
@@ -5988,7 +6036,7 @@
 		)
 		(uuid "e71c7a29-f471-42a0-8331-bea1fba456d6")
 	)
-	(label "VDD_NRF"
+	(label "BOOST_IN"
 		(at 185.42 69.85 0)
 		(effects
 			(font
@@ -6007,6 +6055,56 @@
 			(justify right bottom)
 		)
 		(uuid "f8dda416-5c46-49f8-aaa9-49f3594c16ec")
+	)
+	(label "SENSOR_3V3"
+		(at 86.36 102.87 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6dbb4f79-c993-49ad-8316-812f2ad29821")
+	)
+	(label "SENSOR_3V3"
+		(at 215.9 105.41 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a812fa0c-6d12-4582-b8c0-34a2a5c58e2f")
+	)
+	(label "SENSOR_3V3"
+		(at 248.92 102.87 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2bc583fa-7d83-470c-8d8d-166e159de0b0")
+	)
+	(label "VOUT_3V3"
+		(at 264.16 72.39 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e9592f1c-97d7-4e2f-808a-fd8073c8e77d")
+	)
+	(label "P1_12_SENSOR_EN"
+		(at 264.16 87.63 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c392a470-23ff-4b89-8836-0f37fe4143d3")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -8616,7 +8714,7 @@
 				)
 			)
 		)
-		(property "Note" "Reverse polarity protect ONLY: S=BAT_RAW D=VDD_PROT G=GND. Channel stays ON whenever battery is present (Vgs set by S vs fixed G=GND), regardless of D-side voltage - does NOT block backfeed into the battery while it is present. See U4 (MAX40203) downstream, which blocks that."
+		(property "Note" "Reverse polarity protection: D=BAT_RAW S=VDD_PROT G=GND. Orientation corrected 2026-08-23 (audit #2): a P-FET reverse-battery switch needs Source on the LOAD side so its body diode (anode=Drain) conducts battery->load normally and reverse-biases on a flipped cell. The previous S=BAT_RAW wiring was the load-switch pattern used by Q2/Q3/Q4 (correct for THEM, wrong here) and gave no reverse protection: the body diode stayed forward-biased on reversal, exposing U4 (abs max -0.3V) to about -2.3V. Channel turns on via Vgs once the diode has raised VDD_PROT."
 			(at 175.26 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -11242,6 +11340,597 @@
 			(project "myco-mini-host-pcb"
 				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
 					(reference "#FLG01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 86.36 110.49 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "612875ea-59b2-4e65-b942-6c66c30119fc")
+		(property "Reference" "C7"
+			(at 91.44 107.94999999999999 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF"
+			(at 91.44 113.03 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 86.36 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 86.36 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 86.36 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "Local bypass at U2 (SHT41). SENSOR_3V3 decoupling. The rail is switched by Q3 and had NO local capacitance at all - every bypass/bulk cap sits upstream on VOUT_3V3. ROHM's BH1750 application circuit specifies 0.1uF on VCC and Sensirion lists decoupling as mandatory for the SHT4x, and the rail is now re-charged from zero on every measurement cycle."
+			(at 86.36 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "7bdde2fc-1ab3-4f12-813e-551aedb2791f")
+		)
+		(pin "2"
+			(uuid "37f12b80-e5d4-4a10-a58e-07656b133b9e")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "C7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 215.9 113.03 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c771a366-c0d3-45c1-be21-b60a9288ec89")
+		(property "Reference" "C8"
+			(at 220.98000000000002 110.49 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF"
+			(at 220.98000000000002 115.57000000000001 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 215.9 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 215.9 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 215.9 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "Local bypass at U3 (BH1750). SENSOR_3V3 decoupling. The rail is switched by Q3 and had NO local capacitance at all - every bypass/bulk cap sits upstream on VOUT_3V3. ROHM's BH1750 application circuit specifies 0.1uF on VCC and Sensirion lists decoupling as mandatory for the SHT4x, and the rail is now re-charged from zero on every measurement cycle."
+			(at 215.9 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0796ff9a-f935-4e6d-91f0-1816654ff5c6")
+		)
+		(pin "2"
+			(uuid "df5401cf-f67c-472f-af7d-cfed478970a2")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "C8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 248.92 110.49 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "39ad4a51-1c11-4340-95bb-a3bde5f813d0")
+		(property "Reference" "C9"
+			(at 254.0 107.94999999999999 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1uF"
+			(at 254.0 113.03 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 248.92 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 248.92 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 248.92 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "Bulk reservoir for SENSOR_3V3 so the rail settles quickly when Q3 switches on. SENSOR_3V3 decoupling. The rail is switched by Q3 and had NO local capacitance at all - every bypass/bulk cap sits upstream on VOUT_3V3. ROHM's BH1750 application circuit specifies 0.1uF on VCC and Sensirion lists decoupling as mandatory for the SHT4x, and the rail is now re-charged from zero on every measurement cycle."
+			(at 248.92 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "59d46ab5-66dd-4fbe-aa64-20527b61a061")
+		)
+		(pin "2"
+			(uuid "88df8f5c-6eb7-4501-a359-fa475579688d")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "C9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 264.16 80.01 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "5c47ab49-b14c-4ea4-bb2e-55784eea9986")
+		(property "Reference" "R13"
+			(at 269.24 77.47 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 269.24 82.55 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 264.16 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 264.16 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 264.16 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "Pull-up so Q3/Q4 gates are defined before firmware runs. The boost is now always-on, so VOUT_3V3 is live the instant the cell goes in while the nRF GPIO is still high-Z - without this both load switches would float at boot. Mirrors R5's role for Q2. Q4's source is BAT_RAW (< 3.3V) so its Vgs stays >= 0 = off."
+			(at 264.16 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c5856fde-4a1e-46b7-a2da-62ab5259f563")
+		)
+		(pin "2"
+			(uuid "83af6798-b550-486b-9ddc-f23e827ed34f")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "R13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 86.36 118.11 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "0ad282fd-a3b9-4aec-8078-1d4a4290e1e2")
+		(property "Reference" "#PWR27"
+			(at 86.36 124.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 86.36 122.11 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 86.36 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 86.36 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 86.36 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2cddac2f-bbf9-4d7e-9aa9-a289767851b7")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "#PWR27")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 215.9 120.65 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "e86b5199-2060-4300-87c3-7bdea05fddd7")
+		(property "Reference" "#PWR28"
+			(at 215.9 126.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 215.9 124.65 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 215.9 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 215.9 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 215.9 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "39c5587d-05fc-4cc5-8bdc-7b1d8b262183")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "#PWR28")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 248.92 118.11 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "60301ffb-d057-4d9e-b4be-a1730c6d20b0")
+		(property "Reference" "#PWR29"
+			(at 248.92 124.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 248.92 122.11 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 248.92 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 248.92 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 248.92 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "34add0e4-8d47-45f7-ad02-8f1ccf523f75")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "#PWR29")
 					(unit 1)
 				)
 			)

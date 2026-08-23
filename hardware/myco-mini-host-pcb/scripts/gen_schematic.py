@@ -1,4 +1,29 @@
 #!/usr/bin/env python3
+# =============================================================================
+#  *** DO NOT RUN THIS SCRIPT ***            (banner added 2026-08-23)
+# =============================================================================
+#  myco-mini-host-pcb.kicad_sch is now the SOURCE OF TRUTH. This generator is
+#  kept only as a historical record of how the sheet was first bootstrapped.
+#
+#  Running it would overwrite the live schematic and destroy work that cannot
+#  be regenerated:
+#    * the user's manual text/label alignment - every label was hand-placed so
+#      that no text overlaps a component symbol. 76+ labels, with a deliberate
+#      convention this script knows nothing about: rot=0 + "justify left
+#      bottom" when text extends RIGHT of its anchor, rot=180 + "justify right
+#      bottom" when it extends LEFT.
+#    * ~15 no_connect flags placed by hand on unused header pins.
+#    * every design change made after 2026-08-11 - among them: U4/MAX40203
+#      backfeed protection, the VOUT_3V3 power-architecture rework, Q3/Q4 load
+#      switches, R11/R12 battery divider, C7/C8/C9 sensor decoupling, R13 gate
+#      pull-up, SW2 reset button, the SW1 part swap, and the Q1 source/drain
+#      orientation fix.
+#
+#  To change the schematic: edit the .kicad_sch directly (KiCad GUI, or a
+#  surgical script that patches only the specific blocks it targets and leaves
+#  every other byte alone), then verify with `kicad-cli sch erc` plus a netlist
+#  diff. Always snapshot the file first.
+# =============================================================================
 import sys, os, math, uuid as uuidlib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import sexpr

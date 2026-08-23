@@ -1,4 +1,21 @@
 #!/usr/bin/env python3
+# =============================================================================
+#  *** DO NOT RUN THIS SCRIPT ***            (banner added 2026-08-23)
+# =============================================================================
+#  myco-mini-host-pcb.kicad_pcb is now the SOURCE OF TRUTH. This generator
+#  builds a board from an EMPTY board object, so running it would wipe the
+#  user's own placement AND all hand-routed copper - including the soil-probe
+#  routing rework (SEG2 moved to B.Cu, backside ground plane pulled off the
+#  blade) that exists nowhere else.
+#
+#  The data below (board outline, U2 thermal cutout, PLACEMENT) is a READ-ONLY
+#  CAPTURE of the live board, refreshed 2026-08-23. It documents what IS there;
+#  it is not a plan to re-impose.
+#
+#  To change the PCB: edit it in the KiCad GUI, or script against the live file
+#  with pcbnew.LoadBoard(...) + targeted edits + board.Save(), never
+#  CreateEmptyBoard(). Snapshot first, and re-run `kicad-cli pcb drc` after.
+# =============================================================================
 import json
 import os
 import pcbnew
@@ -102,44 +119,46 @@ for shape in U2_CUTOUT_SHAPES:
     board.Add(s)
 
 # ---- Placement plan (mm) ----
-# Captured from the user's validated manual placement milestone (2026-08-11) via
-# a read-only pcbnew.LoadBoard() extraction of myco-mini-host-pcb.kicad_pcb -
-# supersedes the 2026-08-09 capture below. J1/J2 mate with the an54lq-15-breakout's
-# J1 ("GPIO_L") / J4 ("GPIO_R") headers, 25.4mm apart center-to-center (see
-# docs/host-pcb-design-brief.md sec.2) - still respected in this captured layout.
-# NOTE: D1/R7/R8/R9/C6 are NOT yet in netlist_export.json (they were added to the
-# live .kicad_sch via one-off surgical scripts - add_rgb_led.py, add_c6.py - never
-# folded into gen_schematic.py's main PARTS/placement logic). Their PLACEMENT
-# entries below are captured for reference but a real run of this script won't
-# place them until gen_schematic.py + netlist_export.json know about them too.
+# READ-ONLY CAPTURE of the live board as of 2026-08-23, refreshed after the
+# user's own placement/routing passes. This is a record of what IS on the
+# board, not a plan the script should impose - see the DO NOT RUN banner at
+# the top of this file.
+# J1/J2 mate with the an54lq-15-breakout's J1 ("GPIO_L") / J4 ("GPIO_R")
+# headers, 25.4mm apart center-to-center (docs/host-pcb-design-brief.md sec.2).
 PLACEMENT = {
-    "BT1": (77.4000, 43.8500, 90),
-    "C1": (76.3500, 41.5000, 0),
-    "C2": (71.1000, 66.2000, 0),
-    "C3": (68.0500, 45.6050, 90),
-    "C4": (79.0500, 66.8000, 90),
-    "C5": (81.6000, 66.8000, 90),
-    "C6": (70.9750, 45.4300, 90),
-    "D1": (96.9000, 63.1750, 90),
-    "J1": (65.0500, 26.0600, 0),
-    "J2": (90.4500, 26.0600, 0),
-    "L1": (75.4256, 62.8500, 0),
+    "BT1": (77.4, 43.85, -90),  # mounted on back side
+    "C1": (76.85, 50.4, 0),
+    "C2": (71.1, 66.2, 0),
+    "C3": (68.05, 45.605, 90),
+    "C4": (79.05, 66.8, 90),
+    "C5": (81.6, 66.8, 90),
+    "C6": (70.975, 45.43, 90),
+    "D1": (96.9, 63.175, 90),
+    "J1": (65.05, 26.06, 0),
+    "J2": (90.45, 26.06, 0),
+    "L1": (75.4256, 62.85, 0),
     "PROBE1": (69.6125, 89.7125, 0),
-    "Q1": (76.3000, 45.2000, 90),
-    "Q2": (69.9500, 76.0500, 0),
-    "R1": (60.9000, 28.1500, 0),
-    "R2": (61.0000, 41.6000, 0),
-    "R3": (66.0500, 74.3500, 180),
-    "R4": (65.8000, 77.0000, 180),
-    "R5": (74.2500, 75.9500, -90),
-    "R6": (71.4750, 59.3000, 180),
-    "R7": (96.9000, 57.7750, 90),
-    "R8": (94.9000, 57.6750, 90),
-    "R9": (99.0750, 57.8000, 90),
-    "SW1": (84.8700, 76.6500, -90),
-    "U1": (75.3956, 66.6000, 180),
-    "U2": (57.9000, 35.3200, 90),
-    "U3": (58.1700, 31.1000, 0),
+    "Q1": (76.8, 54.1, 90),
+    "Q2": (69.95, 76.05, 0),
+    "Q3": (60.175, 45.23, -90),
+    "Q4": (70.5725, 37.2, 180),
+    "R1": (61.0, 31.14, 0),
+    "R10": (95.225, 26.06, 0),
+    "R11": (74.1, 36.4, 90),
+    "R12": (70.6, 34.1, 180),
+    "R2": (60.9, 34.2, 0),
+    "R3": (68.7, 80.4, -90),
+    "R4": (66.2, 80.4, -90),
+    "R5": (74.25, 75.95, -90),
+    "R7": (96.9, 57.775, 90),
+    "R8": (94.9, 57.675, 90),
+    "R9": (99.075, 57.8, 90),
+    "SW1": (84.795, 76.775, 180),
+    "SW2": (97.2, 32.15, -90),
+    "U1": (75.3956, 66.6, 180),
+    "U2": (56.4, 26.12, 90),
+    "U3": (55.7, 32.4, 0),
+    "U4": (75.65, 57.95, 0),
 }
 
 pad_lookup = {}  # (ref, pad_num) -> PAD object
