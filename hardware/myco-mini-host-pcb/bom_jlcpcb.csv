@@ -8,7 +8,7 @@ SOIL_PROBE_2SEG,PROBE1,myco_host:SOIL_PROBE_2SEG,"N/A - copper PCB pattern uniqu
 AO3401A,"Q1,Q2,Q3,Q4",myco_host:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR,"C15127 - Q3=sensor VCC switch (VOUT_3V3->SENSOR_3V3), Q4=battery-sense divider switch (BAT_RAW->BAT_SENSE_TOP), both gated by P1_12_SENSOR_EN"
 4.7k,"R1,R2",Resistor_SMD:R_0603_1608Metric,TBD (JLCPCB Basic Part au moment de la commande)
 220k,"R3,R4",Resistor_SMD:R_0603_1608Metric,TBD (JLCPCB Basic Part au moment de la commande)
-100k,"R5,R13",Resistor_SMD:R_0603_1608Metric,"TBD (JLCPCB Basic Part au moment de la commande) - R5=pull-up gate Q2, R13=pull-up gate Q3/Q4 (etat defini au boot). R6 supprimee : le CE du boost est cable en dur sur BOOST_IN"
+100k,"R5,R13,R14",Resistor_SMD:R_0603_1608Metric,"TBD (JLCPCB Basic Part au moment de la commande) - R5=pull-up gate Q2, R13=pull-up gate Q3/Q4 (etat defini au boot), R14=pull-down ADDR du BH1750 (mitigation ROHM, cf. decision log 2.15). R6 supprimee : le CE du boost est cable en dur sur BOOST_IN"
 DM-04-V,SW1,myco_host:SW-SMD_8P-L11.1-W6.2-P2.54-LS9.8,"C501537 - remplace EM-04-Q (C501635, rupture de stock au 2026-08-22), meme fabricant Diptronics, meme pairing electrique, footprint tourne 90deg"
 XC9145B33CMR-G,U1,myco_host:SOT-25-5_L2.9-W1.6-P0.95-LS2.8-BR,C19261414
 SHT41-AD1B-R2,U2,myco_host:DFN-4_L1.5-W1.5-P0.8-TL-EP,"C7461861 - introuvable sur LCSC (page produit 404 au 2026-08-22), source separement chez Digikey (genuine Sensirion confirme en stock) ; assemblage hotplate par l'utilisateur, pas besoin de consigned parts JLCPCB"

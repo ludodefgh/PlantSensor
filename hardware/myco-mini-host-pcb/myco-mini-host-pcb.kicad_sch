@@ -4046,6 +4046,14 @@
 		(at 97.79 173.99)
 		(uuid "9a0c5a8f-a668-4dba-8354-2fa1160ad8c0")
 	)
+	(no_connect
+		(at 119.38 127)
+		(uuid "ec075eb2-1269-475b-a946-aa39004499a0")
+	)
+	(no_connect
+		(at 187.96 129.54)
+		(uuid "ebcec994-bd58-41b2-a01c-a22bd5f7249d")
+	)
 	(wire
 		(pts
 			(xy 299.72 125.73) (xy 299.72 121.92)
@@ -4448,16 +4456,6 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 127) (xy 134.62 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3db6a49f-f379-4c53-8f0a-c1b591495067")
-	)
-	(wire
-		(pts
 			(xy 194.31 204.47) (xy 194.31 208.28)
 		)
 		(stroke
@@ -4525,16 +4523,6 @@
 			(type default)
 		)
 		(uuid "4908ae54-5447-43cf-a596-d04ab1eb3ee5")
-	)
-	(wire
-		(pts
-			(xy 187.96 129.54) (xy 214.63 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4b351891-ed86-451d-a402-48dab6261a5c")
 	)
 	(wire
 		(pts
@@ -5315,6 +5303,36 @@
 			(type default)
 		)
 		(uuid "b7b777cc-2209-446c-a643-e61bbeb36c02")
+	)
+	(wire
+		(pts
+			(xy 152.4 134.62) (xy 144.78 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "960b43cc-4724-4f8b-a140-df9623b69a2a")
+	)
+	(wire
+		(pts
+			(xy 144.78 134.62) (xy 144.78 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6cf09aa3-7e74-4614-b56e-69e40fb2bca6")
+	)
+	(wire
+		(pts
+			(xy 144.78 151.13) (xy 144.78 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b33c2acb-c491-42f8-9622-8540fa8ef53b")
 	)
 	(label "SENSOR_3V3"
 		(at 129.54 92.71 0)
@@ -8418,81 +8436,6 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 152.4 134.62 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "5f55ea15-082f-4590-a3bc-9320152606e3")
-		(property "Reference" "#PWR15"
-			(at 152.4 140.62 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 152.4 138.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 152.4 134.62 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 152.4 134.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 152.4 134.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0edc41f4-8919-437b-a936-28e7976e9cc1")
-		)
-		(instances
-			(project "myco-mini-host-pcb"
-				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
-					(reference "#PWR15")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
 		(at 416.56 200.66 0)
 		(unit 1)
 		(body_style 1)
@@ -8561,81 +8504,6 @@
 			(project "myco-mini-host-pcb"
 				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
 					(reference "#PWR23")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 214.63 129.54 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "64d916db-8538-4b09-9c85-8d1f9443e117")
-		(property "Reference" "#PWR17"
-			(at 214.63 135.54 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 214.63 133.54 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 214.63 129.54 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 214.63 129.54 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 214.63 129.54 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c5f464f3-7878-4bb4-a03a-e475f98647fb")
-		)
-		(instances
-			(project "myco-mini-host-pcb"
-				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
-					(reference "#PWR17")
 					(unit 1)
 				)
 			)
@@ -10932,81 +10800,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 134.62 127 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "f53f4bf8-67e4-4779-8627-70f1b53060c5")
-		(property "Reference" "#PWR14"
-			(at 134.62 133 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 134.62 131 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 134.62 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 134.62 127 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 134.62 127 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0bc08d22-7203-40d3-93b8-c2990af0bb6c")
-		)
-		(instances
-			(project "myco-mini-host-pcb"
-				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
-					(reference "#PWR14")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "myco_host:AO3401A")
 		(at 330.2 44.45 0)
 		(unit 1)
@@ -11931,6 +11724,173 @@
 			(project "myco-mini-host-pcb"
 				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
 					(reference "#PWR29")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 144.78 147.32 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "729c55e3-32eb-4dda-b93a-cc2f03e4bd63")
+		(property "Reference" "R14"
+			(at 149.86 144.78 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 149.86 149.86 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 144.78 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 144.78 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 144.78 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Note" "BH1750 ADDR pull-down. ROHM's datasheet warns that ADDR/SDA/SCL are not stable unless DVI is held low for >=1us after VCC rises, and in that case prescribes a resistor (approx 100k) on ADDR instead of a direct tie. DVI is hard-tied to SENSOR_3V3 on this board so it rises WITH VCC and no low pulse is possible - and since SENSOR_3V3 is switched by Q3, that power-up sequence now repeats on every measurement cycle rather than once at boot. ADDR still reads low, so the I2C address stays 0x23."
+			(at 144.78 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e53361b5-c8de-42eb-8aa4-40a751a10398")
+		)
+		(pin "2"
+			(uuid "e03fecae-e957-401d-b33b-18cca74cf70c")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "R14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 144.78 154.94 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "b287b735-484d-42b0-bbe4-7ee5e03d0133")
+		(property "Reference" "#PWR30"
+			(at 144.78 160.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 144.78 158.94 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 144.78 154.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 144.78 154.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 144.78 154.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6f373180-8a74-486e-8433-a572ebc5b43d")
+		)
+		(instances
+			(project "myco-mini-host-pcb"
+				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
+					(reference "#PWR30")
 					(unit 1)
 				)
 			)
