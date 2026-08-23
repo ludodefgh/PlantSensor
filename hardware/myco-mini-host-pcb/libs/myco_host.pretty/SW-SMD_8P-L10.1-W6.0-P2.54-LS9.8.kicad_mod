@@ -86,7 +86,7 @@
 	(fp_text user 4 (at -2.58 3.72 -90.00) (layer F.SilkS)
 		(effects (font (size 1.00 1.00) (thickness 0.10)) (justify left))
 	)
-	(model "/myco_host.3dshapes/SW-SMD_8P-L10.1-W6.0-H3.8-P2.54-LS9.8.wrl"
+	(model "${KIPRJMOD}/libs/myco_host.3dshapes/SW-SMD_8P-L10.1-W6.0-H3.8-P2.54-LS9.8.wrl"
 		(offset (xyz 0.000 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 90))

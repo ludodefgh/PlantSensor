@@ -24,7 +24,7 @@
 	(fp_circle (center 1.40 1.45) (end 1.43 1.45) (layer F.Fab) (width 0.06))
 	(fp_circle (center 1.15 0.95) (end 1.30 0.95) (layer Cmts.User) (width 0.30))
 	(fp_circle (center 1.53 1.61) (end 1.68 1.61) (layer F.SilkS) (width 0.30))
-	(model "/myco_host.3dshapes/SOT-23-5_L3.0-W1.6-P0.95-LS2.8-BR.wrl"
+	(model "${KIPRJMOD}/libs/myco_host.3dshapes/SOT-23-5_L3.0-W1.6-P0.95-LS2.8-BR.wrl"
 		(offset (xyz 0.000 0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

@@ -20,7 +20,7 @@
 	(fp_circle (center -0.75 -0.75) (end -0.72 -0.75) (layer F.Fab) (width 0.06))
 	(fp_circle (center -0.88 -0.40) (end -0.76 -0.40) (layer Cmts.User) (width 0.25))
 	(fp_circle (center -1.01 -0.76) (end -0.97 -0.76) (layer F.SilkS) (width 0.08))
-	(model "/myco_host.3dshapes/DFN-4_L1.5-W1.5-P0.8.wrl"
+	(model "${KIPRJMOD}/libs/myco_host.3dshapes/DFN-4_L1.5-W1.5-P0.8.wrl"
 		(offset (xyz 0.000 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

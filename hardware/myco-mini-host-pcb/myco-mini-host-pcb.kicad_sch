@@ -4678,16 +4678,6 @@
 	)
 	(wire
 		(pts
-			(xy 250.19 66.04) (xy 250.19 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7717cbc0-a13c-44e5-9d5e-a9c40d863e87")
-	)
-	(wire
-		(pts
 			(xy 34.29 69.85) (xy 30.48 69.85)
 		)
 		(stroke
@@ -4825,6 +4815,16 @@
 			(type default)
 		)
 		(uuid "a15fc44f-678b-47e9-9739-67f95c75fc93")
+	)
+	(wire
+		(pts
+			(xy 34.29 107.95) (xy 30.48 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a1b2c3d4-1234-4abc-9def-0123456789ab")
 	)
 	(wire
 		(pts
@@ -5048,16 +5048,6 @@
 	)
 	(wire
 		(pts
-			(xy 250.19 73.66) (xy 250.19 77.47)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e53305e2-5337-445a-b23e-9e3af0922c97")
-	)
-	(wire
-		(pts
 			(xy 370.84 250.19) (xy 367.03 250.19)
 		)
 		(stroke
@@ -5108,16 +5098,6 @@
 	)
 	(wire
 		(pts
-			(xy 34.29 100.33) (xy 30.48 100.33)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f4c6297e-136a-4b6f-9d4e-d38aa8c67be2")
-	)
-	(wire
-		(pts
 			(xy 350.52 246.38) (xy 350.52 242.57)
 		)
 		(stroke
@@ -5156,16 +5136,6 @@
 		)
 		(uuid "fb2d372a-8f7c-44cd-940d-8782297ec2f0")
 	)
-	(wire
-		(pts
-			(xy 34.29 107.95) (xy 30.48 107.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a1b2c3d4-1234-4abc-9def-0123456789ab")
-	)
 	(label "SENSOR_3V3"
 		(at 129.54 92.71 0)
 		(effects
@@ -5186,6 +5156,16 @@
 		)
 		(uuid "05486021-b311-4c92-a048-4e9e5a9eb7ee")
 	)
+	(label "VDD_NRF"
+		(at 199.39 31.75 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "0c4053d4-33b6-4aed-8b00-5e056bd90d7d")
+	)
 	(label "P1_10_SDA"
 		(at 22.86 74.93 0)
 		(effects
@@ -5205,16 +5185,6 @@
 			(justify left bottom)
 		)
 		(uuid "0ec45b38-78b5-481a-aa38-bf15f1d16e5b")
-	)
-	(label "P1_05_BOOST_EN"
-		(at 250.19 62.23 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "10895b89-0cee-484a-8cf0-c9affc2fa854")
 	)
 	(label "P2_04_LED_R"
 		(at 350.52 257.81 0)
@@ -5246,7 +5216,7 @@
 		)
 		(uuid "18bc891a-03d2-47be-b498-0627ce388a47")
 	)
-	(label "P1_05_BOOST_EN"
+	(label "VDD_NRF"
 		(at 236.22 41.91 0)
 		(effects
 			(font
@@ -5445,16 +5415,6 @@
 			(justify left bottom)
 		)
 		(uuid "4dc03f63-f018-4368-9f51-9c52774b5346")
-	)
-	(label "P1_05_BOOST_EN"
-		(at 30.48 100.33 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "52bca4a5-3006-401d-b1f8-75e208ba919e")
 	)
 	(label "P2_06_LED_B"
 		(at 16.51 195.58 0)
@@ -5776,6 +5736,16 @@
 		)
 		(uuid "b16b56d2-a3bf-421e-be0c-600d24b9d788")
 	)
+	(label "P1_08_SOIL_SW"
+		(at 30.48 107.95 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b2c3d4e5-2345-4bcd-8ef0-123456789abc")
+	)
 	(label "VDD_PROT"
 		(at 165.1 69.85 0)
 		(effects
@@ -5976,16 +5946,6 @@
 		)
 		(uuid "ebb412da-89c9-4a37-a5eb-ec3e5c776c2a")
 	)
-	(label "VDD_NRF"
-		(at 199.39 31.75 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "ef2e62d4-bbc0-4957-af07-185a09c816ad")
-	)
 	(label "P2_03_DIP3"
 		(at 30.48 203.2 0)
 		(effects
@@ -5995,16 +5955,6 @@
 			(justify left bottom)
 		)
 		(uuid "f8dda416-5c46-49f8-aaa9-49f3594c16ec")
-	)
-	(label "P1_08_SOIL_SW"
-		(at 30.48 107.95 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "b2c3d4e5-2345-4bcd-8ef0-123456789abc")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -7125,94 +7075,6 @@
 			(project "myco-mini-host-pcb"
 				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
 					(reference "#PWR26")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 250.19 69.85 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "41c4f063-f6f3-496a-9157-bad4c1b5d096")
-		(property "Reference" "R6"
-			(at 250.19 63.85 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100k"
-			(at 250.19 75.85 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 250.19 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 250.19 69.85 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 250.19 69.85 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Note" "CE pull-down - datasheet: do not leave CE open"
-			(at 250.19 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d7bfdb66-b409-4765-834c-31efa2702aee")
-		)
-		(pin "2"
-			(uuid "b977adcb-317b-445f-a46b-8a5cd7bf6e14")
-		)
-		(instances
-			(project "myco-mini-host-pcb"
-				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
-					(reference "R6")
 					(unit 1)
 				)
 			)
@@ -10912,81 +10774,6 @@
 			(project "myco-mini-host-pcb"
 				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
 					(reference "R8")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 250.19 77.47 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "f23ef69d-bbcf-4ea0-b57e-116bcbf5748f")
-		(property "Reference" "#PWR10"
-			(at 250.19 83.47 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 250.19 81.47 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 250.19 77.47 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 250.19 77.47 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 250.19 77.47 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "aac3fd35-9b9f-4451-a331-5502856d5d4f")
-		)
-		(instances
-			(project "myco-mini-host-pcb"
-				(path "/b1969cb4-f84b-4d7e-8508-ab863aa656b2"
-					(reference "#PWR10")
 					(unit 1)
 				)
 			)
