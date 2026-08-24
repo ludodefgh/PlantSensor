@@ -1,23 +1,23 @@
 Comment,Designator,Footprint,LCSC Part #
 CR2032,BT1,myco_host:BAT-TH_CR2032-BS-6-1,C70377
-10uF,"C1,C2,C4,C5",Capacitor_SMD:C_0805_2012Metric,TBD (JLCPCB Basic Part au moment de la commande)
+10uF,"C1,C2,C4,C5",Capacitor_SMD:C_0805_2012Metric,"C1713 - CL21A106KOQNNNE (Samsung) 10uF 16V X5R 0805 - $0.083/u (MOQ 20, prix verifie LCSC 2026-08-23) - 16V suffisant (rail 3.3V) et moins cher que la version 25V"
 Conn_01x17_Female,"J1,J2",Connector_PinSocket_2.54mm:PinSocket_1x17_P2.54mm_Vertical,"N/A - a sourcer separement (LCSC/Digikey), non stocke JLCPCB SMT assembly"
-4.7uH,L1,Inductor_SMD:L_1008_2520Metric,TBD (JLCPCB Basic Part au moment de la commande)
+4.7uH,L1,Inductor_SMD:L_1008_2520Metric,"C383386 - MLP2520S4R7ST0S1 (TDK) 4.7uH 1008 - $0.1095/u (MOQ 5, prix verifie LCSC 2026-08-23)"
 SOIL_PROBE_2SEG,PROBE1,myco_host:SOIL_PROBE_2SEG,"N/A - copper PCB pattern uniquement, pas un composant achete"
 AO3401A,"Q1,Q2,Q3,Q4",myco_host:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR,"C15127 - Q3=sensor VCC switch (VOUT_3V3->SENSOR_3V3), Q4=battery-sense divider switch (BAT_RAW->BAT_SENSE_TOP), both gated by P1_13_SENSOR_EN"
-4.7k,"R1,R2",Resistor_SMD:R_0603_1608Metric,TBD (JLCPCB Basic Part au moment de la commande)
-220k,"R3,R4",Resistor_SMD:R_0603_1608Metric,TBD (JLCPCB Basic Part au moment de la commande)
-100k,"R5,R13,R14",Resistor_SMD:R_0603_1608Metric,"TBD (JLCPCB Basic Part au moment de la commande) - R5=pull-up gate Q2, R13=pull-up gate Q3/Q4 (etat defini au boot), R14=pull-down ADDR du BH1750 (mitigation ROHM, cf. decision log 2.15). R6 supprimee : le CE du boost est cable en dur sur BOOST_IN"
+4.7k,"R1,R2",Resistor_SMD:R_0603_1608Metric,"C23162 - 0603WAF4701T5E (UNI-ROYAL) 4.7k 1% 0603 - $0.0030/u (MOQ 100, prix verifie LCSC 2026-08-23) - pull-ups I2C sur SENSOR_3V3"
+220k,"R3,R4",Resistor_SMD:R_0603_1608Metric,"C22961 - 0603WAF2203T5E (UNI-ROYAL) 220k 1% 0603 - $0.0025/u (MOQ 100, prix verifie LCSC 2026-08-23) - resistances RC de la sonde sol"
+100k,"R5,R13,R14",Resistor_SMD:R_0603_1608Metric,"C25803 - 0603WAF1003T5E (UNI-ROYAL) 100k 1% 0603 - $0.0042/u (MOQ 100, prix verifie LCSC 2026-08-23) - R5=pull-up gate Q2, R13=pull-up gate Q3/Q4, R14=pull-down ADDR BH1750"
 DM-04-V,SW1,myco_host:SW-SMD_8P-L11.1-W6.2-P2.54-LS9.8,"C501537 - remplace EM-04-Q (C501635, rupture de stock au 2026-08-22), meme fabricant Diptronics, meme pairing electrique, footprint tourne 90deg"
 XC9145B33CMR-G,U1,myco_host:SOT-25-5_L2.9-W1.6-P0.95-LS2.8-BR,C19261414
 SHT41-AD1B-R2,U2,myco_host:DFN-4_L1.5-W1.5-P0.8-TL-EP,"C7461861 - introuvable sur LCSC (page produit 404 au 2026-08-22), source separement chez Digikey (genuine Sensirion confirme en stock) ; assemblage hotplate par l'utilisateur, pas besoin de consigned parts JLCPCB"
 BH1750FVI-TR,U3,myco_host:WSOF-6_L2.6-W1.6-P0.50-TL-EP,C78960
 XL-5050RGBC,D1,myco_host:LED_SMD5050-6P,"C2843868 - pinout verified vs Xinglight datasheet; G/B channels marginal Vf headroom on 3.3V rail, see decision log 2.10"
-220,"R7,R10",Resistor_SMD:R_0603_1608Metric,"TBD (JLCPCB Basic Part au moment de la commande) - R7=resistance serie LED rouge, R10=resistance serie du bouton reset sur NRESET"
-330,"R8,R9",Resistor_SMD:R_0603_1608Metric,TBD (JLCPCB Basic Part au moment de la commande)
-100uF,C6,Capacitor_SMD:C_0805_2012Metric,"TBD (JLCPCB Basic Part au moment de la commande) - X5R/X7R, >=6.3V, github issue #18"
+220,"R7,R10",Resistor_SMD:R_0603_1608Metric,"C22962 - 0603WAF2200T5E (UNI-ROYAL) 220R 1% 0603 - $0.0086/u (MOQ 100, prix verifie LCSC 2026-08-23) - R7=serie LED rouge, R10=serie bouton reset"
+330,"R8,R9",Resistor_SMD:R_0603_1608Metric,"C23138 - 0603WAF3300T5E (UNI-ROYAL) 330R 1% 0603 - $0.0043/u (MOQ 100, prix verifie LCSC 2026-08-23)"
+100uF,C6,Capacitor_SMD:C_0805_2012Metric,"C141660 - GRM21BR60J107ME15L (Murata) 100uF 6.3V X5R 0805 - $0.6304/u (MOQ 5, prix verifie LCSC 2026-08-23) - ATTENTION 6.3V seulement en 0805 : derating DC bias important a 3.3V. Voir issue #18"
 MAX40203AUK+T,U4,myco_host:SOT-23-5_L3.0-W1.6-P0.95-LS2.8-BR,"C2653639 - ideal diode, blocks backfeed from breakout J5/Pico-probe into BAT_RAW, voir decision log"
 TS-1187A-B-A-B,SW2,myco_host:SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL_H1.5,"C318884 - bouton reset, NRESET (J2 pin1) -> R10 -> SW2 -> GND"
-1M,"R11,R12",Resistor_SMD:R_0603_1608Metric,"TBD (JLCPCB Basic Part au moment de la commande) - diviseur mesure batterie 2:1, BAT_RAW via Q4 -> P1_12_BAT_SENSE (J1 pin5, AIN5)"
-100nF,"C3,C7,C8",Capacitor_SMD:C_0603_1608Metric,"TBD (JLCPCB Basic Part au moment de la commande) - C3=bypass HF local pres de J1 pin9 ; C7/C8=decouplage SENSOR_3V3 au plus pres de U2 (SHT41) et U3 (BH1750), rail switche par Q3"
-1uF,C9,Capacitor_SMD:C_0603_1608Metric,"TBD (JLCPCB Basic Part au moment de la commande) - reservoir bulk SENSOR_3V3, aide le rail a s'etablir a chaque activation de Q3"
+1M,"R11,R12",Resistor_SMD:R_0603_1608Metric,"C22935 - 0603WAF1004T5E (UNI-ROYAL) 1M 1% 0603 - $0.0028/u (MOQ 100, prix verifie LCSC 2026-08-23) - diviseur mesure batterie 2:1 vers P1_12_BAT_SENSE (J1 pin5, AIN5)"
+100nF,"C3,C7,C8",Capacitor_SMD:C_0603_1608Metric,"C14663 - CC0603KRX7R9BB104 (YAGEO) 100nF 50V X7R 0603 - $0.0151/u (MOQ 50, prix verifie LCSC 2026-08-23) - C3=bypass HF pres de J1 pin9 ; C7/C8=decouplage SENSOR_3V3 au plus pres de U2/U3"
+1uF,C9,Capacitor_SMD:C_0603_1608Metric,"C15849 - CL10A105KB8NNNC (Samsung) 1uF 50V X5R 0603 - $0.0221/u (MOQ 50, prix verifie LCSC 2026-08-23)"
