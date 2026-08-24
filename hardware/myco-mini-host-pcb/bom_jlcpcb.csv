@@ -15,7 +15,7 @@ BH1750FVI-TR,U3,myco_host:WSOF-6_L2.6-W1.6-P0.50-TL-EP,C78960
 XL-5050RGBC,D1,myco_host:LED_SMD5050-6P,"C2843868 - pinout verified vs Xinglight datasheet; G/B channels marginal Vf headroom on 3.3V rail, see decision log 2.10"
 220,"R7,R10",Resistor_SMD:R_0603_1608Metric,"C22962 - 0603WAF2200T5E (UNI-ROYAL) 220R 1% 0603 - $0.0086/u (MOQ 100, prix verifie LCSC 2026-08-23) - R7=serie LED rouge, R10=serie bouton reset"
 330,"R8,R9",Resistor_SMD:R_0603_1608Metric,"C23138 - 0603WAF3300T5E (UNI-ROYAL) 330R 1% 0603 - $0.0043/u (MOQ 100, prix verifie LCSC 2026-08-23)"
-100uF,C6,Capacitor_SMD:C_0805_2012Metric,"C141660 - GRM21BR60J107ME15L (Murata) 100uF 6.3V X5R 0805 - $0.6304/u (MOQ 5, prix verifie LCSC 2026-08-23) - ATTENTION 6.3V seulement en 0805 : derating DC bias important a 3.3V. Voir issue #18"
+100uF,C6,Capacitor_SMD:C_1206_3216Metric,"C312983 - GRM21.. -> GRM31CR61A107ME05L (Murata) 100uF 10V X5R 1206 - $0.3505/u (MOQ 5, prix verifie LCSC 2026-08-23) - passe de 0805 a 1206 : moins cher (-44%) ET 10V au lieu de 6.3V, donc bien moins de derating DC bias a 3.3V. Voir issue #18"
 MAX40203AUK+T,U4,myco_host:SOT-23-5_L3.0-W1.6-P0.95-LS2.8-BR,"C2653639 - ideal diode, blocks backfeed from breakout J5/Pico-probe into BAT_RAW, voir decision log"
 TS-1187A-B-A-B,SW2,myco_host:SW-SMD_4P-L5.1-W5.1-P3.70-LS6.5-TL_H1.5,"C318884 - bouton reset, NRESET (J2 pin1) -> R10 -> SW2 -> GND"
 1M,"R11,R12",Resistor_SMD:R_0603_1608Metric,"C22935 - 0603WAF1004T5E (UNI-ROYAL) 1M 1% 0603 - $0.0028/u (MOQ 100, prix verifie LCSC 2026-08-23) - diviseur mesure batterie 2:1 vers P1_12_BAT_SENSE (J1 pin5, AIN5)"
