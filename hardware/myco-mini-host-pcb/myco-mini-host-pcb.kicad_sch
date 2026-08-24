@@ -5534,7 +5534,7 @@
 		)
 		(uuid "3ffaa3e4-3c13-4bd6-b4b5-ecd609a807d6")
 	)
-	(label "P1_12_SENSOR_EN"
+	(label "P1_13_SENSOR_EN"
 		(at 387.35 90.17 0)
 		(effects
 			(font
@@ -5644,7 +5644,7 @@
 		)
 		(uuid "656c65f3-78f5-421f-881b-169aef2a1e64")
 	)
-	(label "P1_13_BAT_SENSE"
+	(label "P1_12_BAT_SENSE"
 		(at 412.75 121.92 0)
 		(effects
 			(font
@@ -5824,7 +5824,7 @@
 		)
 		(uuid "a83447f7-e661-4903-98c4-1537379bbc51")
 	)
-	(label "P1_13_BAT_SENSE"
+	(label "P1_12_BAT_SENSE"
 		(at 412.75 127 0)
 		(effects
 			(font
@@ -5924,7 +5924,7 @@
 		)
 		(uuid "c16acc67-25bf-4917-97ea-ee0c4cb58ed0")
 	)
-	(label "P1_13_BAT_SENSE"
+	(label "P1_13_SENSOR_EN"
 		(at 46.99 179.07 0)
 		(effects
 			(font
@@ -5984,7 +5984,7 @@
 		)
 		(uuid "cedb56c3-41c1-42bf-8e9c-3921b3b64382")
 	)
-	(label "P1_12_SENSOR_EN"
+	(label "P1_12_BAT_SENSE"
 		(at 46.99 176.53 0)
 		(effects
 			(font
@@ -6014,7 +6014,7 @@
 		)
 		(uuid "d82b1887-2d1d-45b4-97a7-436c97a54b62")
 	)
-	(label "P1_12_SENSOR_EN"
+	(label "P1_13_SENSOR_EN"
 		(at 386.08 44.45 0)
 		(effects
 			(font
@@ -6114,7 +6114,7 @@
 		)
 		(uuid "e9592f1c-97d7-4e2f-808a-fd8073c8e77d")
 	)
-	(label "P1_12_SENSOR_EN"
+	(label "P1_13_SENSOR_EN"
 		(at 264.16 87.63 0)
 		(effects
 			(font
@@ -10340,7 +10340,7 @@
 				)
 			)
 		)
-		(property "Note" "Battery-sense divider switch: S=BAT_RAW D=BAT_SENSE_TOP G=P1_12_SENSOR_EN (shared with Q3). Keeps the R11/R12 divider disconnected from BAT_RAW except during the brief active-measurement window, avoiding a continuous leakage path now that the free internal-VDD SAADC battery trick no longer works (VDD_NRF is regulated 3.3V post-merge, not the raw cell)."
+		(property "Note" "Battery-sense divider switch: S=BAT_RAW D=BAT_SENSE_TOP G=P1_13_SENSOR_EN (shared with Q3). Keeps the R11/R12 divider disconnected from BAT_RAW except during the brief active-measurement window, avoiding a continuous leakage path now that the free internal-VDD SAADC battery trick no longer works (VDD_NRF is regulated 3.3V post-merge, not the raw cell)."
 			(at 410.21 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -10519,7 +10519,7 @@
 				)
 			)
 		)
-		(property "Note" "Sensor VCC switch (BH1750+SHT41+their I2C pull-ups): S=VOUT_3V3 D=SENSOR_3V3 G=P1_12_SENSOR_EN. Added when nRF54 moved onto VOUT_3V3 (was VDD_NRF direct-battery) - sensors need their own switch now to still power down in deep sleep. R1/R2 (I2C pull-ups) moved to SENSOR_3V3 too, so an unpowered sensor isn't backfed through its own SDA/SCL ESD clamps."
+		(property "Note" "Sensor VCC switch (BH1750+SHT41+their I2C pull-ups): S=VOUT_3V3 D=SENSOR_3V3 G=P1_13_SENSOR_EN. Added when nRF54 moved onto VOUT_3V3 (was VDD_NRF direct-battery) - sensors need their own switch now to still power down in deep sleep. R1/R2 (I2C pull-ups) moved to SENSOR_3V3 too, so an unpowered sensor isn't backfed through its own SDA/SCL ESD clamps."
 			(at 410.21 44.45 0)
 			(hide yes)
 			(show_name no)
