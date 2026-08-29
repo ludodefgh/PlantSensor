@@ -1,0 +1,508 @@
+{
+ "components": {
+  "J1": {
+   "lib_id": "Connector_Generic:Conn_01x17",
+   "footprint": "Connector_PinSocket_2.54mm:PinSocket_1x17_P2.54mm_Vertical",
+   "value": "Conn_01x17_Female",
+   "lcsc": ""
+  },
+  "J2": {
+   "lib_id": "Connector_Generic:Conn_01x17",
+   "footprint": "Connector_PinSocket_2.54mm:PinSocket_1x17_P2.54mm_Vertical",
+   "value": "Conn_01x17_Female",
+   "lcsc": ""
+  },
+  "BT1": {
+   "lib_id": "myco_host:CR2032-BS-6-1",
+   "footprint": "myco_host:BAT-TH_CR2032-BS-6-1",
+   "value": "CR2032",
+   "lcsc": "C70377"
+  },
+  "C1": {
+   "lib_id": "Device:C",
+   "footprint": "Capacitor_SMD:C_0805_2012Metric",
+   "value": "10uF",
+   "lcsc": ""
+  },
+  "Q1": {
+   "lib_id": "myco_host:AO3401A",
+   "footprint": "myco_host:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR",
+   "value": "AO3401A",
+   "lcsc": "C15127"
+  },
+  "C2": {
+   "lib_id": "Device:C",
+   "footprint": "Capacitor_SMD:C_0805_2012Metric",
+   "value": "10uF",
+   "lcsc": ""
+  },
+  "C3": {
+   "lib_id": "Device:C",
+   "footprint": "Capacitor_SMD:C_0603_1608Metric",
+   "value": "100nF",
+   "lcsc": ""
+  },
+  "L1": {
+   "lib_id": "Device:L",
+   "footprint": "Inductor_SMD:L_1008_2520Metric",
+   "value": "4.7uH",
+   "lcsc": ""
+  },
+  "U1": {
+   "lib_id": "myco_host:XC9145B33CMR-G",
+   "footprint": "myco_host:SOT-25-5_L2.9-W1.6-P0.95-LS2.8-BR",
+   "value": "XC9145B33CMR-G",
+   "lcsc": "C19261414"
+  },
+  "R6": {
+   "lib_id": "Device:R",
+   "footprint": "Resistor_SMD:R_0603_1608Metric",
+   "value": "100k",
+   "lcsc": ""
+  },
+  "C4": {
+   "lib_id": "Device:C",
+   "footprint": "Capacitor_SMD:C_0805_2012Metric",
+   "value": "10uF",
+   "lcsc": ""
+  },
+  "C5": {
+   "lib_id": "Device:C",
+   "footprint": "Capacitor_SMD:C_0805_2012Metric",
+   "value": "10uF",
+   "lcsc": ""
+  },
+  "Q2": {
+   "lib_id": "myco_host:AO3401A",
+   "footprint": "myco_host:SOT-23_L2.9-W1.3-P1.90-LS2.4-BR",
+   "value": "AO3401A",
+   "lcsc": "C15127"
+  },
+  "R5": {
+   "lib_id": "Device:R",
+   "footprint": "Resistor_SMD:R_0603_1608Metric",
+   "value": "100k",
+   "lcsc": ""
+  },
+  "U2": {
+   "lib_id": "myco_host:SHT41-AD1B-R2",
+   "footprint": "myco_host:DFN-4_L1.5-W1.5-P0.8-TL-EP",
+   "value": "SHT41-AD1B-R2",
+   "lcsc": "C7461861"
+  },
+  "U3": {
+   "lib_id": "myco_host:BH1750FVI-TR",
+   "footprint": "myco_host:WSOF-6_L2.6-W1.6-P0.50-TL-EP",
+   "value": "BH1750FVI-TR",
+   "lcsc": "C78960"
+  },
+  "R1": {
+   "lib_id": "Device:R",
+   "footprint": "Resistor_SMD:R_0603_1608Metric",
+   "value": "4.7k",
+   "lcsc": ""
+  },
+  "R2": {
+   "lib_id": "Device:R",
+   "footprint": "Resistor_SMD:R_0603_1608Metric",
+   "value": "4.7k",
+   "lcsc": ""
+  },
+  "PROBE1": {
+   "lib_id": "myco_host:SOIL_PROBE_2SEG",
+   "footprint": "myco_host:SOIL_PROBE_2SEG",
+   "value": "SOIL_PROBE_2SEG",
+   "lcsc": ""
+  },
+  "R3": {
+   "lib_id": "Device:R",
+   "footprint": "Resistor_SMD:R_0603_1608Metric",
+   "value": "220k",
+   "lcsc": ""
+  },
+  "R4": {
+   "lib_id": "Device:R",
+   "footprint": "Resistor_SMD:R_0603_1608Metric",
+   "value": "220k",
+   "lcsc": ""
+  },
+  "SW1": {
+   "lib_id": "myco_host:EM-04-Q_C501635",
+   "footprint": "myco_host:SW-SMD_8P-L10.1-W6.0-P2.54-LS9.8",
+   "value": "EM-04-Q",
+   "lcsc": "C501635"
+  }
+ },
+ "connections": [
+  [
+   "J1",
+   "1",
+   "GND"
+  ],
+  [
+   "J1",
+   "6",
+   "P1_13_BOOST_EN"
+  ],
+  [
+   "J1",
+   "7",
+   "P1_14_SOIL_SW"
+  ],
+  [
+   "J1",
+   "8",
+   "GND"
+  ],
+  [
+   "J1",
+   "9",
+   "VDD_NRF"
+  ],
+  [
+   "J1",
+   "12",
+   "P1_04_SOIL_ADC2"
+  ],
+  [
+   "J1",
+   "15",
+   "P1_07_SOIL_ADC1"
+  ],
+  [
+   "J2",
+   "3",
+   "P0_03_SCL"
+  ],
+  [
+   "J2",
+   "4",
+   "P0_02_SDA"
+  ],
+  [
+   "J2",
+   "14",
+   "P2_03_DIP3"
+  ],
+  [
+   "J2",
+   "15",
+   "P2_02_DIP2"
+  ],
+  [
+   "J2",
+   "16",
+   "P2_01_DIP1"
+  ],
+  [
+   "J2",
+   "17",
+   "P2_00_DIP0"
+  ],
+  [
+   "BT1",
+   "1",
+   "BAT_RAW"
+  ],
+  [
+   "BT1",
+   "2",
+   "GND"
+  ],
+  [
+   "C1",
+   "1",
+   "BAT_RAW"
+  ],
+  [
+   "C1",
+   "2",
+   "GND"
+  ],
+  [
+   "Q1",
+   "2",
+   "BAT_RAW"
+  ],
+  [
+   "Q1",
+   "3",
+   "VDD_NRF"
+  ],
+  [
+   "Q1",
+   "1",
+   "GND"
+  ],
+  [
+   "C2",
+   "1",
+   "VDD_NRF"
+  ],
+  [
+   "C2",
+   "2",
+   "GND"
+  ],
+  [
+   "C3",
+   "1",
+   "VDD_NRF"
+  ],
+  [
+   "C3",
+   "2",
+   "GND"
+  ],
+  [
+   "L1",
+   "1",
+   "VDD_NRF"
+  ],
+  [
+   "U1",
+   "3",
+   "VDD_NRF"
+  ],
+  [
+   "U1",
+   "2",
+   "GND"
+  ],
+  [
+   "U1",
+   "1",
+   "P1_13_BOOST_EN"
+  ],
+  [
+   "U1",
+   "5",
+   "LX_NODE"
+  ],
+  [
+   "L1",
+   "2",
+   "LX_NODE"
+  ],
+  [
+   "U1",
+   "4",
+   "VOUT_3V3"
+  ],
+  [
+   "R6",
+   "1",
+   "P1_13_BOOST_EN"
+  ],
+  [
+   "R6",
+   "2",
+   "GND"
+  ],
+  [
+   "C4",
+   "1",
+   "VOUT_3V3"
+  ],
+  [
+   "C4",
+   "2",
+   "GND"
+  ],
+  [
+   "C5",
+   "1",
+   "VOUT_3V3"
+  ],
+  [
+   "C5",
+   "2",
+   "GND"
+  ],
+  [
+   "Q2",
+   "2",
+   "VOUT_3V3"
+  ],
+  [
+   "Q2",
+   "3",
+   "SOIL_VCC"
+  ],
+  [
+   "Q2",
+   "1",
+   "P1_14_SOIL_SW"
+  ],
+  [
+   "R5",
+   "1",
+   "VOUT_3V3"
+  ],
+  [
+   "R5",
+   "2",
+   "P1_14_SOIL_SW"
+  ],
+  [
+   "U2",
+   "1",
+   "P0_02_SDA"
+  ],
+  [
+   "U2",
+   "2",
+   "P0_03_SCL"
+  ],
+  [
+   "U2",
+   "3",
+   "VDD_NRF"
+  ],
+  [
+   "U2",
+   "4",
+   "GND"
+  ],
+  [
+   "U2",
+   "5",
+   "GND"
+  ],
+  [
+   "U3",
+   "1",
+   "VOUT_3V3"
+  ],
+  [
+   "U3",
+   "2",
+   "GND"
+  ],
+  [
+   "U3",
+   "3",
+   "GND"
+  ],
+  [
+   "U3",
+   "4",
+   "P0_02_SDA"
+  ],
+  [
+   "U3",
+   "5",
+   "VDD_NRF"
+  ],
+  [
+   "U3",
+   "6",
+   "P0_03_SCL"
+  ],
+  [
+   "U3",
+   "7",
+   "GND"
+  ],
+  [
+   "R1",
+   "1",
+   "VDD_NRF"
+  ],
+  [
+   "R1",
+   "2",
+   "P0_02_SDA"
+  ],
+  [
+   "R2",
+   "1",
+   "VDD_NRF"
+  ],
+  [
+   "R2",
+   "2",
+   "P0_03_SCL"
+  ],
+  [
+   "PROBE1",
+   "1",
+   "P1_07_SOIL_ADC1"
+  ],
+  [
+   "PROBE1",
+   "2",
+   "GND"
+  ],
+  [
+   "PROBE1",
+   "3",
+   "P1_04_SOIL_ADC2"
+  ],
+  [
+   "PROBE1",
+   "4",
+   "GND"
+  ],
+  [
+   "R3",
+   "1",
+   "SOIL_VCC"
+  ],
+  [
+   "R3",
+   "2",
+   "P1_07_SOIL_ADC1"
+  ],
+  [
+   "R4",
+   "1",
+   "SOIL_VCC"
+  ],
+  [
+   "R4",
+   "2",
+   "P1_04_SOIL_ADC2"
+  ],
+  [
+   "SW1",
+   "1",
+   "P2_00_DIP0"
+  ],
+  [
+   "SW1",
+   "2",
+   "P2_01_DIP1"
+  ],
+  [
+   "SW1",
+   "3",
+   "P2_02_DIP2"
+  ],
+  [
+   "SW1",
+   "4",
+   "P2_03_DIP3"
+  ],
+  [
+   "SW1",
+   "5",
+   "GND"
+  ],
+  [
+   "SW1",
+   "6",
+   "GND"
+  ],
+  [
+   "SW1",
+   "7",
+   "GND"
+  ],
+  [
+   "SW1",
+   "8",
+   "GND"
+  ]
+ ]
+}

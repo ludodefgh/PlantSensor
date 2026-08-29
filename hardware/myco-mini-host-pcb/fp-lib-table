@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "myco_host")(type "KiCad")(uri "${KIPRJMOD}/libs/myco_host.pretty")(options "")(descr ""))
+)
