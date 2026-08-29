@@ -106,10 +106,10 @@ CR2032− ─── GND commun
 Circuit P-MOSFET côté haut, en série sur le chemin VBAT+ avant qu'il n'atteigne VDD_NRF :
 
 - **Composant :** AO3401 (P-channel, déjà utilisé ailleurs dans le projet — cohérence BOM)
-- Source → CR2032+
-- Drain → chemin VDD_NRF du système (vers J1 pin 9 et SHT40 VDD)
+- Drain → CR2032+
+- Source → chemin VDD_NRF du système (vers J1 pin 9 et SHT40 VDD)
 - Gate → GND système
-- Orientation body diode : doit bloquer le courant en cas d'inversion de polarité (vérifier au schématique, cf. l'erreur d'orientation déjà notée dans le decision log pour l'AO3401 du boost control — ne pas répéter cette erreur ici)
+- Orientation body diode : la diode de corps (anode=Drain, cathode=Source sur un canal P) doit conduire en fonctionnement normal et ne bloquer qu'à l'inversion — donc Source côté charge, **pas** côté pile. C'était inversé sur Q1 dans une première passe (voir §2.15 du decision log et [issue #17](https://github.com/ludodefgh/PlantSensor/issues/17), corrigé) ; ne pas répéter l'erreur si ce brief sert de référence pour une future révision.
 - Chute de tension attendue en fonctionnement normal : négligeable (Iq × RDS(on), de l'ordre du mV à quelques µA de courant idle)
 
 ### Composants d'alimentation
