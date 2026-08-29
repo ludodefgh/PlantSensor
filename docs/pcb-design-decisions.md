@@ -123,6 +123,10 @@ Point résiduel indépendant du choix de R : au cas le plus sec (~18pF), `tACQ/�
 
 Sources consultées : [Nordic nRF54L15 Datasheet v1.0](file:///home/ludovic/Documents/Projects/PlantSensor/misc/Nordic_nRF54L15_Datasheet_v1.0.pdf) §11.17 (SAADC Electrical Specification, p.912) ; [Igreja & Dias 2004, analytical IDC capacitance model](https://www.sciencedirect.com/science/article/abs/pii/S0924424704000779) ; formule Mamishev citée via recherche (review "Interdigital Sensors and Transducers", IEEE Proc. 2004) ; [Cave Pearl Project — Hacking a Capacitive Soil Moisture Sensor for Frequency Output](https://thecavepearlproject.org/2020/10/27/hacking-a-capacitive-soil-moisture-sensor-for-frequency-output/) (mesures réelles 30-400pF, 555 TLC555 1.5MHz) ; [Hackaday.io — A cheap capacitive soil moisture sensor](https://hackaday.io/project/12813-a-cheap-capacitive-soil-moisture-sensor) (tentative RC directe, ~14pF insuffisant, bruit RF sévère) ; [Chirp / I2C Soil Moisture Sensor, Catnip Electronics (Tindie)](https://www.tindie.com/products/miceuz/i2c-soil-moisture-sensor/).
 
+**Mise à jour (2026-08-24) — Q2 supprimé, la sonde est attaquée directement par la GPIO.** Le schéma ASCII ci-dessus est désormais périmé sur un point : il n'y a plus de `SOIL_VCC` ni de load switch. `P1.08` (J1 pin 16) alimente directement le point commun R3/R4. Le courant est borné par construction à `2 × 3.3 V / 220 kΩ = 30 µA`, deux ordres de grandeur sous le minimum garanti d'une GPIO nRF54L15 en *standard drive* (1 mA à VDD−0.4 V, datasheet v1.0 §11.5.1). L'impédance de sortie de la GPIO (~400 Ω au pire) en série avec 220 kΩ décale τ de 0.2 % — négligeable devant la calibration empirique.
+
+Gain fonctionnel réel, au-delà de l'économie d'un SOT-23 et d'un 0603 : avec Q2, à l'ouverture, `SOIL_VCC` **flottait** et la sonde ne se déchargeait qu'à travers la résistance du sol, c'est-à-dire à travers la grandeur mesurée — l'état initial de chaque mesure dépendait de la précédente. La GPIO offre trois états (haut = charge, **bas = décharge active**, déconnecté = flottant), donc un point de départ identique à chaque cycle, et ouvre la porte au CVD / charge-transfer sans retoucher la carte. Bonus consommation : `R5` (pull-up de grille 100 k) tirait 33 µA en continu tant que Q2 conduisait, soit plus que la sonde elle-même. Voir [#20](https://github.com/ludodefgh/PlantSensor/issues/20).
+
 ### 2.7 Géométrie de la sonde — peigne droit, pas en "U"
 
 Le brief demande une "géométrie interdigitée en U" en référence à un design PCB v1 non présent dans ce repo. J'ai implémenté un **peigne interdigité droit** (2 segments, 10mm de large, doigts 0.3mm / espacement 0.15mm comme demandé), généré par script Python en pads `custom` KiCad (2 pads par segment = 4 pads au total, chacun un ensemble de rectangles cuivre fusionnés). **La forme "U" exacte n'a pas pu être reproduite faute de référence** — à ajuster si cette forme a une justification technique précise (ex. maximiser la longueur de doigt dans un espace contraint).
@@ -160,6 +164,12 @@ EM-04-Q (8 broches). Le mapping switch↔broches (1↔8, 2↔7, 3↔6, 4↔5) a 
 ### 2.9 SHT40 → SHT41 (U2)
 
 Remplacement à l'identique décidé avec l'utilisateur : `SHT41-AD1B-R2` (LCSC **C7461861**) au lieu de `SHT40-AD1B-R2` (C2909890). Vérifié sur le datasheet Sensirion SHT4x officiel (v7.1, mars 2025) — **même boîtier DFN-4 1.5×1.5mm, même pinout, même adresse I2C 0x44**, donc zéro impact footprint/layout. Seule différence : précision RH aux extrêmes (0-10% et 90-100%RH) — ±3%RH typ. max pour le SHT40 contre ±2%RH pour le SHT41 sur toute la plage 0-80°C (le point central 20-80%RH reste ±1.8% identique pour les deux). Pertinent pour un capteur de plante exposé à des conditions humides/sèches extrêmes. Symbole dupliqué dans `libs/myco_host.kicad_sym` (`SHT41-AD1B-R2`), `gen_schematic.py` et `bom_jlcpcb.csv` mis à jour, schéma régénéré (PCB non touché, cf. §3.2).
+
+**Mise à jour (2026-08-24) — retour au SHT40, décision inversée.** `U2` repasse sur `SHT40-AD1B-R2` (LCSC **C2909890**). La raison n'est pas technique mais d'approvisionnement : le SHT41-AD1B-R2 (C7461861) **n'est pas référencé chez LCSC** (page produit en 404 depuis le 2026-08-22) et devait être sourcé séparément chez Digikey à ~$6.95/u, alors que le SHT40 y est en stock (~9000 pièces) à ~$1.79/u à l'unité et ~$1.14/u à 1000+. Le compromis accepté est celui décrit ci-dessus, et il est étroit : ±3%RH au lieu de ±2%RH **uniquement** aux extrêmes 0-10% et 90-100%RH — les deux composants sont à ±1.8%RH sur toute la plage 20-80%RH.
+
+**Un piège évité dans la librairie.** Le symbole `SHT40-AD1B-R2` d'origine (généré par easyeda2kicad) pointait vers le footprint `myco_host:DFN-4_L1.5-W1.5-P0.8` — **sans `-TL-EP`**, alors qu'il possède bien une broche 5 = EP, et que ce footprint **n'existe pas** dans `myco_host.pretty` (seule la variante `-TL-EP` y est présente, et c'est celle utilisée par U2 sur le PCB). Réutiliser le symbole tel quel aurait assigné à U2 un footprint inexistant à la prochaine synchronisation « Update PCB from Schematic », en emportant au passage le pad thermique et le travail de découpe d'isolation de §2.11. Le bloc `SHT40-AD1B-R2` de la librairie a donc été **reconstruit à partir du bloc `SHT41-AD1B-R2`** (identiques par ailleurs : mêmes coordonnées de broches, mêmes types électriques), en ne changeant que le nom, la `Value`, la référence LCSC et la note — footprint `-TL-EP` conservé. Le symbole `SHT41-AD1B-R2` reste dans la librairie, inutilisé, au cas où la décision s'inverserait à nouveau.
+
+**Vérification :** netlist strictement identique avant/après (`nets identiques: True`), 0 label déplacé, 0 symbole déplacé, fils identiques — le seul changement du fichier est le `lib_id` de U2. ERC inchangé (3 avertissements `lib_symbol_mismatch` préexistants, **aucun nouveau sur SHT40**, ce qui confirme que le bloc reconstruit correspond bien au cache du schéma). BOM resynchronisée (37 composants au schéma = 37 à la BOM).
 
 ### 2.10 LED RGB de feedback (D1) sur VOUT_3V3
 
@@ -260,6 +270,95 @@ Le bon repère, contre-intuitif mais décisif : **dans un montage correct, la di
 
 ---
 
+### 2.16 DVI du BH1750 piloté par GPIO + décalage des pins J1 5/6/7 (2026-08-24)
+
+**Le problème : `DVI` n'est pas une alimentation d'interface, c'est une entrée de reset asynchrone.** Elle était câblée en dur sur `SENSOR_3V3` (même net que VCC). Le datasheet ROHM Rev.C (récupéré et versionné en [misc/BH1750FVI_ROHM.pdf](../misc/BH1750FVI_ROHM.pdf), p.6 et p.8) est explicite :
+
+> DVI is I²C bus reference voltage terminal. **And it is also asynchronous reset terminal.** It is necessary to set to 'L' after VCC is supplied. […] *ADDR, SDA, SCL is not stable if DVI 'L' term ( 1us ) is not given by systems.*
+
+Il faut donc maintenir DVI ≤ 0.4 V pendant ≥ 1 µs **après** l'établissement de VCC ; c'est son front montant qui libère le reset interne. Reliée en dur à VCC, elle montait *avec* lui : section de reset = **0 µs**, cas « Timing chart 2 / Don't care state » du datasheet. Et comme `SENSOR_3V3` est commuté par Q3, cette séquence se rejoue à chaque mesure — ~17 500 fois par an au lieu d'une seule fois au boot.
+
+C'était la cause racine dont §2.15 n'avait traité que le symptôme : `R14` (100 k sur ADDR) est précisément la mitigation que ROHM prescrit *quand la section de reset est absente*. Elle couvre ADDR, pas l'instabilité SDA/SCL.
+
+**Option retenue : ex1 du datasheet (DVI piloté par une GPIO) plutôt que ex4 (réseau RC 1 kΩ / 1 µF).** ROHM assortit lui-même ex4 d'un avertissement (« *has the possibility that the Reset section […] cannot be satisfied* ») et de deux contraintes que notre rail commuté satisfait mal :
+
+| Contrainte ex4 | Notre cas |
+|---|---|
+| montée VCC 0→2.4 V ≤ 100 µs | OK avec Q3 (~0.13 µs), **hors spec (~125 µs)** si Q3 passait en GPIO sans retirer C9 |
+| ≥ 25 ms à VCC ≤ 0.05 V avant redémarrage | rail **flottant** à l'ouverture de Q3 : 1.2 µF dans ~0.1–1 µA de fuite → 4 à 40 s. Satisfait par accident de duty cycle, pas par conception — casse dès deux lectures rapprochées |
+
+L'argument décisif reste que **cette carte est un véhicule de validation** : avec DVI sur GPIO on peut tester les deux comportements (piloté vs strappé) et trancher empiriquement pour la version production. Avec ex4 câblé en dur, la question n'est plus mesurable. Coût : 1 pin + `C10` (100 nF, ex1 montre bien deux condensateurs distincts — un sur VCC, `C8`, et un sur DVI).
+
+**Décalage des pins, demandé pour le routage.** Le premier candidat proposé était P1.14 (J1 pin 7), mais il tombait trop loin de U3 sur le PCB — une trace de plus à faire traverser la carte. Tout a donc glissé d'un cran vers le haut du connecteur, pour que DVI récupère J1 pin 5, le plus proche du bloc capteurs :
+
+| J1 | nRF | avant | après |
+|---|---|---|---|
+| pin 5 | P1.12 / AIN5 | `BAT_SENSE` | **`BH_DVI`** (sortie numérique) |
+| pin 6 | P1.13 / AIN6 | `SENSOR_EN` | **`BAT_SENSE`** |
+| pin 7 | P1.14 / AIN7 | libre | **`SENSOR_EN`** (sortie numérique) |
+
+`BAT_SENSE` reste sur une entrée SAADC : **P1.13 = AIN6**, vérifié sur le brochage QFN48 du datasheet nRF54L15 v1.0. Deux entrées analogiques restent libres (P1.05/AIN1 et P1.06/AIN2, J1 pins 13/14).
+
+**Contrainte firmware associée** (à joindre à [#19](https://github.com/ludodefgh/PlantSensor/issues/19)) : les conditions d'utilisation donnent **V_DVI = 1.65 V … VCC**. DVI ne doit donc jamais dépasser VCC — quand le rail est coupé et que le nRF est réveillé, le pin doit être bas ou en haute impédance, **jamais haut**. Séquence de mesure : rail ON avec DVI bas → attendre VCC puis ≥ 1 µs → DVI haut → I²C → DVI bas → rail OFF.
+
+*Effet de bord utile :* DVI bas = power-down du BH1750. On peut donc lire le SHT41 en laissant le capteur de lumière éteint, et le resetter sans power-cycler le rail.
+
+**Méthode.** Les 6 renommages de labels ont été faits **par UUID et non par nom** : deux des trois noms de net permutés existaient déjà sur la feuille, un passage par nom se serait donc écrasé lui-même selon l'ordre. Vérification après coup : 0 label déplacé, 0 supprimé, 6 renommés sur place, 2 ajoutés ; netlist diffée net par net contre le snapshot (seuls les 3 nets visés + `C10` changent) ; ERC 3 avertissements, 0 erreur. Voir issues [#20](https://github.com/ludodefgh/PlantSensor/issues/20) et [#21](https://github.com/ludodefgh/PlantSensor/issues/21).
+
+### 2.17 L1 (boost inductor) — MLP2520S4R7ST0S1 → TFM252012ALMA4R7MTAA (2026-08-24)
+
+Vérification demandée directement contre la page 9 du datasheet XC9145 (« Typical Application Circuit / Parts Selection Guide », p.9) — pas encore faite jusqu'ici malgré le pinout déjà validé en §3.2. **C2 (CIN) est conforme** : 10µF/16V, exactement le palier `VOUT(T)≦3.3V` de la table (le boîtier 0805 au lieu du 0603 de référence est un plus, pas un problème — meilleur derating DC bias). **L1 ne l'était pas**, pour deux raisons trouvées en récupérant les vrais datasheets TDK (via LCSC, pas des fiches produit résumées) :
+
+1. **`MLP2520S4R7ST0S1` (ancien) ne publie aucun courant de saturation.** Sa seule caractéristique donnée est un rating **thermique** (échauffement 40°C max) = **1.0A** — déjà sous l'`ILIM` typ. = **1.3A** du XC9145 (datasheet p.14, « Current Limit function », coil current monitoré chaque cycle de switching). Aucune marge de saturation confirmée à ce seuil.
+2. **Pas blindée.** Le datasheet TDK du MLP2520 le dit explicitement dans ses précautions de layout : *« Carefully lay out the coil for the circuit board design of the non-magnetic shield type. A malfunction may occur due to magnetic interference. »* Directement à l'opposé de la note *5 de la page 9 XC9145 (*"please use a shield type inductor to suppress noise leakage"*) — et les 6 candidats listés dans la table sont tous blindés (circuit magnétique fermé).
+
+**Remplacement : `TFM252012ALMA4R7MTAA` (TDK), LCSC [C404806](https://www.lcsc.com/product-detail/Power-Inductors_TDK-TFM252012ALMA4R7MTAA_C404806.html).** Même boîtier 2.5×2.0×1.2mm. Datasheet réel consulté (pas une page produit) : `Isat` max 1.9A / `Itemp` max 1.6A — les deux au-dessus de l'`ILIM` avec marge — et circuit magnétique fermé (*« By using a closed magnetic circuit structure leakage flux is minimized »*). En stock (4650 pièces au 2026-08-24), $0.3105/u à MOQ 5 (contre $0.1095/u pour l'ancien — l'écart reste marginal en absolu).
+
+**Vérification des pads avant de trancher, demandée explicitement.** Comparaison des land patterns **réels TDK** (pas juste « même taille de boîtier ») :
+
+| | span A | pad | centres |
+|---|---|---|---|
+| MLP2520 t=1.2mm (ancien, datasheet TDK) | 2.3mm | 0.40×2.70mm | ±0.95mm |
+| TFM252012ALMA4R7MTAA (nouveau, datasheet TDK) | 2.3mm | 0.50×2.80mm | ±0.90mm |
+| `Inductor_SMD:L_1008_2520Metric` (footprint KiCad déjà utilisé) | 3.4mm | 1.25×2.20mm | ±1.075mm |
+
+Les deux recommandations TDK sont quasi identiques entre elles (écart ≤0.1mm partout). **Correction (2026-08-26, audit) : l'affirmation "plus généreux que les deux" ci-dessus était imprécise.** Vrai uniquement pour l'empan (3.4mm vs 2.3mm) — sur la hauteur de pad, le footprint KiCad (2.20mm) est en réalité **plus étroit** que la recommandation TDK (2.80mm), pas plus généreux. Pas un problème en pratique : la terminaison du composant fait 2.0mm de large, donc 2.20mm de pad la couvre encore avec 0.1mm de marge de chaque côté — soudable, juste moins de fillet que ce que TDK demande. **Footprint et symbole inchangés** (`Device:L`, `Inductor_SMD:L_1008_2520Metric`) ; seule la `Note` du composant et la BOM ont été mises à jour. ERC et netlist vérifiés strictement identiques avant/après (attendu, aucune broche ni géométrie touchée).
+
+---
+
+### 2.18 C6 retiré (2026-08-24) — la prémisse de l'issue #18 n'existe plus depuis le remaniement d'alimentation
+
+Retour signalé directement par l'utilisateur sur §2.12 : *« #18 c'était quand VDD_NRF était directement sur la pile. Là ce n'est plus le cas. »* Vérification faite en relisant le texte exact de l'issue [#18](https://github.com/ludodefgh/PlantSensor/issues/18) :
+
+> *« Le MCU […] est alimenté directement par `VDD_NRF`, qui suit la tension de la pile CR2032 […]. **Aucun régulateur entre la pile et le MCU sur ce rail** […] ça expose le design à des creux de tension transitoires pendant les rafales TX radio. »*
+
+Vrai le 11 août. Faux depuis le remaniement de l'alimentation du 23 août (§2.15) : le nRF est maintenant sur `VOUT_3V3`, **en aval** du boost XC9145 qui tourne en permanence. Le mécanisme entier décrit dans #18 — l'ESR de la pile qui s'affaisse directement sous le MCU — n'existe plus. Pire, la note du composant elle-même était doublement obsolète : elle disait *« près de J1 pin9 (VDD_NRF) »* alors que C6 était en réalité sur `VOUT_3V3`, pas sur `BOOST_IN` — la note était déjà fausse sur le net avant même la question d'architecture.
+
+**Ce qui couvre déjà le vrai besoin de #18, correctement positionné.** `C1` (10µF, au plus près de BT1, sur `BAT_RAW`) et `C2` (10µF, à l'entrée du boost, sur `BOOST_IN`) forment déjà un réservoir de 20µF côté batterie — exactement ce que #18 demandait, sauf que ces deux caps étaient déjà là et bien placés pour la topologie actuelle, indépendamment de C6.
+
+**Est-ce que la boucle du XC9145 encaisse un burst TX sans C6 côté sortie ?** Datasheet, page de garde : *« Load transient response : 300mV @ VOUT=3.3V, VBAT=1.8V, IOUT=1mA→200mA »* — mesuré avec la config standard (CL=2×10µF, sans réservoir supplémentaire). Le saut de courant réel d'une rafale TX nRF (~6.6mA d'après le calcul même de #18) est plus de 30× plus petit que les 200mA du test. Le creux réel attendu avec juste C4+C5 (20µF) reste largement sous les 300mV mesurés à 200mA — et très en dessous de la marge statique ~400mV que #18 calculait déjà. *(Une autre note du datasheet recommande d'augmenter CL quand `VBAT` s'approche de `VOUT(T)` à moins de 0.3V — mais c'est le régime **pile neuve** proche de 3.3V, pas pile finissante ; sans rapport avec #18.)*
+
+**Effet secondaire favorable, découvert pendant la review de L1 (§2.17) avant même de comprendre que C6 était devenu injustifié :** `CL` total sur `VOUT_3V3` était de 120µF (C4+C5+C6) contre 2×10µF=20µF recommandé par la page 9 du datasheet XC9145 — 6× la valeur de référence, dans une zone que le datasheet met explicitement en garde (*« it may not start during the soft start period, and the current limiting function may operate during startup »*). Retirer C6 ramène `CL` à 20µF, exactement la config de référence. Deux problèmes réglés par un seul retrait.
+
+**Fait :** `C6` et son symbole GND dédié (`#PWR101`) supprimés du schéma, ainsi que le fil de stub et la jonction en T devenue inutile (retour à un simple passage droit sur le rail `VOUT_3V3`). BOM resynchronisée (37→36 composants). Vérifié : ERC inchangé (3 avertissements préexistants, 0 erreur), netlist diffée — seuls `C6.1`/`C6.2` disparaissent de `VOUT_3V3`/`GND`, rien d'autre ne bouge — et 0 label déplacé (diffé par UUID contre un snapshot pré-édition). Issue #18 fermée comme obsolète par changement d'architecture (pas par fix matériel).
+
+### 2.19 Vias de la sonde sol — plugged + capped (2026-08-25), suite à un retour Reddit
+
+Deux retours reçus lors de la review publique du projet (renders exportés en §2.16-2.18) : pistes back-side trop fines pour survivre à l'insertion répétée dans le sol, et vias exposés dans la zone d'insertion qui « se feraient manger » — avec la suggestion de les déplacer au-dessus de la ligne de sol.
+
+**Vérifié sur le vrai layout plutôt que pris pour argent comptant :**
+
+- 3 vias trouvés dans la zone d'insertion (bbox `PROBE1` : y 85.6→149.9mm) : `(67.70,120.70)` net `P1_04_SOIL_ADC2`, `(69.45,81.85)` et `(69.90,87.80)` net `P1_07_SOIL_ADC1`. Le reviewer avait raison sur leur position — ils sont bien dans la portion qui rentre en terre, pas au-dessus.
+- Le tentage est actif par défaut sur toute la carte (`(tenting (front yes)(back yes))` dans `(setup)`) — donc **pas** de cuivre nu exposé comme la remarque le suggérait littéralement. Mais un simple film de masque de quelques microns sur un trou plaqué reste mécaniquement fragile face à une abrasion répétée.
+- Pistes `B.Cu` des deux nets sol : **0.2mm (8 mil)**, sur ~36mm continus sans renfort — confirmé, remarque fondée.
+- Raison des vias, confirmée par l'utilisateur puis vérifiée sur les zones du board : une zone GND sur `F.Cu` se termine à y=76.2mm, juste avant le col de la sonde (85.6mm) — les deux premiers vias contournent ce plan sans le trouer ; le troisième (120.70mm) est le point de retour sur `F.Cu` du net `SOIL_ADC2` pour rejoindre le pad de son peigne (segment profond). **Aucun des trois n'est déplaçable significativement plus haut** sans repousser d'abord la limite du plan GND — la marge entre la fin du plan et le début de la zone d'insertion est trop faible.
+
+**Décision : passer les 3 vias en plugged + capped (IPC-4761)** plutôt que de tenter un déplacement qui n'est pas réellement possible. Édition chirurgicale du `.kicad_pcb` par UUID (`(capping yes)` + `(plugging (front yes)(back yes))` insérés dans chacun des 3 blocs `(via ...)`) — **pas** via `pcbnew.Save()` : un aller-retour sans aucune modification via l'API Python produit à lui seul 517 lignes de diff (KiCad 10 réécrit tout le fichier et normalise le bloc `(setup)`), bien trop invasif pour un projet où le placement/routage reste entièrement manuel. Vérifié : diff exact de 15 lignes (3×5, rien d'autre touché), DRC 0 violation, propriétés relues et confirmées via `pcbnew` (`capping=1, front_plug=1, back_plug=1` sur les trois).
+
+**Non traité pour l'instant :** l'élargissement des pistes 0.2mm — à vérifier si la densité du peigne laisse de la place.
+
+---
+
 ## 3. Problèmes non résolus — à trancher avant fabrication
 
 ### 3.1 Support CR2032 : traversant (THT), pas SMD
@@ -280,9 +379,11 @@ Le seul modèle avec données EasyEDA récupérables était `CR2032-BS-6-1` (C70
 - Référence de layout disponible : le schéma eval-board Torex (3 caps entrée CBLK/CIN2/CIN1 + 3 caps sortie CL1/CL2/CL3) est plus riche que la config actuelle (1 cap entrée C2 + 2 caps sortie C4/C5), mais correspond au "Typical Application Circuit" du corps du datasheet (caractérisation banc, pas une exigence BOM) — config actuelle conservée, cohérente avec le datasheet principal.
 - Le schéma de référence montre aussi un point de test dédié sur le nœud LX (nœud de commutation, le plus bruyant du circuit) — pratique standard eval-board pour sonder à l'oscillo, pas nécessaire électriquement. Non ajouté (optionnel, à la discrétion de l'utilisateur selon la place disponible).
 
-### 3.3 Pins SAADC non confirmés (soil ADC2, VDD interne batterie)
+### 3.3 ✅ RÉSOLU — Pins SAADC confirmées, mesure batterie implémentée
 
-Comme prévu dans le brief : le 2e canal SAADC pour le segment profond (`P1_04_SOIL_ADC2` dans le schéma) est le candidat proposé en premier (parmi P1.04/P1.05/P1.06) mais **pas vérifié contre le datasheet nRF54L15** pour confirmer qu'il est bien SAADC-capable. Idem pour l'existence d'un canal SAADC interne de mesure VDD — je n'ai pas eu le temps de vérifier cette section précise du datasheet (13MB, structure complexe) durant cette session. Le schéma actuel ne câble d'ailleurs **aucune mesure de tension batterie** — ni GPIO dédié, ni diviseur — cette partie du brief (section 3, ligne "Batterie") n'a pas été implémentée du tout dans ce premier jet, faute de réponse tranchée sur le canal interne. À ajouter une fois la question résolue.
+Brochage SAADC du nRF54L15 vérifié contre le datasheet officiel (v1.0, brochage QFN48) : `AIN0=P1.04, AIN1=P1.05, AIN2=P1.06, AIN3=P1.07, AIN4=P1.11, AIN5=P1.12, AIN6=P1.13, AIN7=P1.14`. Les deux canaux de la sonde sol sont bien SAADC-capables — `P1_07_SOIL_ADC1` = AIN3, `P1_04_SOIL_ADC2` = AIN0.
+
+Il n'existe pas de canal SAADC interne dédié à VDD sur le nRF54L15 (contrairement aux nRF52/53) — confirmé en pratique par nécessité d'implémenter la mesure autrement. **Mesure de tension batterie implémentée par diviseur résistif** : R11/R12 (1MΩ/1MΩ, ratio 2:1) sur `BAT_RAW`, commuté par Q4 (gate partagée avec Q3 sur `P1_14_SENSOR_EN`) pour éviter une fuite continue, lu sur `P1_13_BAT_SENSE` = **AIN6**, confirmé SAADC-capable. Voir §2.15 pour le détail du montage.
 
 ### 3.4 CR2032-BS-6-1 : polarité pin1/pin2 non vérifiée
 

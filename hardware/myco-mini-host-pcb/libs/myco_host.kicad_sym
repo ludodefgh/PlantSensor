@@ -20,7 +20,7 @@
     )
     (property
       "Footprint"
-      "myco_host:DFN-4_L1.5-W1.5-P0.8"
+      "myco_host:DFN-4_L1.5-W1.5-P0.8-TL-EP"
       (id 2)
       (at 0 -10.16 0)
       (effects (font (size 1.27 1.27) ) hide)
@@ -30,6 +30,13 @@
       "C2909890"
       (id 5)
       (at 0 -12.70 0)
+      (effects (font (size 1.27 1.27) ) hide)
+    )
+    (property
+      "Note"
+      "Reverted to SHT40 on 2026-08-24. Identical DFN-4 1.5x1.5mm package, identical pinout, identical I2C address 0x44 - no footprint or layout impact. Trade-off accepted: +-3%RH instead of +-2%RH at the 0-10% and 90-100%RH extremes (both parts are +-1.8%RH across 20-80%RH). In exchange it is stocked at LCSC (C2909890) whereas SHT41-AD1B-R2 (C7461861) was not listed and had to be sourced separately at Digikey. Footprint deliberately kept as DFN-4_L1.5-W1.5-P0.8-TL-EP: the EP-less footprint referenced by the original easyeda2kicad SHT40 symbol does not exist in myco_host.pretty. See decision log 2.9."
+      (id 6)
+      (at 0 -15.24 0)
       (effects (font (size 1.27 1.27) ) hide)
     )
     (symbol "SHT40-AD1B-R2_0_1"

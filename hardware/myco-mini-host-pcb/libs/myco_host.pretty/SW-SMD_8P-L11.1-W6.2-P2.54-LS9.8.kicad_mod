@@ -33,6 +33,7 @@
 	(fp_line (start 5.60 -3.10) (end 5.60 3.10) (layer F.Fab) (width 3.00))
 	(fp_line (start 5.60 3.10) (end -5.60 3.10) (layer F.Fab) (width 3.00))
 	(fp_line (start -5.60 -3.10) (end -5.60 -3.10) (layer F.Fab) (width 3.00))
+	(fp_rect (start -4.66 -5.7) (end 4.66 5.7) (layer F.CrtYd) (width 0.05) (fill none))
 	(pad 1 smd rect (at -3.81 4.45 0.00) (size 1.20 2.00) (layers F.Cu F.Paste F.Mask))
 	(pad 2 smd rect (at -1.27 4.45 0.00) (size 1.20 2.00) (layers F.Cu F.Paste F.Mask))
 	(pad 3 smd rect (at 1.27 4.45 0.00) (size 1.20 2.00) (layers F.Cu F.Paste F.Mask))
@@ -54,7 +55,7 @@
 	(fp_text user 4 (at 3.30 6.66 0.00) (layer F.SilkS)
 		(effects (font (size 1.50 1.50) (thickness 0.20)) (justify left))
 	)
-	(model "${KIPRJMOD}/libs/myco_host.3dshapes/SW-SMD_8P-L10.2-W6.2-H3.6-P2.54-LS9.3.wrl"
+	(model "${KIPRJMOD}/libs/myco_host.3dshapes/SW-SMD_8P-L10.1-W6.0-H3.8-P2.54-LS9.8.wrl"
 		(offset (xyz 0.000 -0.000 -0.000))
 		(scale (xyz 1 1 1))
 		(rotate (xyz 0 0 0))

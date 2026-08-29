@@ -8,3 +8,6 @@ __pycache__/
 hardware/**/*-backups/
 hardware/**/*.lck
 hardware/**/_autosave-*
+hardware/**/jlcpcb_export/
+hardware/**/tmp/
+hardware/myco-mini-host-pcb/*.svg
