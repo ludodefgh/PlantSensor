@@ -117,7 +117,7 @@ fp = f'''(footprint "SOIL_PROBE_2SEG"
     (generator "myco_host_gen")
     (generator_version "1.2")
     (layer "F.Cu")
-    (descr "2-segment interdigitated capacitive soil moisture probe, classic IDC comb (left/right spines, interleaved full-width fingers), 0.15mm finger gap, 0.3mm finger width. Draft geometry - see docs/pcb-design-decisions.md")
+    (descr "2-segment interdigitated capacitive soil moisture probe, classic IDC comb (left/right spines, interleaved full-width fingers), {GAP}mm finger gap, {FINGER_W}mm finger width (widened from an original 0.3/0.15mm for field penetration depth, see decision log 2.6-2.7). See docs/pcb-design-decisions.md")
     (tags "soil moisture capacitive probe interdigitated")
     (property "Reference" "PROBE1"
         (at {PROBE_WIDTH/2:.3f} -3 0)
