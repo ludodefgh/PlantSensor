@@ -157,6 +157,13 @@ Sources consultées : [McIntosh & Casada 2008, IEEE Sensors Journal — Fringing
 
 **Effet de bord découvert en même temps :** la clearance cuivre-cuivre par défaut du board (0.2mm) est plus stricte que l'espacement doigt-à-doigt voulu (0.15mm, imposé par le brief) — DRC le signalait comme erreur. Le script fixe maintenant la clearance par défaut du board à 0.127mm (5mil, minimum standard JLCPCB) pour l'accommoder. À vérifier que 0.127mm convient bien au reste du routage une fois qu'il sera fait (c'est une clearance globale, pas juste pour la sonde).
 
+**Correction (2026-08-29, suite à une remarque directe de l'utilisateur) :** le brief demandait "solder mask : ouverture sur toute la zone sonde, traces exposées", mais cette instruction n'a **jamais été implémentée** dans `gen_soil_probe_footprint.py` — les 4 pads du peigne sont en `(layers "F.Cu")` seul, sans `F.Mask`. Vérifié par grep exhaustif sur le footprint (lib et instance PCB) : aucune occurrence de `F.Mask`. En KiCad, un pad qui n'inclut pas `F.Mask` dans ses layers ne génère aucune ouverture — le masque vert par défaut recouvre donc le cuivre du peigne, contrairement à ce que le calcul de capacité ci-dessus supposait (sol comme unique diélectrique, cuivre nu).
+
+Conséquences, non résolues sur la v1.0.0 déjà commandée chez JLCPCB :
+- La vraie capacité mesurée sera probablement **plus basse** que les C_sec/C_mouillé/C_saturé calculés plus haut (masque + sol en série au lieu de sol seul) — rapproche potentiellement le cas sec du seuil ~14pF déjà jugé limite.
+- Côté positif non anticipé : le cuivre n'est jamais exposé nu au sol humide, donc pas de risque de corrosion galvanique directe sur le peigne — un bénéfice que l'edge plating/conformal coating cherchait à obtenir ailleurs, obtenu ici gratuitement par omission.
+- À trancher empiriquement une fois les cartes reçues (suivi : [issue #24](https://github.com/ludodefgh/PlantSensor/issues/24)) — et à corriger explicitement pour une V2 si le signal se révèle trop faible : soit ouvrir vraiment le masque sur le peigne (`F.Mask` ajouté aux pads), soit refaire le calcul de capacité en intégrant le masque comme diélectrique en série dès le départ.
+
 ### 2.8 DIP switch — mapping des paires de broches
 
 EM-04-Q (8 broches). Le mapping switch↔broches (1↔8, 2↔7, 3↔6, 4↔5) a été **déduit directement de la géométrie du symbole** récupéré via easyeda2kicad (les broches de chaque paire partagent la même coordonnée X dans le symbole, reliées par le glyphe "switch" dessiné entre elles) — pas une supposition, une lecture directe des données. Confiance haute, mais gardez en tête que c'est déduit, pas confirmé sur le datasheet texte du composant.
