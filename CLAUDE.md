@@ -15,6 +15,10 @@ Two parallel tracks on the AN54LQ-15 module (nRF54L15), replacing an earlier fro
 
 There's also a separate, standalone repo for the breakout hardware itself at `/home/ludovic/Documents/Projects/NRF54L_breakout` — not part of this repo.
 
+**Docs that only exist on the `feature/an54lq15-*` branches, not on `main`** (deliberately unmerged, actively-changing validation branches — check out the branch to read them):
+- `docs/breadboard-an54lq15.md` — on `an54lq15-breakout-test`, `an54lq15-dual-protocol`, `an54lq15-zigbee` (identical on all three)
+- `companion-app/README.md` and `zigbee2mqtt/README.md` — on `an54lq15-dual-protocol` only
+
 ## Hard rules — do not violate
 
 - **Never run `hardware/myco-mini-host-pcb/scripts/gen_pcb.py` or `gen_schematic.py`.** Both carry a `DO NOT RUN THIS SCRIPT` banner (added 2026-08-23). All placement/layout on the live PCB is done by hand by the user going forward — these scripts' output would clobber that.
